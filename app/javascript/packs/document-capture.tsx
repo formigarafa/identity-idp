@@ -1,4 +1,4 @@
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { composeComponents } from '@18f/identity-compose-components';
 import {
   DocumentCapture,
@@ -175,5 +175,6 @@ const trackEvent: typeof baseTrackEvent = (event, payload) => {
     [DocumentCapture, { isAsyncForm, onStepChange: keepAlive }],
   );
 
-  render(<App />, appRoot);
+  const root = createRoot(appRoot);
+  root.render(<App />);
 })();
