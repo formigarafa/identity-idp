@@ -12,6 +12,8 @@ import { removeUnloadProtection } from '@18f/identity-url';
 import { useContext, useEffect, useState } from 'react';
 import { FlowContext } from '@18f/identity-verify-flow';
 import { useI18n } from '@18f/identity-react-i18n';
+import { FormStepsButton } from '@18f/identity-form-steps';
+import UploadContext from '../context/upload';
 import InPersonTroubleshootingOptions from './in-person-troubleshooting-options';
 
 const fetchSelectedLocation = () =>
@@ -24,6 +26,7 @@ const fetchSelectedLocation = () =>
 function InPersonPrepareStep() {
   const { t } = useI18n();
   const { inPersonURL } = useContext(FlowContext);
+  const { flowPath } = useContext(UploadContext);
   const [selectedLocationName, setSelectedLocationName] = useState<string>('');
   const [hasFetchError, setHasFetchError] = useState<boolean>(false);
 
@@ -114,7 +117,8 @@ function InPersonPrepareStep() {
           </ul>
         </IconListItem>
       </IconList>
-      {inPersonURL && (
+      {flowPath === 'hybrid' && <FormStepsButton.Continue />}
+      {inPersonURL && flowPath === 'standard' && (
         <div className="margin-y-5">
           <Button href={inPersonURL} onClick={removeUnloadProtection} isBig isWide>
             {t('forms.buttons.continue')}
