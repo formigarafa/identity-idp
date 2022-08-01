@@ -25,19 +25,6 @@ module Idv
         render json: { success: true }, status: :ok
       end
 
-      # return the Post Office location the user selected from the establishing enrollment
-      def show
-        selected_location = enrollment.selected_location_details
-
-        # camel case keys
-        returned_location = {}
-        selected_location.keys.each do |key|
-          returned_location[key.camelize(:lower)] = selected_location[key]
-        end
-
-        render json: returned_location.to_json, status: :ok
-      end
-
       protected
 
       def enrollment
