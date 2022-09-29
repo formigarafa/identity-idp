@@ -533,6 +533,12 @@ RSpec.describe GetUspsProofingResultsJob do
           )
         end
       end
+
+      context 'when an error occurs' do
+        before(:each) do
+          stub_request_with_error({})
+        end
+      end
     end
 
     describe 'IPP disabled' do

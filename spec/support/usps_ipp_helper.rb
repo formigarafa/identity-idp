@@ -117,6 +117,17 @@ module UspsIppHelper
     }
   end
 
+  def stub_request_with_error(*_responses)
+    stub_request(
+      :post,
+      %r{/ivs-ippaas-api/IPPRest/resources/rest/getProofingResults},
+    ).to_raise(Timeout::Error)
+  end
+
+  # looked at this with sheldon
+  # should do below but stub_request_with_error and have it to_raise(Exception)
+  # network failure or timeout exception
+  # he copied pasted this to me
   def stub_request_proofing_results_with_responses(*responses)
     stub_request(:post, %r{/ivs-ippaas-api/IPPRest/resources/rest/getProofingResults}).to_return(
       responses,

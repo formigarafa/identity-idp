@@ -65,11 +65,13 @@ class GetUspsProofingResultsJob < ApplicationJob
     )
 
     started_at = Time.zone.now
+    # here is where job started event occurs
     analytics.idv_in_person_usps_proofing_results_job_started(
       enrollments_count: enrollments.count,
       reprocess_delay_minutes: reprocess_delay_minutes,
     )
 
+    # here is where error happens
     check_enrollments(enrollments)
 
     analytics.idv_in_person_usps_proofing_results_job_completed(
