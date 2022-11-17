@@ -440,5 +440,82 @@ describe 'dev rake tasks' do
 
       Rake::Task['dev:random_in_person_users'].invoke
     end
+
+    it 'prints stats about what it did' do
+      ENV['NUM_USERS'] = '10'
+      ENV['CREATE_PENDING_ENROLLMENT_IN_USPS'] = '1'
+      stub_request_token
+      stub_request_enroll
+
+      expected_stats = {
+        config_values: {
+          CREATE_PENDING_ENROLLMENT_IN_USPS: ENV['CREATE_PENDING_ENROLLMENT_IN_USPS'],
+          ENROLLMENT_STATUS: 'pending',
+          MAX_NUM_ATTEMPTS: 3,
+          NUM_USERS: ENV['NUM_USERS'],
+          PROGRESS: ENV['PROGRESS'],
+          USPS_REQUEST_DELAY_MS: nil,
+        },
+        error_counts: {
+        },
+        runtime_minutes: anything,
+        enrollment_count: 10,
+        user_count: 10,
+      }
+      expect(Rails.logger).to receive(:info).at_least(:once) do |json_stats|
+        unless /request_metric.faraday/.match?(json_stats)
+          received_stats = JSON.parse(json_stats).symbolize_keys
+          received_stats[:config_values] = received_stats[:config_values].symbolize_keys
+          expect(received_stats).to match(expected_stats)
+        end
+      end
+
+      Rake::Task['dev:random_in_person_users'].invoke
+    end
+
+    it 'prints stats even if an exception is raised' do
+      ENV['NUM_USERS'] = '10'
+      ENV['CREATE_PENDING_ENROLLMENT_IN_USPS'] = '1'
+      stub_request_token
+      # Allow one enrollment to succeed and then timeout three times
+      stub_request(
+        :post,
+        %r{/ivs-ippaas-api/IPPRest/resources/rest/optInIPPApplicant},
+      ).
+        to_return(
+          status: 200,
+          body: UspsInPersonProofing::Mock::Fixtures.request_enroll_response,
+          headers: { 'content-type' => 'application/json' },
+        ).
+        then.to_raise(Faraday::TimeoutError).times(5)
+
+      expected_stats = {
+        config_values: {
+          CREATE_PENDING_ENROLLMENT_IN_USPS: ENV['CREATE_PENDING_ENROLLMENT_IN_USPS'],
+          ENROLLMENT_STATUS: 'pending',
+          MAX_NUM_ATTEMPTS: 3,
+          NUM_USERS: ENV['NUM_USERS'],
+          PROGRESS: ENV['PROGRESS'],
+          USPS_REQUEST_DELAY_MS: nil,
+        },
+        error_counts: {
+          'Faraday::TimeoutError' => 3,
+        },
+        runtime_minutes: anything,
+        enrollment_count: 2,
+        user_count: 10,
+      }
+      expect(Rails.logger).to receive(:info).at_least(:once) do |json_stats|
+        unless /request_metric.faraday/.match?(json_stats)
+          received_stats = JSON.parse(json_stats).symbolize_keys
+          received_stats[:config_values] = received_stats[:config_values].symbolize_keys
+          expect(received_stats).to match(expected_stats)
+        end
+      end
+
+      expect do
+        Rake::Task['dev:random_in_person_users'].invoke
+      end.to raise_error(UspsInPersonProofing::Exception::RequestEnrollException)
+    end
   end
 end
