@@ -389,8 +389,8 @@ describe 'dev rake tasks' do
       end.to raise_error(UspsInPersonProofing::Exception::RequestEnrollException)
 
       expect(User.count).to eq 10
-      expect(InPersonEnrollment.count).to eq 0
-      expect(InPersonEnrollment.pending.count).to eq 0
+      expect(InPersonEnrollment.count).to eq 1
+      expect(InPersonEnrollment.pending.count).to eq 1
     end
 
     it 'defaults to MAX_NUM_ATTEMPTS=3 if not specified' do
