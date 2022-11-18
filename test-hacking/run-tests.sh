@@ -1,0 +1,24 @@
+#!/bin/bash
+bundle exec rspec --profile=10 spec/blueprints >blueprints.out 2>&1
+bundle exec rspec --profile=10 spec/components >components.out 2>&1
+bundle exec rspec --profile=10 spec/config >config.out 2>&1
+bundle exec rspec --profile=10 spec/controllers >controllers.out 2>&1
+bundle exec rspec --profile=10 spec/decorators >decorators.out 2>&1
+bundle exec rspec --profile=10 spec/factories >factories.out 2>&1
+bundle exec rspec --profile=10 spec/fixtures >fixtures.out 2>&1
+bundle exec rspec --profile=10 spec/forms >forms.out 2>&1
+bundle exec rspec --profile=10 spec/helpers >helpers.out 2>&1
+bundle exec rspec --profile=10 spec/rb >rb.out 2>&1
+bundle exec rspec --profile=10 spec/javascripts >javascripts.out 2>&1
+bundle exec rspec --profile=10 spec/jobs >jobs.out 2>&1
+bundle exec rspec --profile=10 spec/lib >lib.out 2>&1
+bundle exec rspec --profile=10 spec/mailers >mailers.out 2>&1
+bundle exec rspec --profile=10 spec/models >models.out 2>&1
+bundle exec rspec --profile=10 spec/policies >policies.out 2>&1
+bundle exec rspec --profile=10 spec/presenters >presenters.out 2>&1
+bundle exec rspec --profile=10 spec/requests >requests.out 2>&1
+bundle exec rspec --profile=10 spec/routing >routing.out 2>&1
+bundle exec rspec --profile=10 spec/scripts >scripts.out 2>&1
+bundle exec rspec --profile=10 spec/services >services.out 2>&1
+bundle exec rspec --profile=10 spec/views >views.out 2>&1
+bundle exec rspec --profile=10 spec/features >features.out 2>&1
