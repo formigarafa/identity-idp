@@ -1,0 +1,20 @@
+
+Randomized with seed 27249
+
+GPO verification routes
+  when enable_gpo_verification is true
+    routes to endpoints controlled by feature flag
+  when enable_gpo_verification is false
+    does not route to endpoints controlled by feature flag
+
+Top 2 slowest examples (0.34545 seconds, 24.7% of total time):
+  GPO verification routes when enable_gpo_verification is true routes to endpoints controlled by feature flag
+    0.26922 seconds ./spec/routing/gpo_verification_routing_spec.rb:54
+  GPO verification routes when enable_gpo_verification is false does not route to endpoints controlled by feature flag
+    0.07623 seconds ./spec/routing/gpo_verification_routing_spec.rb:29
+
+Finished in 1.4 seconds (files took 2.55 seconds to load)
+2 examples, 0 failures
+
+Randomized with seed 27249
+

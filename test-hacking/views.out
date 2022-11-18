@@ -1,0 +1,883 @@
+
+Randomized with seed 32935
+
+idv/otp_delivery_method/new.html.erb
+  renders sms and voice options
+  without sms support
+    renders voice option
+  gpo letter available
+    renders troubleshooting options
+  without voice support
+    renders sms option
+  phone vendor outage
+    disables problematic vendor option
+    renders alert banner
+  gpo letter not available
+    renders troubleshooting options
+
+user_mailer/email_confirmation_instructions.html.erb
+  mentions creating an account when user is not yet confirmed
+  mentions how long the user has to confirm
+  includes a link to confirmation
+  mentions updating an account when user has already been confirmed
+  in a non-default locale
+    puts the locale in the URL
+
+sign_up/emails/show.html.erb
+  has a localized title
+  has a localized header
+  contains link to resend confirmation page
+
+idv/inherited_proofing/agreement.html.erb
+  renders the Continue button
+  renders the Cancel link
+  with or without service provider
+    renders content
+
+users/two_factor_authentication_setup/index.html.erb
+  all phone vendor outage
+    renders alert banner
+    disables phone option
+  single phone vendor outage
+    does not render alert banner
+    does not disable phone option
+
+idv/in_person/ready_to_verify/show.html.erb
+  with enrollment where current address matches id
+    renders without proof of address instructions
+  with enrollment where selected_location_details is not present
+    does not render a location
+  with enrollment where current address does not match id
+    renders with proof of address instructions
+  with enrollment where selected_location_details is present
+    renders a location
+
+idv/phone_errors/timeout.html.erb
+  shows contact support option
+  shows a primary action
+  shows warning text
+  gpo verification enabled
+    renders a list of troubleshooting options
+  gpo verification disabled
+    renders a list of troubleshooting options
+
+idv/phone_errors/warning.html.erb
+  shows a primary action
+  shows warning text
+  shows remaining attempts
+  gpo verification enabled
+    renders a list of troubleshooting options
+  gpo verification disabled
+    renders a list of troubleshooting options
+
+partials/personal_key/_key.html.erb
+  renders the code without whitespace between segments
+
+idv/phone/new.html.erb
+  gpo letter available
+    renders troubleshooting options
+  gpo letter not available
+    renders troubleshooting options
+
+accounts/_nav_auth.html.erb
+  mobile nav is enabled
+    contains menu button
+  user is signed in
+    contains welcome message
+    contains sign out link
+    does not contain link to cancel the auth process
+
+users/piv_cac_authentication_setup/new.html.erb
+  user has sufficient factors
+    renders a link to cancel and go back to the account page
+  user is setting up 2FA
+    renders a link to choose a different option
+
+users/passwords/edit.html.erb
+  contains minimum password length requirements
+  has a localized title
+  has a localized heading
+  sets form autocomplete to off
+
+two_factor_authentication/sms_opt_in/new.html.erb
+  renders the masked phone number
+  other authentication methods
+    without an other_mfa_options_url
+      omits the other auth methods section
+    with an other_mfa_options_url
+      links to other options
+
+shared/_footer_lite.html.erb
+  user is signed out
+    contains link to help page
+    contains link to privacy page
+    contains link to contact page
+    contains GSA text
+
+two_factor_authentication/personal_key_verification/show.html.erb
+  has a localized title
+  has a localized heading
+  prompts the user to enter their personal key
+  contains a form to submit the personal key
+  behaves like an otp form
+    tertiary form actions
+      allows the user to cancel out of the sign in process
+
+account_reset/recovery_options/show.html.erb
+  has a localized title
+  has button to cancel request
+
+accounts/show.html.erb
+  has a localized title
+  when current user has pending_profile
+    contains a link to activate profile
+  auth app listing and adding
+    user has no auth app
+      does not render auth app
+    user has an auth app
+      renders the auth app section
+  when current user has password_reset_profile
+    contains link to reactivate profile via personal key or reverification
+    displays an alert with instructions to reactivate their profile
+  when a profile has just been re-activated with personal key during SP auth
+    renders the link to continue to the SP
+  when the user does not have pending_profile
+    lacks a pending profile section
+  phone listing and adding
+    user has a phone
+      formats phone numbers
+      renders the phone section
+    user has no phone
+      does not render phone
+  PIV/CAC listing and adding
+    user has no piv/cac
+      does not render piv/cac
+    user has a piv/cac
+      renders the piv/cac section
+  email listing and adding
+    renders the email section
+    shows one email if the user has only one email
+    shows one email if the user has only one email
+
+reactivate_account/index.html.erb
+  displays a fallback warning alert when js is off
+
+partials/multi_factor_authentication/_mfa_selection.html.erb
+  user already setup an mfa configuration and is returning to create a second
+    shows a checked checkbox for the configuration already created
+    the checkbox for the configuration created communicates it is already created
+    shows a disabled checkbox for the configuration already created
+  before selecting options
+    renders a field with mfa-selection class
+    does not display any errors
+
+shared/_maintenance_window_alert.html.erb
+  during the maintenance window
+    renders a warning and not the contents of the block
+  outside the maintenance window
+    renders the contents of the block but no warning
+
+idv/shared/_error.html.erb
+  renders heading
+  secondary action
+    with secondary action
+      renders secondary action button
+    without secondary action
+      does not render secondary action button
+    with form action
+      renders action button
+  options
+    no options
+      does not render troubleshooting options
+    with options
+      renders a list of troubleshooting options
+  title
+    with title
+      sets title
+    without title
+      sets title as defaulting to heading
+  type
+    absent
+      defaults to error
+    warning
+      includes informative image
+      shows an appropriate troubleshooting heading
+    error
+      includes informative image
+      shows an appropriate troubleshooting heading
+  action
+    with action
+      renders action button
+    with form action
+      renders action button
+    without action
+      does not render action button
+
+accounts/history/show.html.erb
+  contains account history
+
+shared/_email_languages.html.erb
+  marks the current locale as the default
+  renders a checkbox per available locale
+  in french
+    marks the current locale as the default
+  with a nil selection
+    marks the default language as checked
+  with a language selection
+    marks the selection language as checked
+
+users/backup_code_setup/create.html.erb
+  displays download link with plain text content equal to the users backup codes
+
+account_reset/confirm_request/show.html.erb
+  has a localized title
+
+devise/passwords/new.html.erb
+  has sp alert for certain service providers
+  has a cancel link that points to the decorated_session cancel_link_url
+  sets input autocorrect to off
+  has a localized header
+  sets form autocomplete to off
+  has a localized title
+  service provider does not have custom help text
+    does not have an sp alert for service providers without alert messages
+
+shared/_banner.html.erb
+  properly HTML escapes the secure notification
+
+accounts/connected_accounts/show.html.erb
+  contains connected applications
+  with a connected app that is an invalid service provider
+    renders
+
+idv/shared/_document_capture.html.erb
+  async upload urls
+    when async upload is disabled
+      does not modify CSP connect_src headers
+    when async upload are enabled
+      does modifies CSP connect_src headers to include upload urls
+  in person url
+    when in person proofing is enabled
+      initializes with in person url
+      with an associated service provider
+        initializes without in person url
+        when in person proofing is enabled for issuer
+          initializes with in person url
+    when in person proofing is disabled
+      initializes without in person url
+
+idv/phone_errors/jobfail.html.erb
+  shows contact support option
+  shows a primary action
+  shows warning text
+  gpo verification enabled
+    renders a list of troubleshooting options
+  gpo verification disabled
+    renders a list of troubleshooting options
+
+idv/session_errors/throttled.html.erb
+  with liveness feature enabled
+    renders expected heading
+  without an SP
+    renders a list of troubleshooting options
+  with liveness feature disabled
+    renders expected heading
+  with an SP
+    renders a list of troubleshooting options
+
+idv/gpo/index.html.erb
+  renders fallback link to return to phone verify path
+  prompts to send letter
+  user needs address otp verification
+    renders fallback link to return to verify path
+  letter already sent
+    prompts to send another letter
+  has page to go back to
+    renders back link to return to previous path
+
+idv/session_errors/exception.html.erb
+  shows a primary action
+  renders a list of troubleshooting options
+  with associated service provider
+    renders a list of troubleshooting options
+
+devise/shared/_password_strength.html.erb
+  forbidden attributes
+    when local is nil
+      omits data-forbidden attribute from strength text tag
+    when local is unassigned
+      omits data-forbidden attribute from strength text tag
+    when local is assigned
+      adds JSON-encoded data-forbidden to strength text tag
+
+two_factor_authentication/otp_verification/show.html.erb
+  user has a phone
+    allow user to return to two factor options screen
+    when users phone number is unconfirmed
+      has a link to choose a new phone number
+    when users phone number is unconfirmed
+      has a link to choose a new phone number
+    when choosing to receive OTP via SMS
+      has a link to choose a different 2FA method
+      allows user to resend code using the same delivery method
+    user signed up
+      provides an option to use a personal key
+    when totp is enabled
+      allows user to sign in using an authenticator app
+    user is changing phone number
+      provides a cancel link to return to profile
+    when @code_value is set
+      pre-populates the form field
+    common OTP delivery screen behavior
+      has a localized heading
+      has a localized title
+    user is reauthenticating
+      renders the reauthn partial
+      provides a cancel link to return to profile
+    when choosing to receive OTP via voice
+      allows user to resend code using the same delivery method
+      has a fallback link to send confirmation as SMS
+    OTP copy
+      informs the user that an OTP has been sent to their number via #help_text
+      in other locales
+        translates correctly
+
+idv/setup_errors/show.html.erb
+  shows step indicator with pending status on secure account
+  includes a message instructing them to fill out a contact form
+
+users/phone_setup/index.html.erb
+  sets form autocomplete to off
+  renders a link to choose a different option
+  voip numbers
+    when voip numbers are blocked
+      tells users to not use VOIP numbers
+    when voip numbers are allowed
+      does not mention voip
+  phone vendor outage
+    renders alert banner
+
+sign_up/completions/show.html.erb
+  shows the app name, not the agency name
+  ial2
+    masks the SSN
+  MFA CTA banner
+    with multiple factors disabled
+      with multiple MFA feature flag enabled
+        shows a banner if the user selects one MFA option
+      with multiple MFA feature flag disabled
+        does not show a banner
+    with multiple factors enabled
+      with multiple MFA feature flag disabled
+        does not show a banner
+      with multiple MFA feature flag enabled
+        does not show a banner
+  the all_emails scope is requested
+    renders all of the user email addresses
+
+users/phones/add.html.erb
+  phone vendor outage
+    renders alert banner
+
+idv/doc_auth/welcome.html.erb
+  in doc auth with an authenticated user
+    does not render the IRS reproofing explanation
+    renders a link to return to the SP
+    when trying to log in to the IRS
+      renders the IRS reproofing explanation
+  in recovery without an authenticated user
+    renders a link to return to the MFA step
+  without service provider
+    renders troubleshooting options
+  phone vendor outage
+    renders alert banner
+  during the acuant maintenance window
+    renders the warning banner but no other content
+  with service provider
+    renders troubleshooting options
+
+idv/shared/_ssn.html.erb
+  threatmetrix collection disabled
+    does not render <script> tag
+    does not render <noscript> tag
+  when threatmetrix collection enabled
+    and org id specified
+      and entering ssn for the first time
+        <noscript> tag
+          is rendered
+        session id not specified
+          does not render <noscript> tag
+          does not render <script> tag
+        <script> tag
+          is rendered
+    org id not specified
+      does not render <noscript> tag
+      does not render <script> tag
+
+layouts/application.html.erb
+  session expiration
+    renders a javascript page refresh
+    with skip_session_expiration
+      does not render a javascript page refresh
+  user is not authenticated and is not on page with trust
+    displays the DAP analytics
+  user is fully authenticated
+    does not render the DAP analytics
+  current_user is present but is not fully authenticated
+    does not render the DAP analytics
+  when FeatureManagement.show_no_pii_banner? is false
+    does not display the no PII banner
+  when new relic browser key and app id are present
+    it render the new relic javascript
+  when FeatureManagement.show_demo_banner? is false
+    does not display the demo banner
+  when new relic browser key and app id are not present
+    it does not render the new relic javascript
+  when FeatureManagement.show_demo_banner? is true
+    displays the demo banner
+  no content for nav present
+    displays only the logo
+  <title>
+    with a page title added
+      does not double-escape HTML in the title tag
+      properly works with > in the title tag
+    without a page title added
+      should only have Login.gov as title
+  when FeatureManagement.show_no_pii_banner? is true
+    displays the no PII banner
+
+devise/sessions/new.html.erb
+  has a localized title
+  includes a link to log in
+  includes a link to security / privacy page and privacy statement act
+  sets autocomplete attribute off
+  sets input autocorrect to off
+  includes a link to create a new account
+  during the acuant maintenance window
+    renders the warning banner and the normal form
+  when SP is present
+    displays a back to sp link
+    displays a custom header
+    has sp alert for certain service providers
+    service provider does not have custom help text
+      does not have an sp alert for service providers without alert messages
+  when SP is not present
+    does not display the branded content
+
+users/webauthn_setup/new.html.erb
+  webauthn platform
+    displays warning alert
+
+idv/cancellations/new.html.erb
+  renders action to start over
+  renders action to keep going
+  renders action to exit and go to account page
+  with step parameter
+    forwards step to confirmation link
+  with associated sp
+    renders action to exit and return to SP
+  with hybrid flow
+    renders content
+    renders heading
+
+two_factor_authentication/totp_verification/show.html.erb
+  shows the correct help text
+  provides an option to use a personal key
+  uses numeric input mode (to allow leading zeroes)
+  shows the correct header
+  allows the user to fallback to SMS and voice
+  behaves like an otp form
+    tertiary form actions
+      allows the user to cancel out of the sign in process
+  user is reauthenticating
+    renders the reauthn partial
+    provides a cancel link to return to profile
+
+user_mailer/unconfirmed_email_instructions.html.erb
+  mentions how long the user has to confirm
+  states that the email is not associated with a user account
+  includes a link to create another account with the email address
+  in a non-default locale
+    puts the locale in the account creation URL
+
+idv/phone_errors/_warning.html.erb
+  renders heading
+  renders link to try again
+  renders block text
+  contact_support_option
+    without contact support option
+      renders a list of troubleshooting options
+    with contact support option
+      renders a list of troubleshooting options
+  without an SP
+    renders a list of troubleshooting options
+  with an SP
+    renders a list of troubleshooting options
+    without a name
+      renders failure to proof url with default location
+    with a name
+      renders failure to proof url with name as location
+
+accounts/two_factor_authentication/show.html.erb
+  when the user does not have password_reset_profile
+    contains a personal key section
+  when multiple mfa is enabled
+    disables delete buttons for the last non restricted mfa method with phone configured
+  when current user has password_reset_profile
+    lacks a personal key section
+  when user is TOTP enabled
+    contains link to disable TOTP
+  user is not TOTP enabled
+    contains link to enable TOTP
+
+shared/_address.html.erb
+  an address
+    renders all the fields of the address
+  without an address2
+    renders 1 fewer line break
+
+layouts/user_mailer.html.erb
+  includes alt text for app logo that reads Login.gov logo
+  includes the app logo
+  includes a request to not reply to this messsage
+  includes the support text and link
+  includes link to the privacy policy
+  includes link to About Login.gov
+  includes the message subject in the body
+  includes the message subject as the title
+
+idv/activated.html.erb
+  has a localized heading
+  has a localized title
+
+vendor_outage/show.html.erb
+  does not render gpo option
+  gpo option shown
+    renders gpo option
+
+shared/_one_time_code_input.html.erb
+  name
+    name given
+      renders given name
+    no name given
+      renders default name "code"
+  aria attributes
+    merges aria attributes
+  numeric
+    no numeric given
+      renders input mode "numeric"
+    numeric is false
+      renders input mode "text"
+  maxlength
+    no maxlength given
+      renders input maxlength DIRECT_OTP_LENGTH
+    maxlength given
+      renders input given maxlength
+  transport
+    given
+      renders given transport
+    explicitly nil
+      renders without transport
+    omitted
+      renders default sms transport
+  data attributes
+    merges data attributes
+  classes
+    with custom classes
+      renders with additional custom classes
+    without custom classes given
+      renders with default classes
+
+users/backup_code_setup/reminder.html.erb
+  has a localized title
+  has a localized heading
+  has a regenerate backup code link
+  has localized body info
+  has a cancel link to account path
+
+idv/session_errors/warning.html.erb
+  does not display troubleshooting options
+  shows a primary action
+  shows remaining attempts
+  with a flow session which had a barcode attention document capture result
+    renders troubleshooting option to retake photos
+  with a nil user_session
+    does not render troubleshooting option to retake photos
+  with an associated service provider
+    renders troubleshooting option to get help at service provider
+
+idv/session_errors/failure.html.erb
+  includes a message instructing when they can try again
+  renders a list of troubleshooting options
+
+idv/doc_auth/_cancel.html.erb
+  renders cancel link
+  with step local
+    creates links with step parameter
+
+idv/inherited_proofing/verify_wait.html.erb
+  renders
+
+idv/review/new.html.erb
+  user has completed all steps
+    renders the correct content heading
+    renders all steps
+    shows the step indicator
+    contains an accordion with verified user information
+    renders the correct header for the accordion
+    with an american-style dob
+      renders correctly
+
+users/totp_setup/new.html.erb
+  user is setting up 2FA
+    renders a link to choose a different option
+  user has sufficient factors enabled
+    renders the QR code image with useful alt text
+    renders a link to cancel and go back to the account page
+    renders the QR code
+    has labelled fields
+    has a button to copy the QR code
+
+idv/doc_auth/_back.html.erb
+  with back path
+    renders with back path
+  with step URL in instance variable
+    with action
+      renders
+      behaves like back link with class
+        renders with class
+    with step
+      renders
+      behaves like back link with class
+        renders with class
+  with step URL in locals
+    with action
+      renders
+      behaves like back link with class
+        renders with class
+    with step
+      renders
+      behaves like back link with class
+        renders with class
+  no back path
+    renders nothing
+  with fallback link
+    renders
+    behaves like back link with class
+      renders with class
+
+shared/_nav_lite.html.erb
+  user is signed out
+    does not contain sign out link
+
+idv/doc_auth/upload.html.erb
+  renders the headings and info
+
+idv/cancellations/destroy.html.erb
+  renders heading
+  renders content
+
+users/delete/show.html.erb
+  displays bullets
+  displays headings
+  displays bullets for loa1
+  contains link to cancel delete account link
+  displays bullets for loa1
+  contains link to delete account button
+
+two_factor_authentication/sms_opt_in/error.html.erb
+  renders the masked phone number
+  troubleshooting links
+    links to the contact form in a new window
+    without an other_mfa_options_url
+      omits the other auth methods section
+    with an other_mfa_options_url
+      links to other options
+
+account_reset/cancel/show.html.erb
+  has a localized title
+  has button to cancel request
+
+users/edit_phone/_remove_phone.html.erb
+  when there is only 1 phone configuration
+    renders a delete phone button
+  when there is 1 phone configuration and 1 other configuration
+    renders a delete phone button
+  when there are only 2 phone configurations
+    renders a delete phone button
+
+sign_up/email_resend/new.html.erb
+  has a localized header
+  has a localized title
+
+idv/phone_errors/failure.html.erb
+  renders a list of troubleshooting options
+  includes a message instructing when they can try again
+
+account_reset/request/show.html.erb
+  has a localized title
+  has button to delete
+
+shared/_personal_key.html.erb
+  download link
+    has the download attribute and a data: url for the personal key
+
+shared/_nav_branded.html.erb
+  with a S3 SP-logo configured
+    renders the logo from S3
+  without a SP-logo configured
+    displayes the generic SP logo
+  with a SP-logo configured
+    displays the SP logo
+
+idv/inherited_proofing/get_started.html.erb
+  renders the Cancel link
+  renders the Continue button
+  with or without service provider
+    renders troubleshooting options
+
+forgot_password/show.html.erb
+  has a localized title
+  provides an explanation to the user
+  displays a notice if resend_confirmation is present
+  contains link to resend the password reset email
+  has a localized header
+  contains a link to create a new account
+
+account_reset/delete_account/show.html.erb
+  has button to delete
+  has a localized title
+
+users/shared/_otp_delivery_preference_selection.html.erb
+  renders enabled voice option
+  renders enabled sms option
+  voice vendor outage
+    renders disabled voice option
+  sms vendor outage
+    renders disabled sms option
+
+two_factor_authentication/options/index.html.erb
+  has a localized heading
+  has a localized title
+  has a cancel link
+  phone vendor outage
+    renders alert banner
+    disables problematic vendor option
+
+mfa_confirmation/show.html.erb
+  has a localized title
+  provides a context for adding another MFA method
+  provides a call to action to add another MFA method
+  has a heading
+
+shared/_masked_text.html.erb
+  renders texts
+  with toggle
+    renders with toggle
+    with custom id
+      renders with custom id
+  without toggle
+    does not render with toggle
+
+sign_up/registrations/new.html.erb
+  has a localized title
+  has a localized header
+  sets input autocorrect to off
+  has a cancel link that points to the decorated_session cancel_link_url
+  sets form autocomplete to off
+  includes a link to security / privacy page and privacy statement act
+
+sign_up/passwords/new.html.erb
+  renders the proper help text
+  includes a form to cancel account creation
+  renders the proper Password label
+  renders the correct heading
+
+shared/_troubleshooting_options.html.erb
+  heading
+    renders heading text
+  options
+    without custom class
+      renders default css class
+    with custom class
+      renders with default and custom css classes
+  options
+    without any options
+      does not render anything
+    with options
+      renders options as links
+  heading_tag
+    omitted
+      renders with default heading_tag h2
+    given
+      renders with custom heading_tag
+
+account_reset/confirm_delete_account/show.html.erb
+  has a localized title
+  contains link to create a new account
+  contains the user email
+
+devise/passwords/edit.html.erb
+  has information about the password key
+  sets form autocomplete to off
+  has a localized title
+  has a localized header
+
+idv/come_back_later/show.html.erb
+  shows step indicator with current step
+  with an SP
+    renders return to SP message
+    renders a return to SP button
+  without an SP
+    renders a return to account button
+    renders return to account message
+
+Top 10 slowest examples (2.38 seconds, 7.5% of total time):
+  idv/otp_delivery_method/new.html.erb renders sms and voice options
+    0.43714 seconds ./spec/views/idv/otp_delivery_method/new.html.erb_spec.rb:59
+  users/backup_code_setup/create.html.erb displays download link with plain text content equal to the users backup codes
+    0.32078 seconds ./spec/views/users/backup_code_setup/create.html.erb_spec.rb:25
+  idv/phone/new.html.erb gpo letter available renders troubleshooting options
+    0.22425 seconds ./spec/views/idv/phone/new.html.erb_spec.rb:20
+  layouts/user_mailer.html.erb includes alt text for app logo that reads Login.gov logo
+    0.22283 seconds ./spec/views/layouts/user_mailer.html.erb_spec.rb:22
+  accounts/show.html.erb has a localized title
+    0.21569 seconds ./spec/views/accounts/show.html.erb_spec.rb:20
+  accounts/show.html.erb when current user has pending_profile contains a link to activate profile
+    0.20141 seconds ./spec/views/accounts/show.html.erb_spec.rb:66
+  accounts/show.html.erb PIV/CAC listing and adding user has a piv/cac renders the piv/cac section
+    0.20105 seconds ./spec/views/accounts/show.html.erb_spec.rb:135
+  accounts/show.html.erb when a profile has just been re-activated with personal key during SP auth renders the link to continue to the SP
+    0.19082 seconds ./spec/views/accounts/show.html.erb_spec.rb:179
+  accounts/show.html.erb email listing and adding renders the email section
+    0.18909 seconds ./spec/views/accounts/show.html.erb_spec.rb:149
+  users/phone_setup/index.html.erb sets form autocomplete to off
+    0.1759 seconds ./spec/views/phone_setup/index.html.erb_spec.rb:19
+
+Top 10 slowest example groups:
+  users/backup_code_setup/create.html.erb
+    0.3213 seconds average (0.3213 seconds / 1 example) ./spec/views/users/backup_code_setup/create.html.erb_spec.rb:4
+  accounts/show.html.erb
+    0.15319 seconds average (2.45 seconds / 16 examples) ./spec/views/accounts/show.html.erb_spec.rb:3
+  accounts/history/show.html.erb
+    0.15312 seconds average (0.15312 seconds / 1 example) ./spec/views/accounts/history/show.html.erb_spec.rb:3
+  idv/phone/new.html.erb
+    0.15012 seconds average (0.30023 seconds / 2 examples) ./spec/views/idv/phone/new.html.erb_spec.rb:3
+  users/piv_cac_authentication_setup/new.html.erb
+    0.14942 seconds average (0.29884 seconds / 2 examples) ./spec/views/users/piv_cac_authentication_setup/new.html.erb_spec.rb:3
+  accounts/two_factor_authentication/show.html.erb
+    0.13782 seconds average (0.68909 seconds / 5 examples) ./spec/views/accounts/two_factor_authentication/show.html.erb_spec.rb:3
+  sign_up/completions/show.html.erb
+    0.13679 seconds average (0.95754 seconds / 7 examples) ./spec/views/sign_up/completions/show.html.erb_spec.rb:3
+  accounts/connected_accounts/show.html.erb
+    0.12397 seconds average (0.24795 seconds / 2 examples) ./spec/views/accounts/connected_accounts/show.html.erb_spec.rb:2
+  users/phone_setup/index.html.erb
+    0.12279 seconds average (0.61394 seconds / 5 examples) ./spec/views/phone_setup/index.html.erb_spec.rb:3
+  idv/otp_delivery_method/new.html.erb
+    0.10928 seconds average (0.76498 seconds / 7 examples) ./spec/views/idv/otp_delivery_method/new.html.erb_spec.rb:3
+
+Finished in 31.59 seconds (files took 1.34 seconds to load)
+409 examples, 0 failures
+
+Randomized with seed 32935
+

@@ -1,0 +1,294 @@
+
+Randomized with seed 4723
+
+UserMailerPreview
+  has a preview method for each mailer method
+  uses user and email records that cannot be saved
+  #email_added
+    generates a preview without blowing up
+  #personal_key_regenerated
+    generates a preview without blowing up
+  #add_email_associated_with_another_account
+    generates a preview without blowing up
+  #in_person_failed
+    generates a preview without blowing up
+  #account_reset_complete
+    generates a preview without blowing up
+  #signup_with_your_email
+    generates a preview without blowing up
+  #password_changed
+    generates a preview without blowing up
+  #reset_password_instructions
+    generates a preview without blowing up
+  #account_reset_cancel
+    generates a preview without blowing up
+  #account_verified
+    generates a preview without blowing up
+  #account_reset_request
+    generates a preview without blowing up
+  #email_deleted
+    generates a preview without blowing up
+  #personal_key_sign_in
+    generates a preview without blowing up
+  #in_person_verified
+    generates a preview without blowing up
+  #doc_auth_desktop_link_to_sp
+    generates a preview without blowing up
+  #unconfirmed_email_instructions
+    generates a preview without blowing up
+  #in_person_failed_fraud
+    generates a preview without blowing up
+  #please_reset_password
+    generates a preview without blowing up
+  #in_person_ready_to_verify_reminder
+    generates a preview without blowing up
+  #phone_added
+    generates a preview without blowing up
+  #letter_reminder
+    generates a preview without blowing up
+  #new_device_sign_in
+    generates a preview without blowing up
+  #email_confirmation_instructions
+    generates a preview without blowing up
+  #in_person_ready_to_verify
+    generates a preview without blowing up
+  #add_email
+    generates a preview without blowing up
+  #in_person_completion_survey
+    generates a preview without blowing up
+  #account_reset_granted
+    generates a preview without blowing up
+
+ReportMailer
+  deleted_user_accounts_report
+    sends to the current email
+    renders the subject
+    renders the body
+    behaves like a system email
+      is from the default email
+
+UserMailer
+  #password_changed
+    does not send mail to emails in nonessential email banlist
+    renders the subject
+    sends to the current email
+    renders the body
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+    behaves like a system email
+      is from the default email
+  #letter_reminder
+    renders the subject
+    renders the body
+    does not send mail to emails in nonessential email banlist
+    sends to the current email
+    behaves like a system email
+      is from the default email
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+  #phone_added
+    renders the subject
+    sends to the current email
+    does not send mail to emails in nonessential email banlist
+    renders the body
+    behaves like a system email
+      is from the default email
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+  #in_person_failed
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+    behaves like a system email
+      is from the default email
+  #account_reset_complete
+    sends to the current email
+    renders the subject
+    renders the body
+    behaves like a system email
+      is from the default email
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+  #account_verified
+    does not send mail to emails in nonessential email banlist
+    sends to the current email
+    renders the subject
+    behaves like a system email
+      is from the default email
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+  #in_person_ready_to_verify_reminder
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+    behaves like a system email
+      is from the default email
+  #doc_auth_desktop_link_to_sp
+    renders the body
+    sends to the current email
+    renders the subject
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+    behaves like a system email
+      is from the default email
+  #signup_with_your_email
+    sends to the current email
+    renders the subject
+    renders the body
+    behaves like a system email
+      is from the default email
+    in a non-default locale
+      links to the correct locale
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+  #account_reset_request
+    renders the body
+    does not render the subject in the body
+    renders the subject
+    renders the header within the body
+    sends to the current email
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+    behaves like a system email
+      is from the default email
+  #validate_user_and_email_address
+    with user and email address match
+      does not raise an error
+    with user and email address mismatch
+      raises an error
+  #deliver_later
+    does not queue email if it potentially contains sensitive keys
+    does not queue email if it potentially contains sensitive value
+  #add_email_associated_with_another_account
+    sends to the specified email
+    renders the body
+    renders the subject
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+    behaves like a system email
+      is from the default email
+  #in_person_verified
+    behaves like a system email
+      is from the default email
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+  #please_reset_password
+    renders the subject
+    renders the body
+    sends to the current email
+    behaves like a system email
+      is from the default email
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+  #new_device_sign_in
+    does not send mail to emails in nonessential email banlist
+    renders the subject
+    sends to the current email
+    renders the body
+    behaves like a system email
+      is from the default email
+  #email_deleted
+    renders the body
+    renders the subject
+    sends to the old email
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+    behaves like a system email
+      is from the default email
+  #in_person_ready_to_verify
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+    behaves like a system email
+      is from the default email
+  #add_email
+    renders the add_email_confirmation_url
+    behaves like a system email
+      is from the default email
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+  #personal_key_sign_in
+    sends to the current email
+    renders the body
+    does not send mail to emails in nonessential email banlist
+    renders the subject
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+    behaves like a system email
+      is from the default email
+  #email_confirmation_instructions
+    behaves like a system email
+      is from the default email
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+  #personal_key_regenerated
+    sends to the current email
+    does not send mail to emails in nonessential email banlist
+    renders the body
+    renders the subject
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+    behaves like a system email
+      is from the default email
+  #in_person_failed_fraud
+    behaves like a system email
+      is from the default email
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+  #account_reset_granted
+    renders the subject
+    sends to the current email
+    renders the body
+    behaves like a system email
+      is from the default email
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+  #account_reset_cancel
+    sends to the current email
+    renders the subject
+    renders the body
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+    behaves like a system email
+      is from the default email
+  #in_person_completion_survey
+    sends to the current email
+    renders the subject
+    renders the body
+    behaves like a system email
+      is from the default email
+    behaves like an email that respects user email locale preference
+      is in the correct locale
+
+Top 10 slowest examples (1.38 seconds, 12.3% of total time):
+  UserMailerPreview#unconfirmed_email_instructions generates a preview without blowing up
+    0.23097 seconds ./spec/mailers/previews/user_mailer_preview_spec.rb:7
+  UserMailer#in_person_ready_to_verify_reminder behaves like an email that respects user email locale preference is in the correct locale
+    0.15017 seconds ./spec/support/shared_examples_for_mailer.rb:15
+  UserMailer#in_person_failed_fraud behaves like a system email is from the default email
+    0.13494 seconds ./spec/support/shared_examples_for_mailer.rb:2
+  UserMailer#personal_key_regenerated behaves like an email that respects user email locale preference is in the correct locale
+    0.13327 seconds ./spec/support/shared_examples_for_mailer.rb:15
+  UserMailer#in_person_failed_fraud behaves like an email that respects user email locale preference is in the correct locale
+    0.13304 seconds ./spec/support/shared_examples_for_mailer.rb:15
+  UserMailer#in_person_ready_to_verify behaves like an email that respects user email locale preference is in the correct locale
+    0.13038 seconds ./spec/support/shared_examples_for_mailer.rb:15
+  UserMailer#in_person_failed behaves like an email that respects user email locale preference is in the correct locale
+    0.12518 seconds ./spec/support/shared_examples_for_mailer.rb:15
+  UserMailer#in_person_ready_to_verify behaves like a system email is from the default email
+    0.11498 seconds ./spec/support/shared_examples_for_mailer.rb:2
+  ReportMailer deleted_user_accounts_report sends to the current email
+    0.11489 seconds ./spec/mailers/report_mailer_spec.rb:19
+  UserMailer#please_reset_password behaves like an email that respects user email locale preference is in the correct locale
+    0.11398 seconds ./spec/support/shared_examples_for_mailer.rb:15
+
+Top 3 slowest example groups:
+  ReportMailer
+    0.08128 seconds average (0.32513 seconds / 4 examples) ./spec/mailers/report_mailer_spec.rb:3
+  UserMailer
+    0.07451 seconds average (8.35 seconds / 112 examples) ./spec/mailers/user_mailer_spec.rb:3
+  UserMailerPreview
+    0.057 seconds average (1.65 seconds / 29 examples) ./spec/mailers/previews/user_mailer_preview_spec.rb:4
+
+Finished in 11.21 seconds (files took 2.37 seconds to load)
+145 examples, 0 failures
+
+Randomized with seed 4723
+

@@ -1,0 +1,6 @@
+* Tests are slow
+** If we only run fast tests, how much coverage do we have/lose
+* Tests fail sometimes (are flaky)
+** Especially bad on local machines; timing dependent?
+** Known problem with JS tests randomly failing (Eric was last to trip over it, IIRC).
+

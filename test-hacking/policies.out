@@ -1,0 +1,169 @@
+
+Randomized with seed 57533
+
+MfaPolicy
+  two mfa configuration
+    is expected to eq true
+    is expected to eq true
+  no mfa configurations
+    is expected to eq false
+    is expected to eq false
+  one mfa configuration
+    is expected to eq false
+    is expected to eq true
+  #multiple_non_restricted_factors_enabled?
+    with multi mfa disabled returns true
+      is expected to eq true
+  #multiple_non_restricted_factors_enabled?
+    with multi mfa enabled returns false
+      is expected to eq false
+  #unphishable?
+    with unphishable configuration
+      is expected to eq true
+    with phishable configuration
+      is expected to eq false
+
+TwoFactorAuthentication::BackupCodePolicy
+  #configured?
+    returns false if all the backup codes are used
+    returns true if there are usable codes
+    returns false if there are no codes
+
+ServiceProviderMfaPolicy
+  #user_needs_sp_auth_method_setup?
+    no MFA requirements
+      is expected to eq false
+    aal3 required
+      the user has webauthn configured
+        is expected to eq false
+      the user has PIV/CAC configured
+        is expected to eq false
+      the user does not have an AAL3 method configured
+        is expected to eq true
+    piv/cac required
+      the user does not have an AAL3 method configured
+        is expected to eq true
+      the user has webauthn configured
+        is expected to eq true
+      the user has PIV/CAC configured
+        is expected to eq false
+  #phishing_resistant_required?
+    phishing-resistant requested
+      is expected to eq true
+    AAL 3 requested
+      is expected to eq true
+    aal2 requested, no default set
+      is expected to eq false
+    no aal level requested, SP default is aal3
+      is expected to eq true
+    aal2 level requested, SP default is aal3
+      is expected to eq false
+  #auth_method_confirms_to_sp_request?
+    the user has not setup the required MFA
+      is expected to eq false
+    the user used the required MFA
+      is expected to eq true
+    there are no MFA requirements
+      is expected to eq true
+    the user did not use the required MFA
+      is expected to eq false
+  #allow_user_to_switch_method?
+    phishing-resistant required
+      the user has more than one phishing-resistant method
+        is expected to eq true
+      the user does not have more than one aal3 method
+        is expected to eq false
+    there are no MFA reqirements
+      is expected to eq true
+    piv/cac required
+      the user has a PIV
+        is expected to eq false
+      the user does not have a PIV
+        is expected to eq false
+      the user has a PIV and webauthn token
+        is expected to eq false
+  #user_needs_sp_auth_method_verification?
+    no MFA requirements
+      is expected to eq false
+    aal3 required
+      the user used webauthn
+        is expected to eq false
+      the user used PIV/CAC
+        is expected to eq false
+      the user needs to setup an AAL3 method
+        is expected to eq false
+      the user did not use an AAL3 method
+        is expected to eq true
+    piv/cac required
+      the user needs to setup a PIV
+        is expected to eq false
+      the user did not use an AAL3 method
+        is expected to eq true
+      the user used PIV/CAC
+        is expected to eq false
+      the user used webauthn
+        is expected to eq true
+
+TwoFactorAuthentication::PivCacPolicy
+  #enabled?
+    with a piv configured
+      is expected to be truthy
+    without a piv configured
+      is expected to be falsey
+  #configured?
+    without a piv configured
+      is expected to be falsey
+    with a piv configured
+      is expected to be truthy
+
+TwoFactorAuthentication::WebauthnPolicy
+  #roaming_enabled?
+    without a webauthn configured
+      is expected to be falsey
+    with a roaming webauthn configured
+      returns a truthy value
+  #configured?
+    with a webauthn configured
+      returns a truthy value
+    without a webauthn configured
+      is expected to be falsey
+
+Top 10 slowest examples (1.63 seconds, 25.6% of total time):
+  MfaPolicy two mfa configuration is expected to eq true
+    0.23317 seconds ./spec/policies/user_mfa_policy_spec.rb:24
+  ServiceProviderMfaPolicy#user_needs_sp_auth_method_verification? piv/cac required the user did not use an AAL3 method is expected to eq true
+    0.19659 seconds ./spec/policies/service_provider_mfa_policy_spec.rb:134
+  ServiceProviderMfaPolicy#user_needs_sp_auth_method_setup? piv/cac required the user does not have an AAL3 method configured is expected to eq true
+    0.18543 seconds ./spec/policies/service_provider_mfa_policy_spec.rb:189
+  ServiceProviderMfaPolicy#auth_method_confirms_to_sp_request? there are no MFA requirements is expected to eq true
+    0.18197 seconds ./spec/policies/service_provider_mfa_policy_spec.rb:240
+  ServiceProviderMfaPolicy#user_needs_sp_auth_method_verification? piv/cac required the user used webauthn is expected to eq true
+    0.14504 seconds ./spec/policies/service_provider_mfa_policy_spec.rb:123
+  ServiceProviderMfaPolicy#user_needs_sp_auth_method_verification? aal3 required the user used webauthn is expected to eq false
+    0.14239 seconds ./spec/policies/service_provider_mfa_policy_spec.rb:82
+  ServiceProviderMfaPolicy#user_needs_sp_auth_method_verification? no MFA requirements is expected to eq false
+    0.13899 seconds ./spec/policies/service_provider_mfa_policy_spec.rb:143
+  ServiceProviderMfaPolicy#auth_method_confirms_to_sp_request? the user has not setup the required MFA is expected to eq false
+    0.13698 seconds ./spec/policies/service_provider_mfa_policy_spec.rb:231
+  ServiceProviderMfaPolicy#auth_method_confirms_to_sp_request? the user did not use the required MFA is expected to eq false
+    0.13614 seconds ./spec/policies/service_provider_mfa_policy_spec.rb:222
+  ServiceProviderMfaPolicy#user_needs_sp_auth_method_setup? aal3 required the user does not have an AAL3 method configured is expected to eq true
+    0.13544 seconds ./spec/policies/service_provider_mfa_policy_spec.rb:166
+
+Top 5 slowest example groups:
+  ServiceProviderMfaPolicy
+    0.12093 seconds average (3.75 seconds / 31 examples) ./spec/policies/service_provider_mfa_policy_spec.rb:3
+  MfaPolicy
+    0.10174 seconds average (1.02 seconds / 10 examples) ./spec/policies/user_mfa_policy_spec.rb:3
+  TwoFactorAuthentication::WebauthnPolicy
+    0.06696 seconds average (0.26784 seconds / 4 examples) ./spec/policies/webauthn_login_option_policy_spec.rb:3
+  TwoFactorAuthentication::PivCacPolicy
+    0.06221 seconds average (0.24886 seconds / 4 examples) ./spec/policies/two_factor_authentication/piv_cac_policy_spec.rb:3
+  TwoFactorAuthentication::BackupCodePolicy
+    0.04694 seconds average (0.14083 seconds / 3 examples) ./spec/policies/backup_code_policy_spec.rb:3
+
+Finished in 6.36 seconds (files took 2.14 seconds to load)
+52 examples, 0 failures
+
+Randomized with seed 57533
+

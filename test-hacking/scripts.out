@@ -1,0 +1,50 @@
+
+Randomized with seed 4912
+
+scripts/changelog_check
+  #build_structured_git_log
+    builds a git log into structured objects
+  #parsed_options
+    populates default values
+    with source branch passed as argument
+      assigns source_branch option
+    with base branch passed as argument
+      assigns base_branch option
+  #generate_invalid_changes
+    returns changelog entries without a valid structure
+  #format_changelog
+    returns changelog entries without a valid structure
+    sorts changelog by subcategory
+  #build_changelog
+    builds a git log into structured changelog objects
+    detects changelog regardless of whitespace
+    detects changelog regardless of capitalization
+    skips commits with [skip changelog]
+
+Top 10 slowest examples (0.42124 seconds, 28.6% of total time):
+  scripts/changelog_check #build_structured_git_log builds a git log into structured objects
+    0.09111 seconds ./spec/scripts/changelog_check_spec.rb:67
+  scripts/changelog_check #parsed_options populates default values
+    0.04526 seconds ./spec/scripts/changelog_check_spec.rb:137
+  scripts/changelog_check #format_changelog sorts changelog by subcategory
+    0.04171 seconds ./spec/scripts/changelog_check_spec.rb:116
+  scripts/changelog_check #build_changelog builds a git log into structured changelog objects
+    0.03816 seconds ./spec/scripts/changelog_check_spec.rb:8
+  scripts/changelog_check #parsed_options with base branch passed as argument assigns base_branch option
+    0.03806 seconds ./spec/scripts/changelog_check_spec.rb:152
+  scripts/changelog_check #generate_invalid_changes returns changelog entries without a valid structure
+    0.03703 seconds ./spec/scripts/changelog_check_spec.rb:78
+  scripts/changelog_check #build_changelog detects changelog regardless of whitespace
+    0.03316 seconds ./spec/scripts/changelog_check_spec.rb:52
+  scripts/changelog_check #format_changelog returns changelog entries without a valid structure
+    0.03274 seconds ./spec/scripts/changelog_check_spec.rb:93
+  scripts/changelog_check #parsed_options with source branch passed as argument assigns source_branch option
+    0.03242 seconds ./spec/scripts/changelog_check_spec.rb:144
+  scripts/changelog_check #build_changelog skips commits with [skip changelog]
+    0.03157 seconds ./spec/scripts/changelog_check_spec.rb:24
+
+Finished in 1.48 seconds (files took 2.79 seconds to load)
+11 examples, 0 failures
+
+Randomized with seed 4912
+

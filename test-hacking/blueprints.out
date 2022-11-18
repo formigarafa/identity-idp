@@ -1,0 +1,33 @@
+
+Randomized with seed 40738
+
+Agreements::IaaBlueprint
+  renders the appropriate json
+
+Agreements::AgencyBlueprint
+  renders the appropriate json
+
+Agreements::PartnerAccountBlueprint
+  renders the appropriate json
+
+Top 3 slowest examples (1.26 seconds, 42.1% of total time):
+  Agreements::IaaBlueprint renders the appropriate json
+    1.1 seconds ./spec/blueprints/agreements/iaa_blueprint_spec.rb:69
+  Agreements::PartnerAccountBlueprint renders the appropriate json
+    0.10828 seconds ./spec/blueprints/agreements/partner_account_blueprint_spec.rb:33
+  Agreements::AgencyBlueprint renders the appropriate json
+    0.05295 seconds ./spec/blueprints/agreements/agency_blueprint_spec.rb:18
+
+Top 3 slowest example groups:
+  Agreements::IaaBlueprint
+    1.1 seconds average (1.1 seconds / 1 example) ./spec/blueprints/agreements/iaa_blueprint_spec.rb:3
+  Agreements::PartnerAccountBlueprint
+    0.10937 seconds average (0.10937 seconds / 1 example) ./spec/blueprints/agreements/partner_account_blueprint_spec.rb:3
+  Agreements::AgencyBlueprint
+    0.05376 seconds average (0.05376 seconds / 1 example) ./spec/blueprints/agreements/agency_blueprint_spec.rb:3
+
+Finished in 3 seconds (files took 3.22 seconds to load)
+3 examples, 0 failures
+
+Randomized with seed 40738
+

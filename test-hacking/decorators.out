@@ -1,0 +1,322 @@
+
+Randomized with seed 35922
+
+EventDecorator
+  #event_type
+    returns the localized event_type
+    for an event type that interpolates the app name
+      returns the localized event_type
+  #last_sign_in_location_and_ip
+    with an ip address
+      is an approximate location
+    with a blank ip address
+      is empty
+  #last_location
+    with an ip address
+      is the location
+    with a blank ip address
+      is empty
+
+DeviceDecorator
+  #nice_name
+    gives a shortened os and browser name
+    does not fail if OS version cannot be parsed
+
+MfaContext
+  with a user
+    #auth_app_configurations
+      mirrors the user relationship
+    #phone_configurations
+      mirrors the user relationship
+    #piv_cac_configurations
+      mirrors the user relationship
+    #backup_code_configurations
+      returns does not return unused backup codes
+      is empty if the user does not have backup codes
+    #webauthn_configurations
+      with no user
+        mirrors the user relationship
+  #enabled_two_factor_configuration_counts_hash
+    with authentication app and webauthn configurations
+      returns 1 for each
+    with 1 phone and 10 backups codes
+      returns 1 for phone and 10 for backup codes
+    with authentication app configuration
+      returns 1 for auth_app
+    with PIV/CAC and phone configurations
+      returns 1 for each
+    with 2 phones and 2 webauthn configurations
+      returns 2 for each
+    with PIV/CAC configuration
+      returns 1 for piv_cac
+    with phone configuration
+      returns 1 for phone
+    no 2FA configurations
+      returns an empty hash
+    with webauthn configuration
+      returns 1 for webauthn
+    with 1 phone and 10 used backup codes
+      returns 1 for phone and no backup codes
+    with authentication app and phone configurations
+      returns 1 for each
+    with 1 phone and 2 webauthn configurations
+      returns 1 for phone and 2 for webauthn
+  #enabled_non_restricted_mfa_methods_count
+    with 2 phones
+      returns 0
+    with a phone and an auth app
+      returns 1
+    with a phone and a webauthn token
+      returns 1
+    with 2 webauthn tokens
+      returns 2
+    with a phone and a personal key
+      returns 1
+    with a phone and a PIV/CAC
+      returns 1
+    with 1 webauthn roaming authenticator and one platform authenticator
+      returns 2
+    with a phone and a personal key and personal key retired
+      returns 0
+    with a phone and 10 backup codes
+      returns 1
+    with a phone and 10 used backup codes
+      returns 0
+  #enabled_mfa_methods_count
+    with 1 webauthn roaming authenticator and one platform authenticator
+      returns 2
+    with a phone and 10 used backup codes
+      returns 1
+    with 2 phones
+      returns 2
+    with a phone and 10 backup codes
+      returns 2
+    with 2 webauthn tokens
+      returns 2
+    with a phone and an auth app
+      returns 2
+    with a phone and a personal key
+      returns 2
+    with a phone and a PIV/CAC
+      returns 2
+    with a phone and a personal key and personal key retired
+      returns 0
+    with a phone and a webauthn token
+      returns 2
+  with no user
+    #auth_app_configurations
+      is empty
+    #backup_code_configurations
+      is empty
+    #webauthn_configurations
+      is empty
+    #phone_configurations
+      is empty
+  #unphishable_configuration_count
+    with no phishable configs
+      returns 0
+    with PIV/CAC and webauthn configurations
+      returns 2
+  #phishable_configuration_count
+    with some phishable configs
+      returns 2
+    without any phishable configs
+      returns 0
+
+ServiceProviderSessionDecorator
+  has the same public API as SessionDecorator
+  #irs_attempts_api_session_id
+    without a irs_attempts_api_session_id on the request url
+      returns nil
+    with a irs_attempts_api_session_id on the request url
+      returns the value of irs_attempts_api_session_id
+  #sp_logo
+    service provider has a logo
+      returns the logo
+    service provider does not have a logo
+      returns the default logo
+  #new_session_heading
+    returns the correct string
+  #custom_alert
+    sp has a blank custom alert
+      returns nil
+    sp has custom alert
+      uses the custom template
+    sp has a nil custom alert
+      returns nil
+    sp does not have a custom alert
+      returns nil
+  #request_url_params
+    without url params
+      returns an empty hash
+    with url params
+      returns the url parameters
+  #requested_more_recent_verification?
+    is false with no verified_within param
+    with a valid verified_within
+      is true if the user does not have an activated profile
+      the verified_at is newer than the verified_within
+        is false
+      the verified_at is older than the verified_at
+        is true
+  #cancel_link_url
+    returns view_context.new_user_session_url
+  #sp_logo_url
+    service provider has a logo
+      returns the logo
+    service provider has a poorly configured logo
+DEPRECATION WARNING: The asset "sp-logos/abc" is not present in the asset pipeline.
+Falling back to an asset that may be in the public folder.
+This behavior is deprecated and will be removed.
+To bypass the asset pipeline and preserve this behavior,
+use the `skip_pipeline: true` option.
+ (called from legacy_logo_url at /home/jmax/repos/identity-idp/app/decorators/service_provider_session_decorator.rb:53)
+      does not raise an exception
+    service provider does not have a logo
+      returns the default logo
+  #verification_method_choice
+    returns the correct string
+  #sp_name
+    returns the agency name if friendly name is not present
+    returns the SP friendly name if present
+  #mfa_expiration_interval
+    with an sp that is not AAL2 or IAL2
+      is expected to eq 30 days
+    with an AAL2 sp
+      is expected to eq 12 hours
+    with an IAL2 sp
+      is expected to eq 12 hours
+
+SessionDecorator
+  #cancel_link_url
+    returns view_context.root url
+  #new_session_heading
+    returns the correct string
+  #mfa_expiration_interval
+    returns the AAL1 expiration interval
+  #requested_more_recent_verification
+    is false
+  #sp_name
+    returns nil
+  #sp_logo
+    returns nil
+  #registration_heading
+    returns the correct partial
+  #verification_method_choice
+    returns the correct string
+
+UserDecorator
+  #identity_not_verified?
+    returns false if identity_verified returns true
+    returns true if identity_verified returns false
+  #recent_events
+    interleaves identities and events, decorates events, and sorts them in descending order
+  #locked_out?
+    is expected to eq false
+    second factor locked out recently
+      is expected to eq true
+    second factor locked out a while ago
+      is expected to eq false
+  #pending_profile_requires_verification?
+    returns false when no pending profile exists
+    returns false when active profile is newer than pending profile
+    returns true when pending profile exists and identity is not verified
+    returns true when pending profile is newer than active profile
+  #visible_email_addresses
+    hides emails address that are unconfirmed and expired
+    shows email addresses that have been confirmed
+    shows emails that are not confirmed and not expired
+  #identity_verified?
+    returns false if user does not have an active profile
+    returns true if user has an active profile
+  #lockout_time_expiration
+    returns the time at which lockout will expire
+  #delete_account_bullet_key
+    returns ial2 if identity is verified
+    returns ial1 if identity is not verified
+  #password_reset_profile
+    with no profiles
+      is expected to be nil
+    with an active profile
+      is expected to be nil
+      when the active profile is deactivated due to password reset
+        is expected to eq #<Profile id: 933, user_id: 3231, active: false, verified_at: "2022-11-18 17:09:37.426726848 +0100", ...: nil, name_zip_birth_year_signature: nil, reproof_at: nil, initiating_service_provider_issuer: nil>
+        with a previously-cancelled pending profile
+          is expected to eq #<Profile id: 935, user_id: 3234, active: false, verified_at: "2022-11-18 17:09:37.613591264 +0100", ...: nil, name_zip_birth_year_signature: nil, reproof_at: nil, initiating_service_provider_issuer: nil>
+  #active_profile_newer_than_pending_profile?
+    returns false if the active profile is older than the pending profile
+    returns true if the active profile is newer than the pending profile
+  #email_language_preference_description
+    when the user has a supported email_language
+      is the that language
+    when the user has an unsupported email_language
+      is the default language
+    when the user has a nil email_language
+      is the default language
+  #active_identity_for
+    returns Identity matching ServiceProvider
+  #no_longer_locked_out?
+    is expected to eq false
+    second factor locked out recently
+      is expected to eq false
+    second factor locked out a while ago
+      is expected to eq true
+  #connected_apps
+    omits deleted apps
+  #reproof_for_irs?
+    returns false if the service provider is not an attempts API service provider
+    an attempts API service provider
+      returns false if the active profile initiating SP was an attempts API SP
+      returns true if the active profile initiating SP was not an attempts API SP
+      returns false if the user has not proofed before
+  #second_last_signed_in_at
+    returns second most recent full authentication event
+
+EmailContext
+  #last_sign_in_email_address
+    returns the email with the most recent last_sign_in_at date
+    does not return an email with a null last_sign_in_at date
+
+Top 10 slowest examples (1.74 seconds, 15.1% of total time):
+  UserDecorator#password_reset_profile with an active profile when the active profile is deactivated due to password reset with a previously-cancelled pending profile is expected to eq #<Profile id: 935, user_id: 3234, active: false, verified_at: "2022-11-18 17:09:37.613591264 +0100", ...: nil, name_zip_birth_year_signature: nil, reproof_at: nil, initiating_service_provider_issuer: nil>
+    0.21417 seconds ./spec/decorators/user_decorator_spec.rb:304
+  UserDecorator#password_reset_profile with an active profile is expected to be nil
+    0.20024 seconds ./spec/decorators/user_decorator_spec.rb:292
+  UserDecorator#password_reset_profile with an active profile when the active profile is deactivated due to password reset is expected to eq #<Profile id: 933, user_id: 3231, active: false, verified_at: "2022-11-18 17:09:37.426726848 +0100", ...: nil, name_zip_birth_year_signature: nil, reproof_at: nil, initiating_service_provider_issuer: nil>
+    0.17703 seconds ./spec/decorators/user_decorator_spec.rb:297
+  MfaContext#enabled_mfa_methods_count with a phone and 10 used backup codes returns 1
+    0.16936 seconds ./spec/decorators/mfa_context_spec.rb:260
+  MfaContext with a user #backup_code_configurations returns does not return unused backup codes
+    0.1681 seconds ./spec/decorators/mfa_context_spec.rb:68
+  MfaContext#enabled_two_factor_configuration_counts_hash with 1 phone and 10 used backup codes returns 1 for phone and no backup codes
+    0.16675 seconds ./spec/decorators/mfa_context_spec.rb:196
+  MfaContext#enabled_mfa_methods_count with a phone and 10 backup codes returns 2
+    0.16362 seconds ./spec/decorators/mfa_context_spec.rb:250
+  UserDecorator#recent_events interleaves identities and events, decorates events, and sorts them in descending order
+    0.16292 seconds ./spec/decorators/user_decorator_spec.rb:266
+  MfaContext#enabled_non_restricted_mfa_methods_count with a phone and a personal key returns 1
+    0.16172 seconds ./spec/decorators/mfa_context_spec.rb:388
+  EventDecorator#event_type returns the localized event_type
+    0.16087 seconds ./spec/decorators/event_decorator_spec.rb:8
+
+Top 7 slowest example groups:
+  EmailContext
+    0.13889 seconds average (0.27777 seconds / 2 examples) ./spec/decorators/email_context_spec.rb:3
+  MfaContext
+    0.10306 seconds average (4.74 seconds / 46 examples) ./spec/decorators/mfa_context_spec.rb:3
+  UserDecorator
+    0.08383 seconds average (3.1 seconds / 37 examples) ./spec/decorators/user_decorator_spec.rb:3
+  DeviceDecorator
+    0.083 seconds average (0.166 seconds / 2 examples) ./spec/decorators/device_decorator_spec.rb:3
+  EventDecorator
+    0.07127 seconds average (0.42762 seconds / 6 examples) ./spec/decorators/event_decorator_spec.rb:3
+  ServiceProviderSessionDecorator
+    0.05842 seconds average (1.52 seconds / 26 examples) ./spec/decorators/service_provider_session_decorator_spec.rb:3
+  SessionDecorator
+    0.04267 seconds average (0.34136 seconds / 8 examples) ./spec/decorators/session_decorator_spec.rb:3
+
+Finished in 11.58 seconds (files took 0.73795 seconds to load)
+127 examples, 0 failures
+
+Randomized with seed 35922
+

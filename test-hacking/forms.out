@@ -1,0 +1,1154 @@
+
+Randomized with seed 1934
+
+NewPhoneForm
+  #redact
+    leaves in punctuation and spaces, but removes letters and numbers
+  #delivery_preference_voice?
+    is false
+    sms outage
+      is true
+  #delivery_preference_sms?
+    is true
+    sms outage
+      is false
+  #submit
+    does not raise inclusion errors for Norwegian phone numbers
+    voip numbers
+      when voip checks are disabled
+        does not check the phone type
+      when voip numbers are allowed
+        does a voip check but does not enforce it
+      when voip numbers are blocked
+        is invalid
+        logs the type and carrier
+        when AWS rate limits info type checks
+          logs a warning and fails open
+        when voip checks are disabled
+          allows voip numbers since it cannot check the type
+          does not check the phone type
+        when the number is on the allowlist
+          is valid
+    when otp_delivery_preference is voice and phone number does not support voice
+      is invalid
+    when the user has already added the number
+      is invalid
+      is invalid if database phone is not formatted
+    when otp_delivery_preference is empty
+      is invalid
+    premium rate phone numbers like 1-900
+      is invalid
+      logs the type
+    when phone is valid
+      includes otp preference in the form response extra
+      does not update the user phone attribute
+      is valid
+      preserves the format of the submitted phone number if phone is invalid
+    when otp_delivery_preference is not voice or sms
+      is invalid
+    when otp_delivery_preference param is not present
+      is valid
+    vendor reports phone number is invalid
+      includes redacted information for the error log
+      is invalid and does not raise
+  phone validation
+    is expected to validate that :international_code is either ‹"AD"›, ‹"AE"›, ‹"AF"›, ‹"AG"›, ‹"AI"›, ‹"AL"›, ‹"AM"›, ‹"AO"›, ‹"AR"›, ‹"AS"›, ‹"AT"›, ‹"AU"›, ‹"AW"›, ‹"AZ"›, ‹"BA"›, ‹"BB"›, ‹"BD"›, ‹"BE"›, ‹"BF"›, ‹"BG"›, ‹"BH"›, ‹"BI"›, ‹"BJ"›, ‹"BL"›, ‹"BM"›, ‹"BN"›, ‹"BO"›, ‹"BQ"›, ‹"BR"›, ‹"BS"›, ‹"BT"›, ‹"BW"›, ‹"BY"›, ‹"BZ"›, ‹"CA"›, ‹"CD"›, ‹"CF"›, ‹"CG"›, ‹"CH"›, ‹"CI"›, ‹"CK"›, ‹"CL"›, ‹"CM"›, ‹"CN"›, ‹"CO"›, ‹"CR"›, ‹"CV"›, ‹"CY"›, ‹"CZ"›, ‹"DE"›, ‹"DJ"›, ‹"DK"›, ‹"DM"›, ‹"DO"›, ‹"DZ"›, ‹"EC"›, ‹"EE"›, ‹"EG"›, ‹"ER"›, ‹"ES"›, ‹"ET"›, ‹"FI"›, ‹"FJ"›, ‹"FM"›, ‹"FO"›, ‹"FR"›, ‹"GA"›, ‹"GB"›, ‹"GD"›, ‹"GE"›, ‹"GF"›, ‹"GG"›, ‹"GH"›, ‹"GI"›, ‹"GL"›, ‹"GM"›, ‹"GN"›, ‹"GP"›, ‹"GQ"›, ‹"GR"›, ‹"GT"›, ‹"GU"›, ‹"GW"›, ‹"GY"›, ‹"HK"›, ‹"HN"›, ‹"HR"›, ‹"HT"›, ‹"HU"›, ‹"ID"›, ‹"IE"›, ‹"IL"›, ‹"IM"›, ‹"IN"›, ‹"IQ"›, ‹"IS"›, ‹"IT"›, ‹"JE"›, ‹"JM"›, ‹"JO"›, ‹"JP"›, ‹"KE"›, ‹"KG"›, ‹"KH"›, ‹"KI"›, ‹"KM"›, ‹"KN"›, ‹"KR"›, ‹"KW"›, ‹"KY"›, ‹"KZ"›, ‹"LA"›, ‹"LB"›, ‹"LC"›, ‹"LI"›, ‹"LK"›, ‹"LR"›, ‹"LS"›, ‹"LT"›, ‹"LU"›, ‹"LV"›, ‹"LY"›, ‹"MA"›, ‹"MC"›, ‹"MD"›, ‹"ME"›, ‹"MG"›, ‹"MH"›, ‹"MK"›, ‹"ML"›, ‹"MM"›, ‹"MN"›, ‹"MO"›, ‹"MP"›, ‹"MQ"›, ‹"MR"›, ‹"MS"›, ‹"MT"›, ‹"MU"›, ‹"MV"›, ‹"MW"›, ‹"MX"›, ‹"MY"›, ‹"MZ"›, ‹"NA"›, ‹"NC"›, ‹"NE"›, ‹"NG"›, ‹"NI"›, ‹"NL"›, ‹"NO"›, ‹"NP"›, ‹"NU"›, ‹"NZ"›, ‹"OM"›, ‹"PA"›, ‹"PE"›, ‹"PF"›, ‹"PG"›, ‹"PH"›, ‹"PK"›, ‹"PL"›, ‹"PR"›, ‹"PS"›, ‹"PT"›, ‹"PW"›, ‹"PY"›, ‹"QA"›, ‹"RE"›, ‹"RO"›, ‹"RS"›, ‹"RU"›, ‹"RW"›, ‹"SA"›, ‹"SB"›, ‹"SC"›, ‹"SE"›, ‹"SG"›, ‹"SI"›, ‹"SK"›, ‹"SL"›, ‹"SM"›, ‹"SN"›, ‹"SO"›, ‹"SR"›, ‹"SS"›, ‹"ST"›, ‹"SV"›, ‹"SZ"›, ‹"TC"›, ‹"TD"›, ‹"TG"›, ‹"TH"›, ‹"TJ"›, ‹"TL"›, ‹"TM"›, ‹"TN"›, ‹"TO"›, ‹"TR"›, ‹"TT"›, ‹"TV"›, ‹"TW"›, ‹"TZ"›, ‹"UA"›, ‹"UG"›, ‹"US"›, ‹"UY"›, ‹"UZ"›, ‹"VC"›, ‹"VE"›, ‹"VG"›, ‹"VI"›, ‹"VN"›, ‹"VU"›, ‹"WS"›, ‹"XK"›, ‹"YE"›, ‹"YT"›, ‹"ZA"›, ‹"ZM"›, or ‹"ZW"›
+    validates that the number matches the requested international code
+  behaves like a phone form
+    #submit
+      formats the phone before assigning it
+    phone uniqueness
+      when phone is already taken
+        is valid
+      when phone is not already taken
+        is valid
+    phone presence validation
+      is invalid when phone is blank
+
+UserPivCacSetupForm
+  #submit
+    when token is missing
+      returns FormResponse with success: false
+    when token is valid
+      returns FormResponse with success: true
+      sends a recovery information changed event
+      and a user already has a piv/cac associated
+        returns FormResponse with success: true
+      and a piv/cac is already associated with another user
+        returns FormResponse with success: false
+    when nonce is invalid
+      returns FormResponse with success: false
+    when token is invalid
+      returns FormResponse with success: false
+
+OpenidConnectAuthorizeForm
+  #acr_values
+    is parsed into an array of valid ACR values
+  #ial2_requested?
+    with a malformed ial
+      is expected to eq false
+    with ial1 and ial2
+      is expected to eq true
+    with ial1
+      is expected to eq false
+    with ial2
+      is expected to eq true
+  #verified_within
+    with a duration that is too short (<30 days)
+      has errors
+    with a format in days
+      parses the value as a number of days
+    without a verified_within
+      is valid
+    with a verified_within with a bad format
+      has errors
+  #success_redirect_uri
+    when the identity has not been linked
+      returns nil
+    when the identity has been linked
+      logs a hash of the code in the analytics params
+      returns a redirect URI with the code from the identity session_uuid
+  #ial
+    when IAL2 passed
+      returns 2
+    when IALMAX passed
+      returns 0
+    when LOA3 passed
+      returns 2
+    when LOA1 passed
+      returns 1
+    when IAL1 passed
+      returns 1
+  #link_identity_to_service_provider
+    with PKCE
+      records the code_challenge on the identity
+  #submit
+    with a bad redirect_uri
+      has errors and does not redirect to the bad redirect_uri
+    with valid params
+      is successful
+    with invalid params
+      with a bad response_type
+        is unsuccessful and has error messages
+  #valid?
+    with no valid acr_values
+      has errors
+    with all valid attributes
+      has no errors
+      is expected to eq true
+    when prompt is not select_account or login
+      is expected to eq false
+    when prompt is login but not allowed by sp
+      is expected to eq false
+    when prompt is not given
+      is expected to eq true
+    state
+      with a state that is shorter than RANDOM_VALUE_MINIMUM_LENGTH characters
+        is expected to eq false
+      without a state
+        is expected to eq false
+    nonce
+      with a nonce that is shorter than RANDOM_VALUE_MINIMUM_LENGTH characters
+        is expected to eq false
+      without a nonce
+        is expected to eq false
+    when prompt is login and allowed by sp
+      is expected to eq true
+    with no authorized acr_values
+      has errors
+    when response_type is not code
+      is expected to eq false
+    with aal but not ial requested via acr_values
+      has errors
+    PKCE
+      bad code_challenge_method
+        has errors
+      code_challenge but no code_challenge_method
+        has errors
+    redirect_uri
+      with a malformed redirect_uri
+        has errors
+      with a redirect_uri not registered to the client
+        has errors
+      with a redirect_uri that only partially matches any registered redirect_uri
+        is expected to eq false
+      without a redirect_uri
+        is expected to eq false
+    with an unknown client_id
+      has errors
+    when scope is good and we block unauthorized scopes
+      does not have errors
+    when scope does not contain valid scopes
+      has errors
+    when prompt is blank
+      is expected to eq false
+    when scope is unauthorized and we block unauthorized scopes
+      has errors
+    when scope is unauthorized and we do not block unauthorized scopes
+      does not have errors
+    when scope includes profile:verified_at but the sp is only ial1
+      has errors
+  #client_id
+    returns the form client_id
+
+EventDisavowal::PasswordResetFromDisavowalForm
+  behaves like password validation
+    is expected to validate that :password cannot be empty/falsy, producing a custom validation error on failure
+    is expected to allow :password to be ‹"ValidPassword1!"›
+    is expected to allow :password to be ‹"Valid Password1"›
+    is expected to allow :password to be ‹"ValidPASSWORD!"›
+    is expected to allow :password to be ‹"bear bull bat baboon"›
+    is expected to allow :password to be ‹"validpassword1!"›
+    is expected to validate that the length of :password is between 12 and 128
+    is expected to allow :password to be ‹"VALIDPASSWORD1!"›
+  with a valid password
+    resets the users password
+  with an invalid password
+    does not reset the users passowrd
+
+UserPivCacLoginForm
+  #submit
+    when token is invalid
+      returns FormResponse with success: false
+    when token is valid
+      returns FormResponse with success: true
+    when token is missing
+      returns FormResponse with success: false
+    when nonce is invalid
+      returns FormResponse with success: false
+  #valid_token?
+    when token is blank
+      returns false
+
+RegisterUserEmailForm
+  behaves like email validation
+    uses the valid_email gem with mx and ban_disposable options
+  #submit
+    when request_id is valid
+      returns success with no errors
+    when email is invalid
+      returns false and adds errors to the form object
+    when email is not already taken
+      saves the user email_language for a valid form
+      is valid
+    when email is already taken
+      creates throttle events after reaching throttle limit
+      sets success to true to prevent revealing account existence
+    when the email exists but is unconfirmed and on a confirmed user
+      is valid and sends a registration email for a new user
+    when user provides invalid email_language
+      returns failure with errors
+    when request_id is invalid
+      returns successful and does not include request_id in email
+    when request_id is blank
+      returns success with no errors
+    when user does not agree to terms
+      returns failure with errors
+    when email is already taken and existing user is unconfirmed
+      creates throttle events after reaching throttle limit
+      sends confirmation instructions to existing user
+
+Idv::PhoneConfirmationOtpVerificationForm
+  #submit
+    handles nil and empty codes
+    when the code is expired
+      returns an unsuccessful result
+      increment second factor attempts and locks out user after too many
+    when the code matches
+      returns a successful result
+      clears the second factor attempts
+    when the code does not match
+      returns an unsuccessful result
+      increments second factor attempts
+
+SecurityEventForm
+  #valid?
+    is valid with a valid form
+    iss
+      with an unknown issuer
+        is invalid
+    with a top-level sub claim
+      is invalid
+    JWT
+      with a body that is not a JWT
+        is invalid
+      when the issuer does not have a public key registered
+        is invalid
+      when signed with a different key than registered to the SP
+        is invalid
+      when signed with an unsupported algorithm
+        is invalid
+    jti
+      without a jti
+        is invalid
+    event.subject.sub
+      with a bad uuid
+        is invalid
+      when the service provider has no agency
+        is still valid
+      with a uuid for a different identity
+        is invalid
+    with a JWT header typ other than secevent+jwt
+      is invalid
+    event type
+      with an additional event type
+        is valid
+      with a bad event type
+        is invalid
+      with no events
+        is invalid
+    aud
+      with a wrong audience endpoint URL
+        is invalid
+    subject_type
+      with a bad subject type
+        is invalid
+    exp
+      is invalid with an exp claim
+  #submit
+    creates a SecurityEvent record
+    for identity fraud events
+      does not reset the user password
+    when request is invalid
+      does not create a SecurityEvent record
+    for authorization fraud events
+      resets the user password for authorization fraud detected events
+      creates a password_invalidated event
+    analytics attributes
+      contains the SP, user ID, error code
+      with an invalid request
+        contains the error code
+    when the event has an occurred_at
+      saves the occurred_at to the database
+    jti uniqueness
+      with a jti that has already been recorded for that same user and issuer
+        reports an error as a duplicate
+        does not create a new record
+      with a jti that has already been recorded for that same user, different issuer
+        reports a success
+        creates a record
+
+DeleteUserEmailForm
+  #submit
+    with only a single email address
+      leaves the last email alone
+      returns failure
+      does not notify subscribers that the identifier was recycled or email changed
+    with a email of a different user
+      returns failure
+      leaves the email alone
+      does not subscribers that the identier was recycled
+    with multiple email addresses
+      removes the email
+      returns success
+      notifies subscribers that the identifier was recycled and the email changed
+
+Idv::SsnFormatForm
+  #submit
+    when the form is valid
+      returns a successful form response
+    when the form is invalid
+      returns an unsuccessful form response
+    when the form has invalid attributes
+      raises an error
+  presence validations
+    is invalid when required attribute is not present
+
+Api::Verify::DocumentCaptureErrorsDeleteForm
+  #submit
+    with a valid document capture session uuid
+      is returns an successful form response
+    without a document capture session uuid
+      is returns an unsuccessful form response
+    with an invalid document capture session uuid
+      is returns an unsuccessful form response
+
+UserPivCacVerificationForm
+  #submit
+    when token is invalid
+      returns FormResponse with success: false
+    when token is missing
+      returns FormResponse with success: false
+    when token is valid
+      and a user has a different piv/cac associated
+        returns FormResponse with success: false
+      and the correct piv/cac is presented
+        returns FormResponse with success: true
+        when nonce is bad
+          returns FormResponse with success: false
+      and a user has no piv/cac associated
+        returns FormResponse with success: false
+
+OpenidConnectTokenForm
+  #submit
+    with invalid params
+      returns FormResponse with success: false
+    with valid params
+      returns FormResponse with success: true
+  #valid?
+    with an incorrect grant_type
+      is expected to eq false
+    code
+      code has expired
+        is invalid
+      using the same code a second time
+        is invalid
+      code is nil
+        is invalid
+      with a bad code
+        is invalid
+      the code has a null byte
+        is invalid
+    private_key_jwt
+      with a bad client_assertion_type
+        is expected to eq false
+      with valid params
+        is true, and has no errors when the sp is set to jwt only mode
+        is false, and has errors if the sp is set for pkce only mode
+        is true, and has no errors
+        with a trailing slash in the audience url
+          is valid
+      with a bad client_assertion
+        signed by an unknown key
+          is invalid
+        with a list of audiences not including the token url
+          is invalid
+        with an already expired assertion
+          is invalid
+        with a list of audiences including the token url
+          is valid
+        signed by a second key
+          is still valid
+        with a bad audience
+          is invalid
+        with the old audience
+          is invalid
+        service provider has no certs registered
+          is has an error
+        with an issued time in the future
+          is invalid
+        with no issued time
+          is still valid
+        with a bad issuer
+          is invalid
+        without an audience
+          is invalid
+        with a bad subject
+          is invalid
+    neither PKCE nor private_key_jwt params
+      is invalid
+    PKCE
+      with a code_challenge but a missing code_verifier
+        is not valid
+      with a code_challenge that is not the SHA256 of the code_verifier
+        is not valid
+      with a code_challenge does not have base64 padding
+        is valid
+      with valid params
+        is false, and has errors if the sp is set for jwt only mode
+        is true, and has no errors
+        is true, and has no errors if the sp is set for pkce only mode
+  #response
+    with valid params
+      has an access_token
+      specifies its token type
+      has a properly-encoded id_token with an expiration that matches the expires_in
+    with invalid params
+      has no id_token
+      has an error key in the response
+
+PasswordResetEmailForm
+  #submit
+    when email is valid and user exists
+      returns hash with properties about the event and the user
+    when email is invalid
+      returns hash with properties about the event and the nonexistent user
+    when email is valid and user does not exist
+      returns hash with properties about the event and the nonexistent user
+  behaves like email normalization
+    downcases and strips the email before validation
+  behaves like email validation
+    uses the valid_email gem with mx and ban_disposable options
+
+Idv::ApiDocumentVerificationStatusForm
+  #submit
+    includes doc_auth_result
+    includes remaining_attempts
+  #valid?
+    with successful result
+      is valid
+    with missing async state
+      is invalid
+    with unsuccessful result
+      is invalid
+    with missing document capture session
+      is invalid
+    with pending result
+      is valid
+
+WebauthnVisitForm
+  #submit
+    returns FormResponse with success: true if there are no errors
+    with platform authenticator
+      returns FormResponse with success: true if there are no errors
+    when there are errors
+      returns FormResponse with success: false with an unrecognized error
+      returns FormResponse with success: false with NotSupportedError
+      returns FormResponse with success: false with InvalidStateError
+      with platform authenticator
+        returns FormResponse with success: false with InvalidStateError
+        returns FormResponse with success: false with an unrecognized error
+        returns FormResponse with success: false with NotSupportedError
+  #platform_authenticator?
+    is expected to eq false
+    with platform authenticator
+      is expected to eq true
+
+Idv::OtpDeliveryMethodForm
+  #submit
+    with voice as the delivery method
+      is successful
+    with sms as the delivery method
+      is successful
+    with an unsupported value as the delivery method
+      is unsuccessful
+
+VerifyPersonalKeyForm
+  #submit
+    with the correct personal key
+      exposes the decrypted_pii as a separate attribute
+      has a successful response
+    with an incorrect personal key
+      is an unsuccessful response
+      resets sensitive fields
+
+OtpDeliverySelectionForm
+  otp_delivery_preference inclusion validation
+    is invalid when otp_delivery_preference is neither sms nor voice
+  #submit
+    when the form is valid
+      returns true for success?
+    when the form is invalid
+      returns false for success? and includes errors
+    with voice preference and supported phone
+      does not change the otp_delivery_preference to sms
+    with voice preference and unsupported phone
+      changes the otp_delivery_preference to sms
+
+Idv::PhoneForm
+  behaves like a phone form
+    phone uniqueness
+      when phone is already taken
+        is valid
+      when phone is not already taken
+        is valid
+    phone presence validation
+      is invalid when phone is blank
+    #submit
+      formats the phone before assigning it
+  #submit
+    with specific allowed countries
+      validates to only allow numbers from permitted countries
+      with US as the sole allowed country
+        validates to only allow numbers from permitted countries
+    with unsupported delivery method
+      with one unsupported delivery method
+        is valid
+      with all delivery methods unsupported
+        is invalid
+    with previously submitted value
+      uses the previously submitted value as the initial phone value
+    with specific delivery methods
+      validates to only allow numbers from permitted countries
+    when the form is valid
+      when a phone number is provided
+        returns a successful form response
+    with user phone number
+      uses the formatted phone number as the initial phone value
+      with supported international user phone number
+        uses the user phone number as the initial phone value
+      with international user phone number in disallowed country
+        does not use the user phone number as the initial phone value
+      with international user phone number in unsupported country
+        does not use the user phone number as the initial phone value
+    when the form is invalid
+      returns an unsuccessful form response
+
+PasswordForm
+  #submit
+    when the form is invalid
+      returns false
+    when the request_id is passed in the params
+      tracks that it is present
+    when the request_id is not properly encoded
+      does not throw an exception
+    when the form is valid
+      returns true
+  behaves like password validation
+    is expected to allow :password to be ‹"validpassword1!"›
+    is expected to allow :password to be ‹"VALIDPASSWORD1!"›
+    is expected to allow :password to be ‹"bear bull bat baboon"›
+    is expected to allow :password to be ‹"Valid Password1"›
+    is expected to validate that the length of :password is between 12 and 128
+    is expected to allow :password to be ‹"ValidPASSWORD!"›
+    is expected to allow :password to be ‹"ValidPassword1!"›
+    is expected to validate that :password cannot be empty/falsy, producing a custom validation error on failure
+  behaves like strong password
+    does not allow a password that is the user email
+    does not allow a password containing words from the user email (PENDING: Temporarily skipped with xit)
+    does not allow a password that does not have the minimum number of graphemes
+    does not allow a password that is common and/or needs more words
+    does not allow a password that needs more words
+
+Idv::ApiDocumentVerificationForm
+  #valid?
+    with all valid images
+      is valid
+    when document_capture_session_uuid param is missing
+      is not valid
+    when throttled from submission
+      is not valid
+    when url is invalid
+      is not valid
+    when encryption key is missing
+      is not valid
+    when iv is missing
+      is not valid
+    when document_capture_session_uuid does not correspond to a record
+      is not valid
+  #submit
+    includes remaining_attempts
+
+OpenidConnectLogoutForm
+  when we accept id_token_hint
+    #valid?
+      validating state
+        when state is missing
+          is valid
+        when state is shorter than the minimum length
+          is not valid
+      post_logout_redirect_uri
+        with URI that does not match what is registered
+          is not valid
+        without a post_logout_redirect_uri
+          is not valid
+      validating id_token_hint
+        with an id_token_hint that is not a JWT
+          is not valid
+        without an id_token_hint
+          with a valid client_id
+            is valid
+          without client_id
+            is not valid
+        with a payload that does not correspond to an identity
+          is not valid
+        with an expired, but otherwise valid id_token_hint
+          is valid
+    #submit
+      with a valid form
+        deactivates the identity
+        has a redirect URI without errors
+        has a successful response
+        with missing state
+          has a redirect URI without errors
+          has a successful response
+          deactivates the identity
+      with an invalid form
+        has an error code in the redirect URI
+        is not successful
+  when we reject id_token_hint
+    #valid?
+      validating id_token_hint
+        with an id_token_hint
+          is not valid
+        without an id_token_hint
+          is valid
+      post_logout_redirect_uri
+        without a post_logout_redirect_uri
+          is not valid
+        when no client_id passed
+          is not valid
+          does not include error about redirect_uri
+        with URI that does not match what is registered
+          is not valid
+      validating state
+        when state is shorter than the minimum length
+          is not valid
+        when state is missing
+          is valid
+    #submit
+      with an invalid form
+        is not successful
+        has an error code in the redirect URI
+      with a valid form
+        has a redirect URI without errors
+        has a successful response
+        without state
+          has a successful response
+          has a redirect URI without errors
+        with a current user
+          deactivates the identity
+
+AddUserEmailForm
+  #submit
+    creates a new EmailAddress record for a new email address
+    when the new email address has an expired previous attempt for the same account
+      sends a confirmation email, as if it was not previously linked
+
+TwoFactorLoginOptionsForm
+  #submit
+    when the form is invalid
+      returns false for success? and includes errors
+    when the form is valid
+      returns true for success?
+
+Idv::SsnForm
+  #submit
+    when the form is invalid
+      returns an unsuccessful form response
+    when the form is valid
+      returns a successful form response
+      when the SSN is a duplicate
+        logs that there is a duplicate SSN
+    when the form has invalid attributes
+      raises an error
+  presence validations
+    is invalid when required attribute is not present
+
+GpoVerifyForm
+  #submit
+    incorrect OTP
+      clears form
+    correct OTP
+      returns true
+      logs the date the code was sent at
+      activates the pending profile
+      pending in person enrollment
+        sets profile to pending in person verification
+        updates establishing in-person enrollment to pending
+  #valid?
+    when OTP is expired
+      is invalid
+    when OTP does not match
+      is invalid
+    OTP crockford normalizing
+      when the entered OTP has ohs instead of zeroes
+        is valid
+      when the entered OTP has lowercase
+        is valid
+    when required attributes are not present
+      is invalid
+    when there is no pending profile
+      is invalid
+
+OtpVerificationForm
+  #submit
+    when the form is valid
+      returns FormResponse with success: true
+    when the form is invalid
+      returns FormResponse with success: false
+    when numeric is enabled and the code is not exactly 6 digits
+      returns FormResponse with success: false
+
+Idv::InheritedProofing::Va::Form
+  class methods
+    .required_fields
+      returns the required fields
+    .model_name
+      returns the right model name
+    .optional_fields
+      returns the optional fields
+    .fields
+      returns all the fields
+  #validate
+    with invalid payload data
+      when the payload has missing fields
+        adds the correct error messages for missing fields
+        returns false
+      when the payload has missing optional field data
+        returns true
+      when the payload has missing required field data
+        adds the correct error messages for required fields that are missing data
+        returns false
+    with valid payload data
+      returns true
+  #submit
+    with an invalid payload
+      when the payload has invalid field data
+        returns a FormResponse indicating the correct errors and status
+  #initialize
+    when passing an invalid payload hash
+      when nil?
+        behaves like the hash is blank?
+          raises an error
+      when not a Hash
+        raises an error
+      when empty?
+        behaves like the hash is blank?
+          raises an error
+    when passing a valid payload hash
+      raises no errors
+  #user_pii
+    returns the correct user pii
+
+TotpVerificationForm
+  #submit
+    when the form is invalid
+      returns FormResponse with success: false
+    when the form is valid
+      returns FormResponse with success: true
+    when the format of the code is not exactly 6 digits
+      returns FormResponse with success: false
+
+ResetPasswordForm
+  behaves like password validation
+    is expected to allow :password to be ‹"validpassword1!"›
+    is expected to validate that the length of :password is between 12 and 128
+    is expected to allow :password to be ‹"Valid Password1"›
+    is expected to allow :password to be ‹"VALIDPASSWORD1!"›
+    is expected to allow :password to be ‹"ValidPassword1!"›
+    is expected to allow :password to be ‹"ValidPASSWORD!"›
+    is expected to allow :password to be ‹"bear bull bat baboon"›
+    is expected to validate that :password cannot be empty/falsy, producing a custom validation error on failure
+  #submit
+    when the user does not exist in the db
+      returns a hash with errors
+    when the unconfirmed email address has been confirmed by another account
+      does not raise an error and is not successful
+    when the user has an active profile
+      deactivates the profile
+    when the user does not have an active profile
+      includes that the profile was not deactivated in the form response
+    behaves like strong password
+      does not allow a password that needs more words
+      does not allow a password containing words from the user email (PENDING: Temporarily skipped with xit)
+      does not allow a password that is common and/or needs more words
+      does not allow a password that does not have the minimum number of graphemes
+      does not allow a password that is the user email
+    when both the password and token are invalid
+      returns a hash with errors
+    when both the password and token are valid
+      sets the user password to the submitted password
+    when the password is valid but the token has expired
+      returns a hash with errors
+    when the password is invalid and token is valid
+      returns a hash with errors
+
+TwoFactorOptionsForm
+  #submit
+    is unsuccessful if the selection is invalid
+    is successful if user has existing method and does not select any options
+    is unsuccessful if the selection is invalid for multi mfa
+    is successful if the selection is valid
+    includes analytics hash with a methods count of zero
+    is unsuccessful if the selection is empty
+    when a user wants to is required to add piv_cac on sign in
+      when user is didnt select an mfa
+        does not submits the form
+      when user selects an mfa
+        submits the form
+    when the feature flag toggle for 2FA phone restriction is off
+      proceeds with submission
+    when phone is selected as their first authentication method
+      does not submit the phone when selected as the first single option
+    when the selection is the same as the user's otp_delivery_preference
+      does not update the user's otp_delivery_preference
+    when the selection is not voice or sms
+      does not update the user's otp_delivery_preference
+    when a user wants to select phone as their second authentication method
+      submits the form
+      includes analytics hash with a method count of one
+    when the selection is different from the user's otp_delivery_preference
+      updates the user's otp_delivery_preference if they have an alternate method selected
+
+UpdateUserPasswordForm
+  behaves like strong password
+    does not allow a password that needs more words
+    does not allow a password that is the user email
+    does not allow a password containing words from the user email (PENDING: Temporarily skipped with xit)
+    does not allow a password that does not have the minimum number of graphemes
+    does not allow a password that is common and/or needs more words
+  #submit
+    when the password is invalid
+      returns FormResponse with success: false and does not do anything else
+    when the user does not have an active profile
+      does not call ActiveProfileEncryptor
+    when the password is valid
+      returns FormResponse with success: true
+      updates the user
+    when the user has an active profile
+      encrypts the active profile
+  behaves like password validation
+    is expected to validate that :password cannot be empty/falsy, producing a custom validation error on failure
+    is expected to validate that the length of :password is between 12 and 128
+    is expected to allow :password to be ‹"Valid Password1"›
+    is expected to allow :password to be ‹"bear bull bat baboon"›
+    is expected to allow :password to be ‹"validpassword1!"›
+    is expected to allow :password to be ‹"ValidPassword1!"›
+    is expected to allow :password to be ‹"VALIDPASSWORD1!"›
+    is expected to allow :password to be ‹"ValidPASSWORD!"›
+
+Idv::DocPiiForm
+  when there is an invalid jurisdiction
+    responds with an unsuccessful result
+  #submit
+    when there is an error with both name fields
+      returns a single name-specific pii error
+    when there is an error with dob minimum age
+      returns a single min age error
+    when the form is valid
+      returns a successful form response
+    when there was attention with barcode
+      adds value as extra attribute
+    when there is a non-string zipcode
+      returns a single generic pii error
+    when there is an error with name fields and dob
+      returns a single generic pii error
+
+Idv::ApiImageUploadForm
+  #valid?
+    when document_capture_session_uuid does not correspond to a record
+      is not valid
+    when throttled from submission
+      is not valid
+    with all valid images
+      is valid
+    when document_capture_session_uuid param is missing
+      is not valid
+  #submit
+    with a valid form
+      returns the expected response
+      logs analytics
+    PII validation from client response fails
+      includes remaining_attempts
+      includes doc_pii errors
+      is not successful
+    encrypted document storage
+      when encrypted image storage is enabled
+        writes encrypted documents
+      when the attempts API is not enabled
+        when encrypted image storage is disabled
+    image source
+      malformed image metadata
+        sets image source to unknown
+      mixed sources
+        sets image source to unknown
+      acuant images
+        sets image source to acuant sdk
+      manual uploads
+        sets image source to unknown
+    invalid metadata shape
+      logs analytics excluding invalid metadata
+      returns the expected response
+    posting images to client fails
+      includes remaining_attempts
+      includes client response errors
+      is not successful
+    form is missing a required param
+      is not successful
+      includes remaining_attempts
+    image data returns unknown errors
+      logs a doc auth warning
+      returns the expected response
+
+Idv::InheritedProofing::BaseForm
+  class methods
+    .fields
+      returns the right field names
+    .model_name
+      returns the right model name
+  #validate
+    with valid payload data
+      returns true
+    with invalid payload data
+      when the payload has unrecognized fields
+        returns true
+      when the payload has missing required field data
+        returns no errors because no data validations take place by default
+        returns true
+  #submit
+    returns a FormResponse object
+    before returning
+      calls #validate
+  #initialize
+    when .optional_fields is not overridden
+      raises an error
+    when .user_pii is not overridden
+      raises an error
+    when .required_fields is not overridden
+      raises an error
+  #initialize
+    when passing an invalid payload hash
+      when not a Hash
+        raises an error
+      when nil?
+        behaves like the hash is blank?
+          raises an error
+      when empty?
+        behaves like the hash is blank?
+          raises an error
+    when passing a valid payload hash
+      raises no errors
+
+EditPhoneForm
+  #one_phone_configured?
+    when editing a form with multiple numbers set up
+      recognizes that there are multiple phone methods set up
+    when editing a form with only one number set up
+      recognizes it as the only method set up
+  #submit
+    when delivery_preference is empty
+      is invalid
+    when delivery_preference is not voice or sms
+      is invalid
+    when delivery_preference is valid
+      updates the phone number
+      includes delivery_preference in the form response extra
+    default phone selection
+      when the make_default_number param is true
+        makes the phone configuration the default configuration
+      when the make_default_number param is false
+        does not make the phone configuration the default configuration
+      when the make_default_number param is not present
+        does not make the phone configuration the default configuration
+
+VerifyPasswordForm
+  #submit
+    when the form is valid
+      is successful
+    when the password is invalid
+      returns errors
+
+TwoFactorAuthentication::PhoneDeletionForm
+  #submit
+    with no phone configuration
+      leaves the phone alone
+      returns analytics
+      returns success
+    with a phone of a different user
+      returns analytics
+      leaves the phone alone
+      returns failure
+    with only a single mfa method
+      returns analytics
+      leaves the phone alone
+      returns failure
+    with multiple mfa methods available
+      returns analytics
+      updates the user remember device revokation timestamp
+      removes the phone
+      returns success
+
+PersonalKeyForm
+  #submit
+    when the form is invalid
+      returns FormResponse with success: false
+    when the form is valid
+      returns FormResponse with success: true
+
+WebauthnVerificationForm
+  #submit
+    when the input is valid for non-platform authenticator
+      returns FormResponse with success: true
+    when the input is invalid
+      returns FormResponse with success: false
+      returns FormResponses with success: false when verification raises OpenSSL exception
+    when the input is valid for platform authenticator
+      returns FormResponse with success: true
+
+UpdateEmailLanguageForm
+  #submit
+    with an supported email_language
+      does not update the user email_language
+      is invalid
+    with a valid email_language
+      is valid and has no errors
+      updates the user email_language
+
+WebauthnSetupForm
+  #submit
+    when the input is valid
+      sends a recovery information changed event
+      creates a platform authenticator if the platform_authenticator param is set
+      returns FormResponse with success: true and creates a webauthn configuration
+    when the input is invalid
+      returns false with an error when the attestation response raises an error
+      returns FormResponse with success: false
+
+TotpSetupForm
+  #submit
+    when the secret key is not present
+      returns FormResponse with success: false
+    when name is not unique
+      returns an unsuccessful form response
+    when name is empty
+      returns an unsuccessful form response
+    when TOTP code is valid
+      returns FormResponse with success: true
+      sends a recovery information changed event
+    when TOTP code is invalid
+      returns FormResponse with success: false
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) PasswordForm behaves like strong password does not allow a password containing words from the user email
+     # Temporarily skipped with xit
+     # ./spec/support/shared_examples/password_strength.rb:41
+
+  2) ResetPasswordForm#submit behaves like strong password does not allow a password containing words from the user email
+     # Temporarily skipped with xit
+     # ./spec/support/shared_examples/password_strength.rb:41
+
+  3) UpdateUserPasswordForm behaves like strong password does not allow a password containing words from the user email
+     # Temporarily skipped with xit
+     # ./spec/support/shared_examples/password_strength.rb:41
+
+Top 10 slowest examples (6.38 seconds, 11.8% of total time):
+  RegisterUserEmailForm#submit when email is already taken and existing user is unconfirmed creates throttle events after reaching throttle limit
+    1.31 seconds ./spec/forms/register_user_email_form_spec.rb:82
+  RegisterUserEmailForm#submit when email is already taken creates throttle events after reaching throttle limit
+    0.8528 seconds ./spec/forms/register_user_email_form_spec.rb:37
+  AddUserEmailForm#submit creates a new EmailAddress record for a new email address
+    0.66153 seconds ./spec/forms/add_user_email_form_spec.rb:14
+  SecurityEventForm#submit jti uniqueness with a jti that has already been recorded for that same user, different issuer creates a record
+    0.6361 seconds ./spec/forms/security_event_form_spec.rb:155
+  SecurityEventForm#submit analytics attributes contains the SP, user ID, error code
+    0.50799 seconds ./spec/forms/security_event_form_spec.rb:100
+  SecurityEventForm#submit creates a SecurityEvent record
+    0.50393 seconds ./spec/forms/security_event_form_spec.rb:45
+  SecurityEventForm#submit when the event has an occurred_at saves the occurred_at to the database
+    0.48998 seconds ./spec/forms/security_event_form_spec.rb:63
+  SecurityEventForm#submit for authorization fraud events creates a password_invalidated event
+    0.47702 seconds ./spec/forms/security_event_form_spec.rb:77
+  SecurityEventForm#submit for authorization fraud events resets the user password for authorization fraud detected events
+    0.47492 seconds ./spec/forms/security_event_form_spec.rb:73
+  GpoVerifyForm#submit correct OTP pending in person enrollment updates establishing in-person enrollment to pending
+    0.46382 seconds ./spec/forms/gpo_verify_form_spec.rb:140
+
+Top 10 slowest example groups:
+  AddUserEmailForm
+    0.46564 seconds average (0.93128 seconds / 2 examples) ./spec/forms/add_user_email_form_spec.rb:3
+  RegisterUserEmailForm
+    0.32637 seconds average (4.57 seconds / 14 examples) ./spec/forms/register_user_email_form_spec.rb:3
+  SecurityEventForm
+    0.23163 seconds average (6.95 seconds / 30 examples) ./spec/forms/security_event_form_spec.rb:3
+  GpoVerifyForm
+    0.16079 seconds average (1.93 seconds / 12 examples) ./spec/forms/gpo_verify_form_spec.rb:3
+  OpenidConnectTokenForm
+    0.15545 seconds average (5.91 seconds / 38 examples) ./spec/forms/openid_connect_token_form_spec.rb:3
+  TwoFactorAuthentication::PhoneDeletionForm
+    0.13296 seconds average (1.73 seconds / 13 examples) ./spec/forms/two_factor_authentication/phone_deletion_form_spec.rb:3
+  Idv::ApiImageUploadForm
+    0.13171 seconds average (3.16 seconds / 24 examples) ./spec/forms/idv/api_image_upload_form_spec.rb:3
+  VerifyPersonalKeyForm
+    0.12995 seconds average (0.51978 seconds / 4 examples) ./spec/forms/verify_personal_key_form_spec.rb:3
+  EventDisavowal::PasswordResetFromDisavowalForm
+    0.12129 seconds average (1.21 seconds / 10 examples) ./spec/forms/event_disavowal/password_reset_from_disavowal_form_spec.rb:3
+  VerifyPasswordForm
+    0.12101 seconds average (0.24201 seconds / 2 examples) ./spec/forms/verify_password_form_spec.rb:3
+
+Finished in 54.16 seconds (files took 2.19 seconds to load)
+511 examples, 0 failures, 3 pending
+
+Randomized with seed 1934
+
