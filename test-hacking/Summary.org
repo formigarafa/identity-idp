@@ -8,7 +8,7 @@
 | forms       | 54.16s                | 511 examples  | 0.106s                  | 1.31s                    |             0 |
 | helpers     | 3.01s                 | 46 examples   | 0.065s                  | 0.130s                   |             0 |
 | jobs        | 31.44s                | 188 examples  | 0.167s                  | 0.997s                   |             0 |
-| lib         | 34.41s                | 317 examples  | 0.109s                  | 3.7s                     |               |
+| lib         | 34.41s                | 317 examples  | 0.109s                  | 3.7s                     |             0 |
 | mailers     | 11.21s                | 145 examples  | 0.077s                  | 0.231s                   |             0 |
 | models      | 32.98s                | 350 examples  | 0.094s                  | 0.479s                   |             0 |
 | policies    | 6.36s                 | 52 examples   | 0.122s                  | 0.233s                   |             0 |
