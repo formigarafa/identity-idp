@@ -4,7 +4,7 @@
 | config      | 1.24s                 | 10 examples   | 0.124s                  | 0.1s                     |             0 |
 | controllers | 172.9s                | 1356 examples | 0.128s                  | 9.84s                    |             3 |
 | decorators  | 11.58s                | 127 examples  | 0.091s                  | 0.200s                   |             0 |
-| features    |                       |               |                         |                          |               |
+| features    | 5782s                 | 1045 exampls  | 5.533s                  | 313.43s                  |           238 |
 | forms       | 54.16s                | 511 examples  | 0.106s                  | 1.31s                    |             0 |
 | helpers     | 3.01s                 | 46 examples   | 0.065s                  | 0.130s                   |             0 |
 | jobs        | 31.44s                | 188 examples  | 0.167s                  | 0.997s                   |             0 |
