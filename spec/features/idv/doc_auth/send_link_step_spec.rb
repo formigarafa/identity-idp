@@ -10,7 +10,8 @@ feature 'doc auth send link step' do
     complete_doc_auth_steps_before_send_link_step
   end
 
-  let(:idv_send_link_max_attempts) { IdentityConfig.store.idv_send_link_max_attempts }
+  # let(:idv_send_link_max_attempts) { IdentityConfig.store.idv_send_link_max_attempts }
+  let(:idv_send_link_max_attempts) { 5 }
   let(:idv_send_link_attempt_window_in_minutes) do
     IdentityConfig.store.idv_send_link_attempt_window_in_minutes
   end
@@ -101,14 +102,22 @@ feature 'doc auth send link step' do
   end
 
   it 'throttles sending the link' do
-    allow_any_instance_of(ApplicationController).to receive(:analytics).and_return(fake_analytics)
+j    allow_any_instance_of(ApplicationController).to receive(:analytics).and_return(fake_analytics)
     allow_any_instance_of(ApplicationController).to receive(
       :irs_attempts_api_tracker,
     ).and_return(fake_attempts_tracker)
 
     user = user_with_2fa
     sign_in_and_2fa_user(user)
+
+    # DEBUG
+    puts "about to call complete_doc_auth_steps_before_send_link_step: #{DateTime.now}"
+
     complete_doc_auth_steps_before_send_link_step
+
+    # DEBUG
+    puts "back from complete_doc_auth_steps_before_send_link_step: #{DateTime.now}"
+
     timeout = distance_of_time_in_words(
       Throttle.attempt_window_in_minutes(:idv_send_link).minutes,
     )
@@ -119,6 +128,9 @@ feature 'doc auth send link step' do
 
     freeze_time do
       idv_send_link_max_attempts.times do
+        # DEBUG
+        puts "top of send_link loop: #{DateTime.now}"
+
         expect(page).to_not have_content(
           I18n.t('errors.doc_auth.send_link_throttle', timeout: timeout),
         )
@@ -129,6 +141,9 @@ feature 'doc auth send link step' do
         expect(page).to have_current_path(idv_doc_auth_link_sent_step)
         click_doc_auth_back_link
       end
+
+      # DEBUG
+      puts "left send_link loop: #{DateTime.now}"
 
       fill_in :doc_auth_phone, with: '415-555-0199'
       click_idv_continue

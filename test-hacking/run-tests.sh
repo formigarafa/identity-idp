@@ -4,7 +4,6 @@ bundle exec rspec --profile=10 spec/components >components.out 2>&1
 bundle exec rspec --profile=10 spec/config >config.out 2>&1
 bundle exec rspec --profile=10 spec/controllers >controllers.out 2>&1
 bundle exec rspec --profile=10 spec/decorators >decorators.out 2>&1
-bundle exec rspec --profile=10 spec/factories >factories.out 2>&1
 bundle exec rspec --profile=10 spec/fixtures >fixtures.out 2>&1
 bundle exec rspec --profile=10 spec/forms >forms.out 2>&1
 bundle exec rspec --profile=10 spec/helpers >helpers.out 2>&1

@@ -1,0 +1,3 @@
+jmax - Figure out coverage with and without feature specs
+Matt - Add warning about application.yml to README
+jmax - re-gather test data w/o application.yml settings.
