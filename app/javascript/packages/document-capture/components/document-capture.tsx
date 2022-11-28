@@ -3,6 +3,7 @@ import { Alert } from '@18f/identity-components';
 import { useI18n } from '@18f/identity-react-i18n';
 import { FormSteps, PromptOnNavigate } from '@18f/identity-form-steps';
 import { FlowContext, VerifyFlowStepIndicator, VerifyFlowPath } from '@18f/identity-verify-flow';
+import { UploadFormEntryError } from '@18f/identity-document-capture/services/upload';
 import { useDidUpdateEffect } from '@18f/identity-react-hooks';
 import type { FormStep } from '@18f/identity-form-steps';
 import { UploadFormEntriesError } from '../services/upload';
@@ -83,6 +84,17 @@ function DocumentCapture({ isAsyncForm = false, onStepChange = () => {} }: Docum
       },
     [isAsyncForm, formValues, flowPath],
   );
+
+  if (submissionFormValues && !submissionError) {
+    const tempError = new UploadFormEntriesError();
+    tempError.formEntryErrors = [
+      new UploadFormEntryError('hello'),
+      new UploadFormEntryError('world'),
+    ];
+    tempError.remainingAttempts = 4;
+    tempError.result_failed = false;
+    setSubmissionError(tempError);
+  }
 
   let initialActiveErrors;
   if (submissionError instanceof UploadFormEntriesError) {
