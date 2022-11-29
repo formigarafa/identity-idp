@@ -92,7 +92,7 @@ function DocumentCapture({ isAsyncForm = false, onStepChange = () => {} }: Docum
       new UploadFormEntryError('world'),
     ];
     tempError.remainingAttempts = 4;
-    tempError.result_failed = false;
+    tempError.isFailedResult = false;
     setSubmissionError(tempError);
   }
 
