@@ -5,3 +5,5 @@ deploy_branch_to_environment_map:
     - dev
   stages/mhenke:
     - mhenke
+  stages/matthinz:
+    - matthinz
