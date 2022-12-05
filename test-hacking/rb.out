@@ -3,7 +3,7 @@ An error occurred while loading ./spec/rb.
 Failure/Error: __send__(method, file)
 
 LoadError:
-  cannot load such file -- /home/jmax/repos/identity-idp/spec/rb
+  cannot load such file -- /home/jmax/projects/identity-idp/spec/rb
 # /home/jmax/.asdf/installs/ruby/3.0.4/lib/ruby/gems/3.0.0/gems/rspec-core-3.11.0/lib/rspec/core/configuration.rb:2115:in `load'
 # /home/jmax/.asdf/installs/ruby/3.0.4/lib/ruby/gems/3.0.0/gems/rspec-core-3.11.0/lib/rspec/core/configuration.rb:2115:in `load_file_handling_errors'
 # /home/jmax/.asdf/installs/ruby/3.0.4/lib/ruby/gems/3.0.0/gems/rspec-core-3.11.0/lib/rspec/core/configuration.rb:1615:in `block in load_spec_files'
@@ -40,6 +40,6 @@ No examples found.
 
 Top 0 slowest examples (0 seconds, 0.0% of total time):
 
-Finished in 0.00007 seconds (files took 0.03666 seconds to load)
+Finished in 0.00066 seconds (files took 0.11827 seconds to load)
 0 examples, 0 failures, 1 error occurred outside of examples
 

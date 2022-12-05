@@ -1,114 +1,13 @@
 
-Randomized with seed 62441
-
-i18n requests
-  with CSRF errors
-    renders the page in the language of the current request despite CSRF errors
-
-secure cookies
-  with HTTPS
-    flags all cookies sent by the application as Secure, HttpOnly, and SameSite=Lax
-  with plain HTTP
-    flags all cookies sent by the application as HttpOnly and SameSite=Lax
+Randomized with seed 6394
 
 when the request_id param is present but with a nil value
   does not raise an error
-
-requesting acuant SDK assets
-  /acuant/11.5.0/something-that-does-not-exist/AcuantImageService.wasm (invalid asset)
-    renders a 404 and leaves in the CSP headers
-  /acuant/11.5.0/AcuantImageService.wasm
-    does not include a session
-    renders a WASM asset
-  /acuant/11.5.0/AcuantImageWorker.min.js
-    renders a JS asset
-    does not include a session
-    does not include a CSP header
 
 Invalid content type request
   valid format
     succeeds when requesting html
     fails with an invalid format
-
-Headers
-  does not reflect header host values
-  does not blow up with a malicious host value
-  does not blow up with bad formats in the path
-  does not raise an error when HTTP_HOST Header is encoded with ASCII-8BIT
-  does not blow up with bad formats in the headers
-  secure headers
-    sets the right values for X-headers
-
-CORS headers for OpenID Connect endpoints
-  /api/country-support
-    behaves like static API with correct CORS headers
-      origin is login.gov
-        allows origin
-      origin is www.login.gov
-        allows origin
-      origin is local in development
-        allows origin
-      origin is federalist preview
-        allows origin
-      origin includes but is not login.gov
-        does not allow origin
-      origin is handbook.login.gov
-        allows origin
-      origin is not allowed
-        does not allow origin
-  /api/analytics-events
-    behaves like static API with correct CORS headers
-      origin is handbook.login.gov
-        allows origin
-      origin is www.login.gov
-        allows origin
-      origin includes but is not login.gov
-        does not allow origin
-      origin is federalist preview
-        allows origin
-      origin is not allowed
-        does not allow origin
-      origin is local in development
-        allows origin
-      origin is login.gov
-        allows origin
-
-user signs in partially and visits openid_connect/authorize
-  prompts the user to 2FA if prompt is not given
-  prompts the user to 2FA
-  prompts the user to 2FA if prompt is login
-
-CORS headers for OpenID Connect endpoints
-  certs endpoint
-    origin is not included in ServiceProvider redirect_uris
-      does not allow origin
-    origin is included in ServiceProvider redirect_uris
-      allows origin
-  token endpoint
-    origin is included in ServiceProvider redirect_uris
-      responds to OPTIONS requests with the right CORS headers
-      responds to POST requests with the right CORS headers
-    origin is not included in ServiceProvider redirect_uris
-      does not allow OPTIONS requests from origin
-      does not allow POST requests from origin
-  userinfo endpoint
-    origin is not included in ServiceProvider redirect_uris
-      does not respond to request from origin
-    origin is included in ServiceProvider redirect_uris
-      responds to request from origin
-  configuration endpoint
-    origin is included in ServiceProvider redirect_uris
-      allows origin
-    origin is not included in ServiceProvider redirect_uris
-      does not allow origin
-  domain name as the origin
-    leaves the Access-Control-Allow-Origin header blank
-  bad redirect_uris
-    gracefully handles a uri that only includes the protocol
-    handles a nil value gracefully
-
-visiting sign in page with invalid user params
-  raises ActionController::ParameterMissing
 
 content security policy
   on endpoints that will not redirect to an SP
@@ -116,103 +15,204 @@ content security policy
   on endpoints that will redirect to an SP
     includes a CSP with a form action that will allow a redirect to the CSP
 
-submitting email registration form with required param as String
-  raises ActionController::ParameterMissing
+Headers
+  does not reflect header host values
+  does not blow up with bad formats in the path
+  does not blow up with a malicious host value
+  does not raise an error when HTTP_HOST Header is encoded with ASCII-8BIT
+  does not blow up with bad formats in the headers
+  secure headers
+    sets the right values for X-headers
+
+i18n requests
+  with CSRF errors
+    renders the page in the language of the current request despite CSRF errors
+
+CORS headers for OpenID Connect endpoints
+  /api/country-support
+    behaves like static API with correct CORS headers
+      origin is local in development
+        allows origin
+      origin is not allowed
+        does not allow origin
+      origin is login.gov
+        allows origin
+      origin includes but is not login.gov
+        does not allow origin
+      origin is www.login.gov
+        allows origin
+      origin is federalist preview
+        allows origin
+      origin is handbook.login.gov
+        allows origin
+  /api/analytics-events
+    behaves like static API with correct CORS headers
+      origin is handbook.login.gov
+        allows origin
+      origin is not allowed
+        does not allow origin
+      origin includes but is not login.gov
+        does not allow origin
+      origin is local in development
+        allows origin
+      origin is federalist preview
+        allows origin
+      origin is www.login.gov
+        allows origin
+      origin is login.gov
+        allows origin
 
 asset preloading
   does not preload old IE shims
 
-Invalid UTF-8 encoding in form input
-  returns 400 when email is an array with a bad email
-  returns 400 when email is a symbol
-  returns 400 when email is bad
-  returns 400 when email is a hash with a bad email
-  returns 400 when request_id is bad
-  returns 400 when Ahoy-Visit header contains invalid UTF-8 bytes
-  returns 400 when Ahoy-Visitor header contains invalid UTF-8 bytes
-  returns 400 when ahoy_visit cookie contains invalid UTF-8 bytes
-  returns 400 when ahoy_visitor cookie contains invalid UTF-8 bytes
-  returns 400 when request_id in password form is bad
-
-Redirecting Legacy Routes
-  /profile
-    redirects to /account
-  /profile/verify
-    redirects to /account/verify
-  /profile/reactivate
-    redirects to /account/reactivate
-
-SAML requests
-  /api/saml/remotelogout
-    accepts POST requests
-    does not accept DELETE requests
-    does not accept GET requests (PENDING: Temporarily skipped with xit)
-  POST /api/saml/auth
-    does not set a session cookie
-
 throttling requests
+  logins per email and ip
+    uses the throttled_response for the blocklisted_response
+    when number of logins per email + ip is higher than limit per period
+      throttles with a custom response
+    when the number of requests is lower or equal to the limit
+      does not throttle
+    when the email is not properly encoded
+      returns a 400
+    when the email is nil, an empty string, or not a String
+      does not blow up
   email registrations per ip
     reads the limit and period from configuration
     when the number of requests is lower than the limit
       does not throttle
     when the number of email registrations per ip is higher than the limit per period
       throttles with a custom response
-  logins per email and ip
-    uses the throttled_response for the blocklisted_response
-    when the email is nil, an empty string, or not a String
-      does not blow up
-    when the email is not properly encoded
-      returns a 400
-    when the number of requests is lower or equal to the limit
+  high requests per ip
+    reads the limit and period from ENV vars
+    when the request is for a pack
+      does not throttle (FAILED - 1)
+    when the number of requests is lower than the limit
       does not throttle
-    when number of logins per email + ip is higher than limit per period
+    when the user is signed in
+      logs the user UUID
+    when the number of requests is higher than the limit
+      does not throttle if the ip is in the CIDR block allowlist
       throttles with a custom response
+      does not throttle if the path is in the allowlist
+    when the request is for an asset
+      does not throttle
+  safelists
+    allows all requests from localhost
+  logins per ip
+    reads the limit and period from ENV vars
+    when the number of logins per ip is higher than the limit per period
+      throttles with a custom response
+    when the number of requests is lower than the limit
+      does not throttle
+    when the request is not a sign in attempt
+      does not throttle
   phone setups per ip
     when the number of requests is under the limit
       does not throttle the request
     when the number of requests is over the limit
       throttles the request
-  safelists
-    allows all requests from localhost
+  #remote_ip
+    uses ActionDispatch to calculate the IP
   otps per ip
     when the number of requests is over the limit
       throttles the request
     when the number of requests is under the limit
       does not throttle the request
-  logins per ip
-    reads the limit and period from ENV vars
-    when the request is not a sign in attempt
-      does not throttle
-    when the number of requests is lower than the limit
-      does not throttle
-    when the number of logins per ip is higher than the limit per period
-      throttles with a custom response
-  #remote_ip
-    uses ActionDispatch to calculate the IP
-  high requests per ip
-    reads the limit and period from ENV vars
-    when the request is for a pack
-      does not throttle
-    when the request is for an asset
-      does not throttle
-    when the number of requests is higher than the limit
-      throttles with a custom response
-      does not throttle if the ip is in the CIDR block allowlist
-      does not throttle if the path is in the allowlist
-    when the number of requests is lower than the limit
-      does not throttle
-    when the user is signed in
-      logs the user UUID
+
+Redirecting Legacy Routes
+  /profile/verify
+    redirects to /account/verify
+  /profile/reactivate
+    redirects to /account/reactivate
+  /profile
+    redirects to /account
+
+CORS headers for OpenID Connect endpoints
+  token endpoint
+    origin is included in ServiceProvider redirect_uris
+      responds to OPTIONS requests with the right CORS headers
+      responds to POST requests with the right CORS headers
+    origin is not included in ServiceProvider redirect_uris
+      does not allow OPTIONS requests from origin
+      does not allow POST requests from origin
+  configuration endpoint
+    origin is not included in ServiceProvider redirect_uris
+      does not allow origin
+    origin is included in ServiceProvider redirect_uris
+      allows origin
+  userinfo endpoint
+    origin is not included in ServiceProvider redirect_uris
+      does not respond to request from origin
+    origin is included in ServiceProvider redirect_uris
+      responds to request from origin
+  certs endpoint
+    origin is not included in ServiceProvider redirect_uris
+      does not allow origin
+    origin is included in ServiceProvider redirect_uris
+      allows origin
+  domain name as the origin
+    leaves the Access-Control-Allow-Origin header blank
+  bad redirect_uris
+    handles a nil value gracefully
+    gracefully handles a uri that only includes the protocol
+
+requesting acuant SDK assets
+  /acuant/11.7.0/AcuantImageService.wasm
+    does not include a session
+    renders a WASM asset
+  /acuant/11.7.0/AcuantImageWorker.min.js
+    does not include a CSP header
+    renders a JS asset
+    does not include a session
+  /acuant/11.7.0/something-that-does-not-exist/AcuantImageService.wasm (invalid asset)
+    renders a 404 and leaves in the CSP headers
+
+SAML requests
+  /api/saml/remotelogout
+    does not accept DELETE requests
+    does not accept GET requests (PENDING: Temporarily skipped with xit)
+    accepts POST requests
+  POST /api/saml/auth
+    does not set a session cookie
+
+visiting sign in page with invalid user params
+  raises ActionController::ParameterMissing
 
 Missing pages and assets
+  missing JS
+    responds with 404
+  missing page
+    responds with 404
   missing CSS
     responds with 404
   missing PNG
     responds with 404
-  missing page
-    responds with 404
-  missing JS
-    responds with 404
+
+Invalid UTF-8 encoding in form input
+  returns 400 when ahoy_visitor cookie contains invalid UTF-8 bytes
+  returns 400 when Ahoy-Visitor header contains invalid UTF-8 bytes
+  returns 400 when email is a hash with a bad email
+  returns 400 when ahoy_visit cookie contains invalid UTF-8 bytes
+  returns 400 when email is an array with a bad email
+  returns 400 when Ahoy-Visit header contains invalid UTF-8 bytes
+  returns 400 when request_id is bad
+  returns 400 when email is a symbol
+  returns 400 when email is bad
+  returns 400 when request_id in password form is bad
+
+user signs in partially and visits openid_connect/authorize
+  prompts the user to 2FA if prompt is login
+  prompts the user to 2FA
+  prompts the user to 2FA if prompt is not given
+
+secure cookies
+  with HTTPS
+    flags all cookies sent by the application as Secure, HttpOnly, and SameSite=Lax
+  with plain HTTP
+    flags all cookies sent by the application as HttpOnly and SameSite=Lax
+
+submitting email registration form with required param as String
+  raises ActionController::ParameterMissing
 
 Pending: (Failures listed here are expected and do not affect your suite's status)
 
@@ -220,52 +220,67 @@ Pending: (Failures listed here are expected and do not affect your suite's statu
      # Temporarily skipped with xit
      # ./spec/requests/saml_requests_spec.rb:24
 
-Top 10 slowest examples (9.25 seconds, 51.8% of total time):
+Failures:
+
+  1) throttling requests high requests per ip when the request is for a pack does not throttle
+     Failure/Error: pack_url = Dir['public/packs/js/*'].first.gsub(/^public/, '')
+
+     NoMethodError:
+       undefined method `gsub' for nil:NilClass
+     # ./spec/requests/rack_attack_spec.rb:52:in `block (4 levels) in <top (required)>'
+
+Top 10 slowest examples (9.58 seconds, 51.1% of total time):
   throttling requests email registrations per ip when the number of email registrations per ip is higher than the limit per period throttles with a custom response
-    4.23 seconds ./spec/requests/rack_attack_spec.rb:321
-  throttling requests email registrations per ip when the number of requests is lower than the limit does not throttle
-    1.1 seconds ./spec/requests/rack_attack_spec.rb:304
-  asset preloading does not preload old IE shims
-    0.90588 seconds ./spec/requests/preload_spec.rb:4
+    3.93 seconds ./spec/requests/rack_attack_spec.rb:321
   user signs in partially and visits openid_connect/authorize prompts the user to 2FA if prompt is not given
-    0.63886 seconds ./spec/requests/openid_connect_authorize_spec.rb:19
-  user signs in partially and visits openid_connect/authorize prompts the user to 2FA
-    0.50405 seconds ./spec/requests/openid_connect_authorize_spec.rb:6
+    0.93692 seconds ./spec/requests/openid_connect_authorize_spec.rb:19
+  asset preloading does not preload old IE shims
+    0.93542 seconds ./spec/requests/preload_spec.rb:4
+  throttling requests email registrations per ip when the number of requests is lower than the limit does not throttle
+    0.85524 seconds ./spec/requests/rack_attack_spec.rb:304
   throttling requests logins per ip when the number of logins per ip is higher than the limit per period throttles with a custom response
-    0.49781 seconds ./spec/requests/rack_attack_spec.rb:193
-  throttling requests high requests per ip when the request is for an asset does not throttle
-    0.36506 seconds ./spec/requests/rack_attack_spec.rb:41
-  user signs in partially and visits openid_connect/authorize prompts the user to 2FA if prompt is login
-    0.3642 seconds ./spec/requests/openid_connect_authorize_spec.rb:13
+    0.60787 seconds ./spec/requests/rack_attack_spec.rb:193
+  when the request_id param is present but with a nil value does not raise an error
+    0.52801 seconds ./spec/requests/invalid_sign_in_params_spec.rb:14
+  user signs in partially and visits openid_connect/authorize prompts the user to 2FA
+    0.50009 seconds ./spec/requests/openid_connect_authorize_spec.rb:6
   throttling requests logins per email and ip when number of logins per email + ip is higher than limit per period throttles with a custom response
-    0.34824 seconds ./spec/requests/rack_attack_spec.rb:259
-  i18n requests with CSRF errors renders the page in the language of the current request despite CSRF errors
-    0.29866 seconds ./spec/requests/i18n_spec.rb:13
+    0.45102 seconds ./spec/requests/rack_attack_spec.rb:259
+  throttling requests high requests per ip when the request is for an asset does not throttle
+    0.42497 seconds ./spec/requests/rack_attack_spec.rb:41
+  throttling requests high requests per ip when the user is signed in logs the user UUID
+    0.40497 seconds ./spec/requests/rack_attack_spec.rb:123
 
 Top 10 slowest example groups:
   asset preloading
-    0.90633 seconds average (0.90633 seconds / 1 example) ./spec/requests/preload_spec.rb:3
+    0.9376 seconds average (0.9376 seconds / 1 example) ./spec/requests/preload_spec.rb:3
   user signs in partially and visits openid_connect/authorize
-    0.50336 seconds average (1.51 seconds / 3 examples) ./spec/requests/openid_connect_authorize_spec.rb:3
+    0.6129 seconds average (1.84 seconds / 3 examples) ./spec/requests/openid_connect_authorize_spec.rb:3
+  when the request_id param is present but with a nil value
+    0.52904 seconds average (0.52904 seconds / 1 example) ./spec/requests/invalid_sign_in_params_spec.rb:13
   throttling requests
-    0.34814 seconds average (9.05 seconds / 26 examples) ./spec/requests/rack_attack_spec.rb:3
+    0.35583 seconds average (9.25 seconds / 26 examples) ./spec/requests/rack_attack_spec.rb:3
+  visiting sign in page with invalid user params
+    0.18792 seconds average (0.18792 seconds / 1 example) ./spec/requests/invalid_sign_in_params_spec.rb:3
   i18n requests
-    0.29985 seconds average (0.29985 seconds / 1 example) ./spec/requests/i18n_spec.rb:3
+    0.16333 seconds average (0.16333 seconds / 1 example) ./spec/requests/i18n_spec.rb:3
   content security policy
-    0.10051 seconds average (0.20102 seconds / 2 examples) ./spec/requests/csp_spec.rb:3
+    0.11202 seconds average (0.22404 seconds / 2 examples) ./spec/requests/csp_spec.rb:3
+  secure cookies
+    0.0895 seconds average (0.17901 seconds / 2 examples) ./spec/requests/secure_cookies_spec.rb:3
   Invalid content type request
-    0.09811 seconds average (0.19622 seconds / 2 examples) ./spec/requests/not_acceptable_spec.rb:3
-  submitting email registration form with required param as String
-    0.08615 seconds average (0.08615 seconds / 1 example) ./spec/requests/params_is_string_instead_of_hash_spec.rb:12
-  Headers
-    0.08067 seconds average (0.48401 seconds / 6 examples) ./spec/requests/headers_spec.rb:3
+    0.08898 seconds average (0.17796 seconds / 2 examples) ./spec/requests/not_acceptable_spec.rb:3
   CORS headers for OpenID Connect endpoints
-    0.07873 seconds average (1.1 seconds / 14 examples) ./spec/requests/api_cors_spec.rb:3
-  Missing pages and assets
-    0.07557 seconds average (0.30227 seconds / 4 examples) ./spec/requests/page_not_found_spec.rb:3
+    0.08371 seconds average (1.17 seconds / 14 examples) ./spec/requests/api_cors_spec.rb:3
 
-Finished in 17.88 seconds (files took 1.84 seconds to load)
-100 examples, 0 failures, 1 pending
+Finished in 18.75 seconds (files took 3.39 seconds to load)
+100 examples, 1 failure, 1 pending
 
-Randomized with seed 62441
+Failed examples:
 
+rspec ./spec/requests/rack_attack_spec.rb:51 # throttling requests high requests per ip when the request is for a pack does not throttle
+
+Randomized with seed 6394
+
+Coverage report generated for RSpec to /home/jmax/projects/identity-idp/coverage. 4967 / 34060 LOC (14.58%) covered.
+Stopped processing SimpleCov as a previous error not related to SimpleCov has been detected

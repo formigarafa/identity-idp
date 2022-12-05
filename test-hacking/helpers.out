@@ -1,101 +1,76 @@
 
-Randomized with seed 55988
-
-LocaleHelper
-  #with_user_locale
-    when the user has an email_language
-      sets the language inside the block and yields
-    when the user has no email_language
-      yields the block and does not change the locale
-    when the user has an invalid email_language
-      warns about a bad email_language
-      yields the block and does not change the locale
-  #locale_url_param
-    in Spanish (a non-default locale)
-      is that locale
-    in French (a non-default locale)
-      is that locale
-    in the default locale
-      is nil
-
-LinkHelper
-  #button_or_link_to
-    with non-get method
-      renders a form
-    without method assigned
-      renders a link
-    with get method
-      renders a link
-
-GoBackHelper
-  #go_back_path
-    referer from same domain
-      is path from referer
-    referer is invalid scheme
-      is nil
-    no referer
-      is nil
-    referer from different domain
-      is nil
-  #extract_path_and_query_from_uri
-    preserves query parameter and path from uri
-  #app_host
-    without port
-      returns host
-    with port
-      returns host
-
-AwsS3Helper
-  #s3_resource
-    AWS credentials are not set
-      returns nil
-  #s3_presigned_url
-    requires a keyname
-    requires a bucket_prefix
-    is created with an expiration
-    returns a URL
-  #presigned_url_expiration_in_seconds
-    returns a number
-
-ApplicationHelper
-  #session_with_trust?
-    curent user is present
-      returns true
-    no user present
-      current path is not new session path
-        returns true
-      current path is new session path
-        returns false
+Randomized with seed 54538
 
 ScriptHelper
-  #javascript_packs_tag_once
-    returns nil
+  #javascript_include_tag_without_preload
+    avoids modifying headers
   #render_javascript_pack_once_tags
-    with named scripts argument
-      enqueues those scripts before printing them
-    no scripts enqueued
-      is nil
     script that does not exist
       gracefully outputs nothing
     scripts enqueued
-      prints asset paths sources
       prints script sources
+      prints asset paths sources
       with script integrity available
         adds integrity attribute
+      with configured asset host
+        uses asset_host for non-same-origin assets and domain_name for same-origin assets
       local development crossorigin sources
         prints script sources with crossorigin attribute
         empty webpack port
           renders as if webpack port was unassigned
-      with configured asset host
-        uses asset_host for non-same-origin assets and domain_name for same-origin assets
-  #javascript_include_tag_without_preload
-    avoids modifying headers
+    with named scripts argument
+      enqueues those scripts before printing them
+    no scripts enqueued
+      is nil
+  #javascript_packs_tag_once
+    returns nil
 
-AssetHelper
-  design_system_asset_path
-    produces an asset path
-    with leading slash
-      produces an asset path
+LocaleHelper
+  #with_user_locale
+    when the user has no email_language
+      yields the block and does not change the locale
+    when the user has an invalid email_language
+      yields the block and does not change the locale
+      warns about a bad email_language
+    when the user has an email_language
+      sets the language inside the block and yields
+  #locale_url_param
+    in French (a non-default locale)
+      is that locale
+    in Spanish (a non-default locale)
+      is that locale
+    in the default locale
+      is nil
+
+AwsS3Helper
+  #s3_presigned_url
+    requires a bucket_prefix
+    requires a keyname
+    is created with an expiration
+    returns a URL
+  #s3_resource
+    AWS credentials are not set
+      returns nil
+  #presigned_url_expiration_in_seconds
+    returns a number
+
+GoBackHelper
+  #go_back_path
+    no referer
+      is nil
+    referer from different domain
+      is nil
+    referer is invalid scheme
+      is nil
+    referer from same domain
+      is path from referer
+  #extract_path_and_query_from_uri
+    preserves query parameter and path from uri
+  #app_host
+    with port
+      returns host
+    without port
+      returns host
 
 SessionTimeoutWarningHelper
   #expires_at
@@ -103,60 +78,86 @@ SessionTimeoutWarningHelper
     with session expiration
       returns time remaining in user session
   #timeout_refresh_path
-    with an invalid URI
-      does not blow up
     with a malicious host value
       does not blow up
-    with params in the request url
-      adds timeout=true and preserves params
+    with an invalid URI
+      does not blow up
     with no params in the request url
       adds timeout=true params
     with timeout=true and request_id=123 \
             in the query params already
       is the same
+    with params in the request url
+      adds timeout=true and preserves params
 
-Top 10 slowest examples (0.69127 seconds, 22.9% of total time):
+LinkHelper
+  #button_or_link_to
+    without method assigned
+      renders a link
+    with get method
+      renders a link
+    with non-get method
+      renders a form
+
+ApplicationHelper
+  #session_with_trust?
+    no user present
+      current path is new session path
+        returns false
+      current path is not new session path
+        returns true
+    curent user is present
+      returns true
+
+AssetHelper
+  design_system_asset_path
+    produces an asset path
+    with leading slash
+      produces an asset path
+
+Top 10 slowest examples (0.86541 seconds, 22.5% of total time):
+  AwsS3Helper #s3_presigned_url requires a bucket_prefix
+    0.14981 seconds ./spec/helpers/aws_s3_helper_spec.rb:59
+  LocaleHelper#with_user_locale when the user has no email_language yields the block and does not change the locale
+    0.11 seconds ./spec/helpers/locale_helper_spec.rb:45
+  ScriptHelper#javascript_include_tag_without_preload avoids modifying headers
+    0.1023 seconds ./spec/helpers/script_helper_spec.rb:5
+  ScriptHelper#render_javascript_pack_once_tags scripts enqueued local development crossorigin sources empty webpack port renders as if webpack port was unassigned
+    0.10053 seconds ./spec/helpers/script_helper_spec.rb:131
+  LinkHelper#button_or_link_to without method assigned renders a link
+    0.092 seconds ./spec/helpers/link_helper_spec.rb:19
+  ApplicationHelper#session_with_trust? no user present current path is new session path returns false
+    0.06937 seconds ./spec/helpers/application_helper_spec.rb:11
+  ApplicationHelper#session_with_trust? no user present current path is not new session path returns true
+    0.06668 seconds ./spec/helpers/application_helper_spec.rb:21
+  AssetHelper design_system_asset_path produces an asset path
+    0.06389 seconds ./spec/helpers/asset_helper_spec.rb:11
   LocaleHelper#with_user_locale when the user has an email_language sets the language inside the block and yields
-    0.13044 seconds ./spec/helpers/locale_helper_spec.rb:56
-  AwsS3Helper #s3_presigned_url requires a keyname
-    0.10283 seconds ./spec/helpers/aws_s3_helper_spec.rb:54
-  ScriptHelper#render_javascript_pack_once_tags scripts enqueued with configured asset host uses asset_host for non-same-origin assets and domain_name for same-origin assets
-    0.08222 seconds ./spec/helpers/script_helper_spec.rb:62
-  GoBackHelper#go_back_path no referer is nil
-    0.06001 seconds ./spec/helpers/go_back_helper_spec.rb:19
-  AwsS3Helper #s3_presigned_url returns a URL
-    0.05762 seconds ./spec/helpers/aws_s3_helper_spec.rb:39
-  AwsS3Helper #presigned_url_expiration_in_seconds returns a number
-    0.05386 seconds ./spec/helpers/aws_s3_helper_spec.rb:95
-  LocaleHelper#with_user_locale when the user has an invalid email_language yields the block and does not change the locale
-    0.05328 seconds ./spec/helpers/locale_helper_spec.rb:67
-  GoBackHelper#go_back_path referer is invalid scheme is nil
-    0.05148 seconds ./spec/helpers/go_back_helper_spec.rb:27
-  ApplicationHelper#session_with_trust? curent user is present returns true
-    0.05078 seconds ./spec/helpers/application_helper_spec.rb:32
-  GoBackHelper#go_back_path referer from different domain is nil
-    0.04876 seconds ./spec/helpers/go_back_helper_spec.rb:35
+    0.05571 seconds ./spec/helpers/locale_helper_spec.rb:56
+  ScriptHelper#render_javascript_pack_once_tags scripts enqueued with script integrity available adds integrity attribute
+    0.05513 seconds ./spec/helpers/script_helper_spec.rb:96
 
 Top 8 slowest example groups:
-  LocaleHelper
-    0.05532 seconds average (0.38722 seconds / 7 examples) ./spec/helpers/locale_helper_spec.rb:3
-  Awss3helper
-    0.05337 seconds average (0.32021 seconds / 6 examples) ./spec/helpers/aws_s3_helper_spec.rb:2
-  ScriptHelper
-    0.04618 seconds average (0.508 seconds / 11 examples) ./spec/helpers/script_helper_spec.rb:3
-  GoBackHelper
-    0.04406 seconds average (0.30844 seconds / 7 examples) ./spec/helpers/go_back_helper_spec.rb:3
+  AwsS3Helper
+    0.06312 seconds average (0.37872 seconds / 6 examples) ./spec/helpers/aws_s3_helper_spec.rb:2
   ApplicationHelper
-    0.04371 seconds average (0.13114 seconds / 3 examples) ./spec/helpers/application_helper_spec.rb:3
+    0.05999 seconds average (0.17997 seconds / 3 examples) ./spec/helpers/application_helper_spec.rb:3
   LinkHelper
-    0.04125 seconds average (0.12374 seconds / 3 examples) ./spec/helpers/link_helper_spec.rb:3
-  SessionTimeoutWarningHelper
-    0.03637 seconds average (0.25458 seconds / 7 examples) ./spec/helpers/session_timeout_warning_helper_spec.rb:3
+    0.05942 seconds average (0.17827 seconds / 3 examples) ./spec/helpers/link_helper_spec.rb:3
+  LocaleHelper
+    0.05925 seconds average (0.41478 seconds / 7 examples) ./spec/helpers/locale_helper_spec.rb:3
   AssetHelper
-    0.03613 seconds average (0.07227 seconds / 2 examples) ./spec/helpers/asset_helper_spec.rb:3
+    0.05752 seconds average (0.11504 seconds / 2 examples) ./spec/helpers/asset_helper_spec.rb:3
+  ScriptHelper
+    0.05699 seconds average (0.62694 seconds / 11 examples) ./spec/helpers/script_helper_spec.rb:3
+  GoBackHelper
+    0.05415 seconds average (0.37908 seconds / 7 examples) ./spec/helpers/go_back_helper_spec.rb:3
+  SessionTimeoutWarningHelper
+    0.04812 seconds average (0.33685 seconds / 7 examples) ./spec/helpers/session_timeout_warning_helper_spec.rb:3
 
-Finished in 3.01 seconds (files took 0.70662 seconds to load)
+Finished in 3.85 seconds (files took 4.21 seconds to load)
 46 examples, 0 failures
 
-Randomized with seed 55988
+Randomized with seed 54538
 
+Coverage report generated for RSpec to /home/jmax/projects/identity-idp/coverage. 2038 / 36811 LOC (5.54%) covered.

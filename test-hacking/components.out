@@ -1,112 +1,99 @@
 
-Randomized with seed 31149
+Randomized with seed 578
 
-AlertComponent
-  renders message from locals
-  defaults to type "info"
-  accepts alert type param
-  accepts arbitrary tag options
-  raises error for unknown type
-  accepts text_tag param
-  prefers message from constructor arg
-  renders message from block
-  assigns role="status"
-  assigns role="alert" for error type
-  defaults to <p> tag for text
-  accepts custom class names
-
-PhoneInputComponent
-  renders with JavaScript string initializers
-  renders an lg-phone-input tag
-  with delivery unsupported unconfirmed country
-    renders with delivery supports
-    with unconfirmed phone
-      renders with delivery supports
-  with sms delivery constraint
-    renders with JavaScript string initializers
-  when the locale has been changed
-    translates the allowed country name
-  #supported_country_codes
-    is expected to start with "AD", "AE", "AF", and "AG"
-    with allowed_countries
-      is expected to eq ["CA", "US"]
-  with class tag option
-    renders with custom class
-  with voice delivery constraint
-    renders with JavaScript string initializers
-  with allowed countries
-    limits the allowed countries
-    with invalid allowed countries
-      limits the allowed countries to valid countries
-  #translated_country_code_names
-    is expected to include {"us" => "Estados Unidos"}
-  with delivery unsupported country
-    renders with delivery supports
-    with unconfirmed phone
-      renders with delivery supports
-
-PasswordToggleComponent
-  renders default markup
-  renders with accessible linking between toggle and input
-  #toggle_label
-    with custom label
-      renders custom field label
-  with field options
-    forwards options to rendered field
-  #toggle_id
-    is unique across instances
-  #input_id
-    is unique across instances
-  with tag options
-    forwards options to rendered tag
-
-VendorOutageAlertComponent
-  with outage
-    renders error alert with status page url
-    constrained to only_if_all
-      renders nothing
-      with all outage
-        renders error alert
-    with contextual message
-      renders error alert with contextualized message
-      with unknown contextual message
-        renders error alert with default message
-  with no outage
-    renders nothing
-
-LanguagePickerComponent
-  renders language options in their native locale
-  renders collapsed language picker accordion element
-  renders with accessible relationships
-  with custom url generator
-    uses url generator to generate locale links
+BarcodeComponent
+  renders expected content
+  with image url method option
+    renders formatted label
   with tag options
     renders with attributes
-
-IconComponent
-  renders icon svg
-  with custom class
-    renders with class
-  with invalid icon
-    raises an error
-  with tag options
-    renders with attributes
-  in production
-    bypasses configured asset_host and uses domain_name instead
+  with label formatter
+    renders formatted label
+  with empty label
+    renders label without prefix
 
 ValidatedFieldComponent
   renders aria-describedby to establish connection between input and error message
   error message strings
     renders with error message texts
-    custom error message texts
-      renders with error message texts
     boolean type
       renders with error message texts
     email type
       renders with error message texts
+    custom error message texts
+      renders with error message texts
   with tag options
     with aria tag option
       merges aria-describedby with the one applied by the field
+
+BlockLinkComponent
+  renders a link
+  with custom renderer
+    renders using the custom renderer
+  with new tab
+    renders as external
+  with tag options
+    renders a link
+
+BaseComponent
+  does nothing when rendered
+  with sidecar script
+    adds script to class variable when rendered
+  #unique_id
+    provides a unique id
+    is memoized
+
+AccordionComponent
+  assigns a unique id
+  renders an accordion
+  tag options
+    renders with tag options
+  borderless
+    renders without bordered modifier
+  custom class
+    merges with base classes
+
+ClickObserverComponent
+  renders wrapped content with event name as attribute
+  with tag options
+    renders with the given the tag options
+
+SpinnerButtonComponent
+  renders without action message
+  renders a button with the given content and tag options
+  with action message
+    renders with action message
+  with outline button
+    renders with additional css class
+
+AlertComponent
+  renders message from block
+  accepts custom class names
+  raises error for unknown type
+  accepts alert type param
+  defaults to type "info"
+  accepts arbitrary tag options
+  defaults to <p> tag for text
+  renders message from locals
+  prefers message from constructor arg
+  assigns role="alert" for error type
+  assigns role="status"
+  accepts text_tag param
+
+PageFooterComponent
+  renders content
+  tag options
+    appends attributes
+  custom class
+    appends custom class
+
+SubmitButtonComponent
+  renders the submit button custom element
+  renders as big, wide by default
+  with explicit big, wide options
+    renders respecting big, wide options
+  with additional options
+    passes additional options through to ButtonComponent
 
 DownloadButtonComponent
   renders link with data and file name
@@ -115,15 +102,35 @@ DownloadButtonComponent
   with tag options
     renders button given the tag options
 
-AccordionComponent
-  assigns a unique id
-  renders an accordion
-  borderless
-    renders without bordered modifier
-  tag options
-    renders with tag options
+ProcessListComponent
+  renders items slot content at default heading level
+  renders with css class
   custom class
-    merges with base classes
+    renders with css class
+  connected
+    renders with css class
+  custom heading level
+    renders items slot content at custom heading level
+  tag options
+    applies tag options to wrapper element
+  big
+    renders with css class
+
+TroubleshootingOptionsComponent
+  renders nothing if not given options
+  with options
+    renders troubleshooting options
+    with header
+      renders header
+      with custom heading level
+        renders header
+    with tag options
+      renders troubleshooting options
+
+PrintButtonComponent
+  renders custom element with button
+  with tag options
+    renders with tag options forwarded to button
 
 ClipboardButtonComponent
   renders with clipboard text as data-attribute
@@ -131,21 +138,84 @@ ClipboardButtonComponent
     respects keyword arguments of button component
     renders button given the tag options
 
+PhoneInputComponent
+  renders with JavaScript string initializers
+  renders an lg-phone-input tag
+  with delivery unsupported country
+    renders with delivery supports
+    with unconfirmed phone
+      renders with delivery supports
+  with class tag option
+    renders with custom class
+  with delivery unsupported unconfirmed country
+    renders with delivery supports
+    with unconfirmed phone
+      renders with delivery supports
+  #translated_country_code_names
+    is expected to include {"us" => "Estados Unidos"}
+  with allowed countries
+    limits the allowed countries
+    with invalid allowed countries
+      limits the allowed countries to valid countries
+  #supported_country_codes
+    is expected to start with "AD", "AE", "AF", and "AG"
+    with allowed_countries
+      is expected to eq ["CA", "US"]
+  with sms delivery constraint
+    renders with JavaScript string initializers
+  with voice delivery constraint
+    renders with JavaScript string initializers
+  when the locale has been changed
+    translates the allowed country name
+
+IconComponent
+  renders icon svg
+  in production
+    bypasses configured asset_host and uses domain_name instead
+  with invalid icon
+    raises an error
+  with custom class
+    renders with class
+  with tag options
+    renders with attributes
+
+StepIndicatorComponent
+  locale_scope
+    translates using given scope
+    with nil scope
+      uses title
+  steps
+    renders steps
+    explicit step status
+      renders with status
+  with invalid step
+    renders without a current step
+  current_step
+    renders current step
+    with complete step
+      renders current step
+      renders completed step
+  classes
+    without custom classes given
+      renders with default tag
+    with custom classes
+      renders with additional custom classes
+
 AlertIconComponent
+  renders a custom alt, if provided
   renders the alert-icon class after any custom provided classes
   raises an ArgumentError if an invalid icon name is given
   renders with the explicitly passed in width and height values
   renders a warning 88x88 by default
-  renders a custom alt, if provided
 
 StepIndicatorStepComponent
   renders step title
   status
-    with current status
-      renders accessible indicator
-      renders current step
     with nil status
+      renders accessible indicator
       renders incomplete step
+    with current status
+      renders current step
       renders accessible indicator
     with complete status
       renders accessible indicator
@@ -160,180 +230,62 @@ TimeComponent
   with non-UTC timezone
     renders in UTC timezone
 
-StepIndicatorComponent
-  current_step
-    renders current step
-    with complete step
-      renders current step
-      renders completed step
-  steps
-    renders steps
-    explicit step status
-      renders with status
-  classes
-    with custom classes
-      renders with additional custom classes
-    without custom classes given
-      renders with default tag
-  locale_scope
-    translates using given scope
-    with nil scope
-      uses title
-  with invalid step
-    renders without a current step
-
-PageHeadingComponent
-  renders class
-  renders heading content
-  tag options
-    appends attributes
-  custom class
-    appends custom class
-
-PageFooterComponent
-  renders content
-  tag options
-    appends attributes
-  custom class
-    appends custom class
-
 ModalComponent
-  renders with dismiss button
   renders label and description association
+  renders with dismiss button
   renders modal element
   with tag options
     renders modal with the tag options
 
-ProcessListComponent
-  renders with css class
-  renders items slot content at default heading level
-  custom heading level
-    renders items slot content at custom heading level
-  connected
-    renders with css class
-  custom class
-    renders with css class
-  big
-    renders with css class
-  tag options
-    applies tag options to wrapper element
-
-FormLinkComponent
-  renders custom element with link and form
-
-BarcodeComponent
-  renders expected content
-  with tag options
-    renders with attributes
-  with image url method option
-    renders formatted label
-  with empty label
-    renders label without prefix
-  with label formatter
-    renders formatted label
-
 FlashComponent
+  flash key, but not message, is present
+    renders nothing
+  key and value are present
+    renders a flash message
   alert flash type
     renders normalized flash keys
   unknown flash keys
     renders nothing
-  key and value are present
-    renders a flash message
-  flash key, but not message, is present
-    renders nothing
-
-SubmitButtonComponent
-  renders as big, wide by default
-  renders the submit button custom element
-  with explicit big, wide options
-    renders respecting big, wide options
-  with additional options
-    passes additional options through to ButtonComponent
-
-BaseComponent
-  does nothing when rendered
-  with sidecar script
-    adds script to class variable when rendered
-  #unique_id
-    provides a unique id
-    is memoized
-
-SpinnerButtonComponent
-  renders a button with the given content and tag options
-  renders without action message
-  with action message
-    renders with action message
-  with outline button
-    renders with additional css class
-
-ButtonComponent
-  renders with design system classes
-  renders button content
-  as big
-    renders with design system classes
-  as unstyled
-    renders with design system classes
-  with custom button action
-    calls the action with content and tag_options
-  with outline
-    renders with design system classes
-  with tag options
-    renders as attributes
-  as full width
-    renders with design system classes
-  with icon
-    renders an icon
-  as wide
-    renders with design system classes
-  as dangerous
-    renders with design system classes
-
-StatusPageComponent
-  raises error for unknown status icon
-  renders block content
-  renders troubleshooting options
-  renders default icon associated with status
-  renders action buttons
-  raises error for unknown status
-  raises error if no default icon associated with status
-  renders icon associated with status
-  renders page heading
 
 JavascriptRequiredComponent
+  loads css resource for setting session key in JavaScript-disabled environments
   renders content for JavaScript-enabled environments
   renders instructions to enable JavaScript
-  loads css resource for setting session key in JavaScript-disabled environments
+  with session which was previously no-js
+    only renders the alert once
+    renders alert confirming successful enabling of JS
   with intro
     renders instructions to enable JavaScript
-  with session which was previously no-js
-    renders alert confirming successful enabling of JS
-    only renders the alert once
 
-ClickObserverComponent
-  renders wrapped content with event name as attribute
-  with tag options
-    renders with the given the tag options
+FormLinkComponent
+  renders custom element with link and form
 
-BlockLinkComponent
-  renders a link
-  with tag options
-    renders a link
-  with custom renderer
-    renders using the custom renderer
-  with new tab
-    renders as external
+VendorOutageAlertComponent
+  with outage
+    renders error alert with status page url
+    with contextual message
+      renders error alert with contextualized message
+      with unknown contextual message
+        renders error alert with default message
+    constrained to only_if_all
+      renders nothing
+      with all outage
+        renders error alert
+  with no outage
+    renders nothing
 
 MemorableDateComponent
-  provides a method for parsing the submitted date
-  shows month, day, and year labels corresponding to inputs
   sets the date field values
-  renders a non-visible error message element
-  renders a memorable date component with all necessary elements
-  sets the hint
-  sets the label
   does not set the date fields to required by default
+  renders memorable date input fields with hints
+  renders a memorable date component with all necessary elements
   renders aria-describedby to establish connection between input and error message
+  provides a method for parsing the submitted date
+  renders a non-visible error message element
+  sets the hint
   uses default error messages
+  sets the label
+  shows month, day, and year labels corresponding to inputs
   alternate error messages are provided
     uses the alternate error messages
   required flag is set
@@ -343,16 +295,70 @@ MemorableDateComponent
   tag options are specified
     renders with the tag options
 
-TroubleshootingOptionsComponent
-  renders nothing if not given options
-  with options
-    renders troubleshooting options
-    with tag options
-      renders troubleshooting options
-    with header
-      renders header
-      with custom heading level
-        renders header
+PasswordToggleComponent
+  renders default markup
+  renders with accessible linking between toggle and input
+  #toggle_id
+    is unique across instances
+  #input_id
+    is unique across instances
+  with field options
+    forwards options to rendered field
+  with tag options
+    forwards options to rendered tag
+  #toggle_label
+    with custom label
+      renders custom field label
+
+LanguagePickerComponent
+  renders with accessible relationships
+  renders collapsed language picker accordion element
+  renders language options in their native locale
+  with custom url generator
+    uses url generator to generate locale links
+  with tag options
+    renders with attributes
+
+StatusPageComponent
+  raises error for unknown status icon
+  renders page heading
+  renders troubleshooting options
+  renders icon associated with status
+  renders block content
+  renders default icon associated with status
+  raises error for unknown status
+  renders action buttons
+  raises error if no default icon associated with status
+
+ButtonComponent
+  renders button content
+  renders with design system classes
+  with icon
+    renders an icon
+  as wide
+    renders with design system classes
+  with custom button action
+    calls the action with content and tag_options
+  with outline
+    renders with design system classes
+  as full width
+    renders with design system classes
+  as dangerous
+    renders with design system classes
+  as unstyled
+    renders with design system classes
+  as big
+    renders with design system classes
+  with tag options
+    renders as attributes
+
+PageHeadingComponent
+  renders heading content
+  renders class
+  custom class
+    appends custom class
+  tag options
+    appends attributes
 
 CountdownComponent
   renders element with expected attributes and initial expiration time
@@ -363,57 +369,53 @@ CountdownComponent
   with tag options
     renders with attributes
 
-PrintButtonComponent
-  renders custom element with button
-  with tag options
-    renders with tag options forwarded to button
-
-Top 10 slowest examples (0.90385 seconds, 9.9% of total time):
-  PhoneInputComponent renders with JavaScript string initializers
-    0.24098 seconds ./spec/components/phone_input_component_spec.rb:38
-  PhoneInputComponent with voice delivery constraint renders with JavaScript string initializers
-    0.09593 seconds ./spec/components/phone_input_component_spec.rb:128
-  AccordionComponent tag options renders with tag options
-    0.08163 seconds ./spec/components/accordion_component_spec.rb:51
-  PhoneInputComponent with sms delivery constraint renders with JavaScript string initializers
-    0.08123 seconds ./spec/components/phone_input_component_spec.rb:116
-  AlertComponent renders message from locals
-    0.07914 seconds ./spec/components/alert_component_spec.rb:4
-  FormLinkComponent renders custom element with link and form
-    0.06898 seconds ./spec/components/form_link_component_spec.rb:11
-  FlashComponent key and value are present renders a flash message
-    0.06678 seconds ./spec/components/flash_component_spec.rb:19
-  StepIndicatorStepComponent status with complete status renders complete step
-    0.06473 seconds ./spec/components/step_indicator_step_component_spec.rb:45
+Top 10 slowest examples (1.13 seconds, 11.7% of total time):
+  BarcodeComponent renders expected content
+    0.23708 seconds ./spec/components/barcode_component_spec.rb:4
   PhoneInputComponent with delivery unsupported unconfirmed country with unconfirmed phone renders with delivery supports
-    0.06226 seconds ./spec/components/phone_input_component_spec.rb:179
-  ClickObserverComponent with tag options renders with the given the tag options
-    0.06218 seconds ./spec/components/click_observer_component_spec.rb:22
+    0.14215 seconds ./spec/components/phone_input_component_spec.rb:179
+  PhoneInputComponent with class tag option renders with custom class
+    0.12522 seconds ./spec/components/phone_input_component_spec.rb:71
+  PhoneInputComponent with delivery unsupported country with unconfirmed phone renders with delivery supports
+    0.11449 seconds ./spec/components/phone_input_component_spec.rb:155
+  PhoneInputComponent renders with JavaScript string initializers
+    0.10781 seconds ./spec/components/phone_input_component_spec.rb:38
+  LanguagePickerComponent renders with accessible relationships
+    0.08885 seconds ./spec/components/language_picker_component_spec.rb:16
+  PhoneInputComponent with delivery unsupported country renders with delivery supports
+    0.08716 seconds ./spec/components/phone_input_component_spec.rb:148
+  MemorableDateComponent alternate error messages are provided uses the alternate error messages
+    0.07509 seconds ./spec/components/memorable_date_component_spec.rb:201
+  PhoneInputComponent with delivery unsupported unconfirmed country renders with delivery supports
+    0.07419 seconds ./spec/components/phone_input_component_spec.rb:172
+  PhoneInputComponent renders an lg-phone-input tag
+    0.07392 seconds ./spec/components/phone_input_component_spec.rb:34
 
 Top 10 slowest example groups:
+  BarcodeComponent
+    0.08022 seconds average (0.40111 seconds / 5 examples) ./spec/components/barcode_component_spec.rb:3
   PhoneInputComponent
-    0.07119 seconds average (1.07 seconds / 15 examples) ./spec/components/phone_input_component_spec.rb:3
-  FormLinkComponent
-    0.07067 seconds average (0.07067 seconds / 1 example) ./spec/components/form_link_component_spec.rb:3
-  AccordionComponent
-    0.05167 seconds average (0.25835 seconds / 5 examples) ./spec/components/accordion_component_spec.rb:3
-  ClickObserverComponent
-    0.04996 seconds average (0.09993 seconds / 2 examples) ./spec/components/click_observer_component_spec.rb:3
+    0.07773 seconds average (1.17 seconds / 15 examples) ./spec/components/phone_input_component_spec.rb:3
+  LanguagePickerComponent
+    0.05508 seconds average (0.27538 seconds / 5 examples) ./spec/components/language_picker_component_spec.rb:3
+  MemorableDateComponent
+    0.05028 seconds average (0.7542 seconds / 15 examples) ./spec/components/memorable_date_component_spec.rb:3
+  JavascriptRequiredComponent
+    0.04941 seconds average (0.29646 seconds / 6 examples) ./spec/components/javascript_required_component_spec.rb:3
+  ValidatedFieldComponent
+    0.04937 seconds average (0.2962 seconds / 6 examples) ./spec/components/validated_field_component_spec.rb:3
   PrintButtonComponent
-    0.04953 seconds average (0.09906 seconds / 2 examples) ./spec/components/print_button_component_spec.rb:3
+    0.04653 seconds average (0.09306 seconds / 2 examples) ./spec/components/print_button_component_spec.rb:3
+  ProcessListComponent
+    0.04561 seconds average (0.3193 seconds / 7 examples) ./spec/components/process_list_component_spec.rb:3
   CountdownComponent
-    0.04843 seconds average (0.19371 seconds / 4 examples) ./spec/components/countdown_component_spec.rb:3
-  IconComponent
-    0.04744 seconds average (0.2372 seconds / 5 examples) ./spec/components/icon_component_spec.rb:3
-  StepIndicatorStepComponent
-    0.0453 seconds average (0.31711 seconds / 7 examples) ./spec/components/step_indicator_step_component_spec.rb:3
-  FlashComponent
-    0.045 seconds average (0.17999 seconds / 4 examples) ./spec/components/flash_component_spec.rb:3
-  VendorOutageAlertComponent
-    0.04459 seconds average (0.26754 seconds / 6 examples) ./spec/components/vendor_outage_alert_component_spec.rb:3
+    0.04487 seconds average (0.17947 seconds / 4 examples) ./spec/components/countdown_component_spec.rb:3
+  DownloadButtonComponent
+    0.04456 seconds average (0.13369 seconds / 3 examples) ./spec/components/download_button_component_spec.rb:3
 
-Finished in 9.14 seconds (files took 0.87003 seconds to load)
-190 examples, 0 failures
+Finished in 9.6 seconds (files took 9.17 seconds to load)
+191 examples, 0 failures
 
-Randomized with seed 31149
+Randomized with seed 578
 
+Coverage report generated for RSpec to /home/jmax/projects/identity-idp/coverage. 2779 / 35759 LOC (7.77%) covered.

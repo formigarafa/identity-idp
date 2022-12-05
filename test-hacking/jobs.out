@@ -1,69 +1,26 @@
 
-Randomized with seed 24754
+Randomized with seed 13689
 
-JobHelpers::S3Helper
-  #download
-    returns binary-encoded string bodies
-    with subdomain bucket format
-      downloads by extracing prefix and bucket from s3 URLs
-    with path bucket format
-      downloads by extracing prefix and bucket from s3 URLs
-  #s3_url?
-    with a non-s3 url that has an s3 subdomain
-      gets fooled and returns true
-    with a path bucket format url
-      is expected to eq true
-    with a non-s3 url
-      is expected to eq false
-    with a subdomain bucket format url
-      is expected to eq true
-
-ThreatMetrixJsVerificationJob
+GpoDailyJob
   #perform
-    when certificate is not configured
-      logs an error_message but does not raise
-    error that is not a configuration error
-      logs an error_message, and raises
-    when certificate is expired
-      logs an error_message, and raises
-    http request returns empty 204 response
-      fails
-    http request succeeds
-      signature present but invalid
-        logs a failure including JS payload
-      signature not a hex number
-        logs a failure including JS payload
-      signature not present
-        logs a failure including JS payload
-      signature present and correct
-        logs on success
-
-Reports::DeletedUserAccountsReport
-  sends out a report to the email listed with one deleted user account
-  is does not send out an email with nothing configured
+    on a weekday, not a federal holiday
+      enqueues a test sender
+      uploads to GPO
+    on a federal holiday
+      enqueues a test sender
+      does not upload to GPO
   #good_job_concurrency_key
     is the job name and the date
 
-Reports::MonthHelper
-  .months
-    breaks a range into months
-
-Reports::VerificationFailuresReport
-  sends out a blank report if no issuer data
-  sends out a document error if the user submits mobile back image and fails
-  sends out a verify error if the user submits PII but does not progress forward
-  sends more than one user
-  sends out a phone error if the user submits phone info but does not progress forward
-  sends out a blank report if no users went through doc auth
-  sends out an abandon code on a user lands on welcome and leaves
-  is does not send out an email with nothing configured
-  sends out a document error if the user submits desktop back image and fails
-  sends out a document error if the user submits document but does not progress forward
-  sends out a document error if the user submits hybrid back image and fails
-  allows submit to be recent and not just after welcome
-  does not consider old submits as fails
+Reports::DailyDropoffsReport
   #good_job_concurrency_key
     is the job name and the date
+  #perform
+    uploads a file to S3 based on the report date
+    when s3 public reports are disabled
+      only uploads to one bucket
+    with data
+      aggregates by issuer
 
 Reports::TotalMonthlyAuthsReport
   is empty
@@ -71,29 +28,126 @@ Reports::TotalMonthlyAuthsReport
   #good_job_concurrency_key
     is the job name and the date
 
-Reports::SpUserCountsReport
-  is empty
-  returns the total user counts per sp broken down by ial1 and ial2
-  logs to analytics
-  #good_job_concurrency_key
-    is the job name and the date
-
-GpoDailyJob
+ThreatMetrixJsVerificationJob
   #perform
-    on a weekday, not a federal holiday
-      uploads to GPO
-      enqueues a test sender
-    on a federal holiday
-      does not upload to GPO
-      enqueues a test sender
-  #good_job_concurrency_key
-    is the job name and the date
+    when certificate is expired
+      logs an error_message, and raises
+    when certificate is not configured
+      logs an error_message but does not raise
+    http request returns empty 204 response
+      fails
+    http request succeeds
+      signature present but invalid
+        logs a failure including JS payload
+      signature not present
+        logs a failure including JS payload
+      signature present and correct
+        logs on success
+      signature not a hex number
+        logs a failure including JS payload
+    error that is not a configuration error
+      logs an error_message, and raises
 
 Reports::QueryHelpers
   #quote
-    quotes strings to be psql string literals
     quotes dates
+    quotes strings to be psql string literals
     quotes arrays as list expressions
+
+ResolutionProofingJob
+  #perform
+    with threatmetrix disabled for the service provider
+      webmock lexisnexis and threatmetrix
+        returns results
+        failed response from lexisnexis
+          has a failed response
+        no threatmetrix_session_id
+          does not attempt to create a ddp proofer
+    a stale job
+      bails and does not do any proofing
+    with threatmetrix enabled for the service provider
+      webmock lexisnexis, threatmetrix, and AAMVA
+        returns results and adds threatmetrix proofing components
+        failed response from lexisnexis
+          has a failed response
+        no threatmetrix_session_id
+          does not attempt to create a ddp proofer
+    with threatmetrix disabled for the service provider
+      stubbing vendors and threatmetrix
+        does call state id with an unsuccessful response from the proofer
+          posts back to the callback url
+        with a successful response from the proofer
+          logs the trace_id and timing info for ProofResolution info
+        no state_id proof
+          does not call state_id proof if resolution proof is successful
+    with threatmetrix enabled for the service provider
+      stubbing vendors and threatmetrix
+        no state_id proof
+          does not call state_id proof if resolution proof is successful
+        does call state id with an unsuccessful response from the proofer
+          posts back to the callback url
+        with a successful response from the proofer
+          logs the trace_id and timing info for ProofResolution and the Threatmetrix info
+          nil response body from ddp
+            does not blow up
+  .perform_later
+    stores results
+
+InPerson::EmailReminderJob
+  #perform
+    with many enrollments
+      late email reminder
+        queues emails for enrollments that need the late email reminder sent
+        does not queue emails for enrollments that had late email reminder sent
+      early email reminder
+        queues emails for enrollments that need the early email reminder sent
+        does not queue emails for enrollments that had early email reminder sent
+    with one eligible enrollment
+      an error is raised when sending an email
+        it handles and logs the error
+
+Reports::AgreementSummaryReport
+  #good_job_concurrency_key
+    is the job name and the date
+  #perform
+    is empty with no data
+    with iaa data
+      it loads IAA data into a CSV
+
+Reports::BaseReport
+  #transaction_with_timeout
+    sets the statement_timeout inside a transaction
+
+DocumentProofingJob
+  .perform_later
+    stores results
+  #perform
+    with data url body
+      decrypts the image correctly
+    image source
+      acuant images
+        sets image source to acuant sdk
+      manual uploads
+        sets image source to unknown
+      malformed image metadata
+        sets image source to unknown
+      mixed sources
+        sets image source to unknown
+    with a successful response from the proofer
+      logs the trace_id and timing info
+      returns a successful response
+    with invalid data url body
+      gracefully degrades
+    with jpg file body
+      decrypts the image correctly
+    with local image URLs instead of S3 URLs
+      still downloads and decrypts the content
+    a stale job
+      bails and does not do any proofing
+
+Reports::MonthHelper
+  .months
+    breaks a range into months
 
 Reports::TotalIal2CostsReport
   #perform
@@ -101,38 +155,139 @@ Reports::TotalIal2CostsReport
   #good_job_concurrency_key
     is the job name and the date
 
-ApplicationJob
+AddressProofingJob
+  #perform
+    mock proofer
+      with an unsuccessful response from the proofer
+        returns a result
+    a stale job
+      bails and does not do any proofing
+    webmock vendor
+      runs
+      adds cost data
+  .perform_later
+    stores results
+
+JobHelpers::S3Helper
+  #s3_url?
+    with a subdomain bucket format url
+      is expected to eq true
+    with a non-s3 url
+      is expected to eq false
+    with a non-s3 url that has an s3 subdomain
+      gets fooled and returns true
+    with a path bucket format url
+      is expected to eq true
+  #download
+    returns binary-encoded string bodies
+    with subdomain bucket format
+      downloads by extracing prefix and bucket from s3 URLs
+    with path bucket format
+      downloads by extracing prefix and bucket from s3 URLs
+
+Reports::DailyAuthsReport
+  #perform
+    uploads a file to S3 based on the report date
+    with data
+      aggregates by issuer
+    when s3 public reports are disabled
+      only uploads to one bucket
+  #good_job_concurrency_key
+    is the job name and the date
+
+PhoneNumberOptOutSyncJob
+  #good_job_concurrency_key
+    is the job name and the current time, rounded to the nearest hour
+  #perform
+    adds phone numbers that are opted out in AWS to the database
+
+RiscDeliveryJob
+  #perform
+    POSTs the jwt to the given URL
+    rate limiting
+      when performed in a worker
+        raises on rate limit errors (and retries via ActiveJob)
+      when the rate limit is overridden
+        allows the request
+      when performed inline
+        warns on limit hit
+    SSL network errors
+      when performed inline
+        prints warning
+      when performed in a worker
+        raises and retries via ActiveJob
+    slow network errors
+      when performed in a worker
+        raises and retries via ActiveJob
+      when performed inline
+        prints warning
+    Errno::ECONNREFUSED error
+      when performed in a worker
+        raises and retries via ActiveJob
+      when performed inline
+        prints a warning
+    non-200 response
+      when performed inline
+        prints a warning
+      when performed in a worker
+        prints a warning
   .warning_error_classes
-    is empty by default
+    is all the network errors and rate limiting errors
+
+IdentitiesBackfillJob
+  #perform
+    does not update rows that already have a date populated
+    does not update rows that have been soft-deleted
+    does update rows which are not deleted and have no last_consented_at date
+    when done updating the database
+      updates the position in Redis
+    when the batch size is small
+      increments the position properly
+  #batch_size
+    when there is no cache key in redis
+      returns the default of 500,000
+    when there is a cache key in redis
+      returns that value
 
 GetUspsProofingResultsJob
   #perform
+    IPP disabled
+      does not request any enrollment records
     IPP enabled
+      requests the enrollments that need their status checked
+      logs a message with counts of various outcomes when the job completes
       records the last attempted status check regardless of response code and contents
       logs a message when the job starts
-      logs a message with counts of various outcomes when the job completes
-      requests the enrollments that need their status checked
-      when USPS returns an unexpected status
-        logs the status received
+      sending emails
+        sends failed email when fraudSuspected is true
+        sends proofing failed email on response with failed status
+        sends proofing verifed email on 2xx responses with valid JSON
+        a custom delay of zero is set
+          does not delay sending the email
+        a custom delay greater than zero is set
+          uses the custom delay
+      when USPS returns a non-hash response
         behaves like enrollment_encountering_an_exception
-          updates the status_check_attempted_at timestamp
-          logs an error message and leaves the enrollment and profile pending
-      when USPS returns an unexpected 400 status code
-        logs the error to NewRelic
-        behaves like enrollment_encountering_an_exception
           logs an error message and leaves the enrollment and profile pending
           updates the status_check_attempted_at timestamp
+      when a timeout error occurs
+        behaves like enrollment_encountering_an_error_that_has_a_nil_response
+          logs that response is not present
+      a standard error is raised when requesting proofing results
+        logs failure details
       when USPS returns invalid JSON
-        behaves like enrollment_encountering_an_exception
-          logs an error message and leaves the enrollment and profile pending
-          updates the status_check_attempted_at timestamp
-      when USPS returns a 5xx status code
-        logs the error to NewRelic
         behaves like enrollment_encountering_an_exception
           updates the status_check_attempted_at timestamp
           logs an error message and leaves the enrollment and profile pending
       when an enrollment fails and fraud is suspected
         logs fraud failure details
+        behaves like enrollment_with_a_status_update
+          logs a message with common attributes
+          updates the status of the enrollment and profile appropriately
+          email_analytics_attributes
+            logs message with email analytics attributes
+      when an enrollment passes proofing with an unsupported ID
+        logs a message about the unsupported ID
         behaves like enrollment_with_a_status_update
           updates the status of the enrollment and profile appropriately
           logs a message with common attributes
@@ -145,32 +300,25 @@ GetUspsProofingResultsJob
           logs a message with common attributes
           email_analytics_attributes
             logs message with email analytics attributes
-      with a request delay in ms
-        adds a delay between requests to USPS
-      when an enrollment does not have a unique ID
-        generates a backwards-compatible unique ID
-      when an enrollment passes proofing with an unsupported ID
-        logs a message about the unsupported ID
-        behaves like enrollment_with_a_status_update
-          updates the status of the enrollment and profile appropriately
-          logs a message with common attributes
-          email_analytics_attributes
-            logs message with email analytics attributes
-      when a timeout error occurs
-        behaves like enrollment_encountering_an_error_that_has_a_nil_response
-          logs that response is not present
       when there is no status update
         updates the timestamp but does not update the status or log a message
+      when USPS returns a 5xx status code
+        logs the error to NewRelic
+        behaves like enrollment_encountering_an_exception
+          logs an error message and leaves the enrollment and profile pending
+          updates the status_check_attempted_at timestamp
       when USPS returns a >400 status code
         logs the error to NewRelic
         behaves like enrollment_encountering_an_exception
-          updates the status_check_attempted_at timestamp
           logs an error message and leaves the enrollment and profile pending
-      a standard error is raised when requesting proofing results
-        logs failure details
-      when a nil status error occurs
-        behaves like enrollment_encountering_an_error_that_has_a_nil_response
-          logs that response is not present
+          updates the status_check_attempted_at timestamp
+      when USPS returns an unexpected status
+        logs the status received
+        behaves like enrollment_encountering_an_exception
+          logs an error message and leaves the enrollment and profile pending
+          updates the status_check_attempted_at timestamp
+      with a request delay in ms
+        adds a delay between requests to USPS
       when an enrollment passes
         logs details about the success
         behaves like enrollment_with_a_status_update
@@ -178,143 +326,23 @@ GetUspsProofingResultsJob
           logs a message with common attributes
           email_analytics_attributes
             logs message with email analytics attributes
+      when a nil status error occurs
+        behaves like enrollment_encountering_an_error_that_has_a_nil_response
+          logs that response is not present
+      when USPS returns an unexpected 400 status code
+        logs the error to NewRelic
+        behaves like enrollment_encountering_an_exception
+          updates the status_check_attempted_at timestamp
+          logs an error message and leaves the enrollment and profile pending
+      when an enrollment does not have a unique ID
+        generates a backwards-compatible unique ID
       when an enrollment fails
         logs failure details
         behaves like enrollment_with_a_status_update
-          logs a message with common attributes
           updates the status of the enrollment and profile appropriately
+          logs a message with common attributes
           email_analytics_attributes
             logs message with email analytics attributes
-      when USPS returns a non-hash response
-        behaves like enrollment_encountering_an_exception
-          logs an error message and leaves the enrollment and profile pending
-          updates the status_check_attempted_at timestamp
-      sending emails
-        sends failed email when fraudSuspected is true
-        sends proofing failed email on response with failed status
-        sends proofing verifed email on 2xx responses with valid JSON
-        a custom delay of zero is set
-          does not delay sending the email
-        a custom delay greater than zero is set
-          uses the custom delay
-    IPP disabled
-      does not request any enrollment records
-
-IrsAttemptsEventsBatchJob
-  #perform
-    IRS attempts API is enabled
-      batches and writes attempt events to an encrypted file
-    IRS attempts API is not enabled
-      returns nil
-    IRS attempts bucket name is not set
-      returns nil
-
-PsqlStatsJob
-  #perform
-    logs psql table bloat metrics
-    returns true
-
-JobHelpers::EncryptionHelper
-  #decrypt
-    decrypts data
-
-Reports::DailyDropoffsReport
-  #good_job_concurrency_key
-    is the job name and the date
-  #perform
-    uploads a file to S3 based on the report date
-    when s3 public reports are disabled
-      only uploads to one bucket
-    with data
-      aggregates by issuer
-
-ResolutionProofingJob
-  #perform
-    with threatmetrix enabled for the service provider
-      webmock lexisnexis, threatmetrix, and AAMVA
-        returns results and adds threatmetrix proofing components
-        no threatmetrix_session_id
-          does not attempt to create a ddp proofer
-        failed response from lexisnexis
-          has a failed response
-    with threatmetrix enabled for the service provider
-      stubbing vendors and threatmetrix
-        does call state id with an unsuccessful response from the proofer
-          posts back to the callback url
-        no state_id proof
-          does not call state_id proof if resolution proof is successful
-        with a successful response from the proofer
-          logs the trace_id and timing info for ProofResolution and the Threatmetrix info
-          nil response body from ddp
-            does not blow up
-    a stale job
-      bails and does not do any proofing
-    with threatmetrix disabled for the service provider
-      stubbing vendors and threatmetrix
-        with a successful response from the proofer
-          logs the trace_id and timing info for ProofResolution info
-        does call state id with an unsuccessful response from the proofer
-          posts back to the callback url
-        no state_id proof
-          does not call state_id proof if resolution proof is successful
-    with threatmetrix disabled for the service provider
-      webmock lexisnexis and threatmetrix
-        returns results
-        failed response from lexisnexis
-          has a failed response
-        no threatmetrix_session_id
-          does not attempt to create a ddp proofer
-  .perform_later
-    stores results
-
-HeartbeatJob
-  #perform
-    returns true
-    logs goodjob queue metrics
-
-PhoneNumberOptOutSyncJob
-  #good_job_concurrency_key
-    is the job name and the current time, rounded to the nearest hour
-  #perform
-    adds phone numbers that are opted out in AWS to the database
-
-AddressProofingJob
-  #perform
-    a stale job
-      bails and does not do any proofing
-    mock proofer
-      with an unsuccessful response from the proofer
-        returns a result
-    webmock vendor
-      runs
-      adds cost data
-  .perform_later
-    stores results
-
-Reports::SpActiveUsersReport
-  when Oct 1, returns total active user counts per sp by ial1 and ial2 for last fiscal year
-  is empty
-  returns total active user counts per sp broken down by ial1 and ial2
-  #good_job_concurrency_key
-    is the job name and the date
-  #reporting_range
-    returns current fiscal year until end of day when after to Oct 1st
-    returns current fiscal year until end of day when prior to Oct 1st
-    returns entire last fiscal year when it is October 1st
-
-Reports::CombinedInvoiceSupplementReport
-  #perform
-    is empty with no data
-    with data
-      generates a report by iaa + order number and issuer and year month
-  #good_job_concurrency_key
-    is the job name and the date
-
-JobHelpers::Timer
-  #time
-    measures the time in milliseconds it takes to execute a block
-    measure the block even if the block raises
-    returns the result of the block
 
 JobHelpers::StaleJobHelper
   #raise_stale_job!
@@ -327,138 +355,139 @@ JobHelpers::StaleJobHelper
     with a stale enqueued_at
       is expected to be truthy
 
-Reports::AgreementSummaryReport
-  #perform
-    is empty with no data
-    with iaa data
-      it loads IAA data into a CSV
-  #good_job_concurrency_key
-    is the job name and the date
-
-Reports::DailyAuthsReport
-  #good_job_concurrency_key
-    is the job name and the date
-  #perform
-    uploads a file to S3 based on the report date
-    with data
-      aggregates by issuer
-    when s3 public reports are disabled
-      only uploads to one bucket
-
-RiscDeliveryJob
-  .warning_error_classes
-    is all the network errors and rate limiting errors
-  #perform
-    POSTs the jwt to the given URL
-    rate limiting
-      when the rate limit is overridden
-        allows the request
-      when performed inline
-        warns on limit hit
-      when performed in a worker
-        raises on rate limit errors (and retries via ActiveJob)
-    non-200 response
-      when performed in a worker
-        prints a warning
-      when performed inline
-        prints a warning
-    SSL network errors
-      when performed in a worker
-        raises and retries via ActiveJob
-      when performed inline
-        prints warning
-    Errno::ECONNREFUSED error
-      when performed in a worker
-        raises and retries via ActiveJob
-      when performed inline
-        prints a warning
-    slow network errors
-      when performed inline
-        prints warning
-      when performed in a worker
-        raises and retries via ActiveJob
-
 InheritedProofingJob
   #perform
     calls api for user data and stores in document capture session
 
-DocumentProofingJob
+IrsAttemptsEventsBatchJob
   #perform
-    image source
-      acuant images
-        sets image source to acuant sdk
-      mixed sources
-        sets image source to unknown
-      malformed image metadata
-        sets image source to unknown
-      manual uploads
-        sets image source to unknown
-    a stale job
-      bails and does not do any proofing
-    with jpg file body
-      decrypts the image correctly
-    with local image URLs instead of S3 URLs
-      still downloads and decrypts the content
-    with invalid data url body
-      gracefully degrades
-    with data url body
-      decrypts the image correctly
-    with a successful response from the proofer
-      returns a successful response
-      logs the trace_id and timing info
-  .perform_later
-    stores results
+    IRS attempts API is enabled
+      batches and writes attempt events to an encrypted file
+    IRS attempts API is not enabled
+      returns nil
+    IRS attempts bucket name is not set
+      returns nil
 
-Reports::BaseReport
-  #transaction_with_timeout
-    sets the statement_timeout inside a transaction
+PsqlStatsJob
+  #perform
+    returns true
+    logs psql table bloat metrics
 
-Top 10 slowest examples (4.85 seconds, 15.4% of total time):
+Reports::CombinedInvoiceSupplementReport
+  #perform
+    is empty with no data
+    with data
+      generates a report by iaa + order number and issuer and year month
+  #good_job_concurrency_key
+    is the job name and the date
+
+JobHelpers::Timer
+  #time
+    measure the block even if the block raises
+    returns the result of the block
+    measures the time in milliseconds it takes to execute a block
+
+Reports::SpUserCountsReport
+  is empty
+  logs to analytics
+  returns the total user counts per sp broken down by ial1 and ial2
+  #good_job_concurrency_key
+    is the job name and the date
+
+ApplicationJob
+  .warning_error_classes
+    is empty by default
+
+HeartbeatJob
+  #perform
+    logs goodjob queue metrics
+    returns true
+
+Reports::SpActiveUsersReport
+  returns total active user counts per sp broken down by ial1 and ial2
+  when Oct 1, returns total active user counts per sp by ial1 and ial2 for last fiscal year
+  is empty
+  #reporting_range
+    returns current fiscal year until end of day when prior to Oct 1st
+    returns current fiscal year until end of day when after to Oct 1st
+    returns entire last fiscal year when it is October 1st
+  #good_job_concurrency_key
+    is the job name and the date
+
+Reports::VerificationFailuresReport
+  sends out a document error if the user submits hybrid back image and fails
+  allows submit to be recent and not just after welcome
+  sends out a verify error if the user submits PII but does not progress forward
+  sends more than one user
+  sends out a phone error if the user submits phone info but does not progress forward
+  sends out an abandon code on a user lands on welcome and leaves
+  sends out a document error if the user submits desktop back image and fails
+  sends out a document error if the user submits mobile back image and fails
+  does not consider old submits as fails
+  sends out a blank report if no users went through doc auth
+  is does not send out an email with nothing configured
+  sends out a blank report if no issuer data
+  sends out a document error if the user submits document but does not progress forward
+  #good_job_concurrency_key
+    is the job name and the date
+
+JobHelpers::EncryptionHelper
+  #decrypt
+    decrypts data
+
+Reports::DeletedUserAccountsReport
+  is does not send out an email with nothing configured
+  sends out a report to the email listed with one deleted user account
+  #good_job_concurrency_key
+    is the job name and the date
+
+Top 10 slowest examples (5.96 seconds, 15.3% of total time):
   Reports::CombinedInvoiceSupplementReport#perform with data generates a report by iaa + order number and issuer and year month
-    0.99694 seconds ./spec/jobs/reports/combined_invoice_supplement_report_spec.rb:136
+    0.92052 seconds ./spec/jobs/reports/combined_invoice_supplement_report_spec.rb:136
+  InPerson::EmailReminderJob#perform with many enrollments early email reminder does not queue emails for enrollments that had early email reminder sent
+    0.69344 seconds ./spec/jobs/in_person/email_reminder_job_spec.rb:93
+  InPerson::EmailReminderJob#perform with many enrollments late email reminder queues emails for enrollments that need the late email reminder sent
+    0.64786 seconds ./spec/jobs/in_person/email_reminder_job_spec.rb:46
+  InPerson::EmailReminderJob#perform with many enrollments late email reminder does not queue emails for enrollments that had late email reminder sent
+    0.64498 seconds ./spec/jobs/in_person/email_reminder_job_spec.rb:63
+  InPerson::EmailReminderJob#perform with many enrollments early email reminder queues emails for enrollments that need the early email reminder sent
+    0.60833 seconds ./spec/jobs/in_person/email_reminder_job_spec.rb:76
   GetUspsProofingResultsJob#perform IPP enabled with a request delay in ms adds a delay between requests to USPS
-    0.54499 seconds ./spec/jobs/get_usps_proofing_results_job_spec.rb:292
-  Reports::CombinedInvoiceSupplementReport#perform is empty with no data
-    0.45699 seconds ./spec/jobs/reports/combined_invoice_supplement_report_spec.rb:78
+    0.55603 seconds ./spec/jobs/get_usps_proofing_results_job_spec.rb:292
   GetUspsProofingResultsJob#perform IPP enabled records the last attempted status check regardless of response code and contents
-    0.44757 seconds ./spec/jobs/get_usps_proofing_results_job_spec.rb:193
-  IrsAttemptsEventsBatchJob#perform IRS attempts API is enabled batches and writes attempt events to an encrypted file
-    0.43113 seconds ./spec/jobs/irs_attempts_events_batch_job_spec.rb:61
-  Reports::DeletedUserAccountsReport sends out a report to the email listed with one deleted user account
-    0.41077 seconds ./spec/jobs/reports/deleted_user_accounts_report_spec.rb:19
+    0.50033 seconds ./spec/jobs/get_usps_proofing_results_job_spec.rb:193
+  Reports::DailyDropoffsReport#perform with data aggregates by issuer
+    0.46909 seconds ./spec/jobs/reports/daily_dropoffs_report_spec.rb:107
   GetUspsProofingResultsJob#perform IPP enabled logs a message with counts of various outcomes when the job completes
-    0.39379 seconds ./spec/jobs/get_usps_proofing_results_job_spec.rb:241
-  GetUspsProofingResultsJob#perform IPP enabled when USPS returns an unexpected status behaves like enrollment_encountering_an_exception logs an error message and leaves the enrollment and profile pending
-    0.39032 seconds ./spec/jobs/get_usps_proofing_results_job_spec.rb:83
-  GetUspsProofingResultsJob#perform IPP enabled logs a message when the job starts
-    0.3899 seconds ./spec/jobs/get_usps_proofing_results_job_spec.rb:222
-  GetUspsProofingResultsJob#perform IPP enabled when an enrollment passes proofing with an unsupported ID behaves like enrollment_with_a_status_update updates the status of the enrollment and profile appropriately
-    0.38922 seconds ./spec/jobs/get_usps_proofing_results_job_spec.rb:59
+    0.46578 seconds ./spec/jobs/get_usps_proofing_results_job_spec.rb:241
+  Reports::CombinedInvoiceSupplementReport#perform is empty with no data
+    0.45191 seconds ./spec/jobs/reports/combined_invoice_supplement_report_spec.rb:78
 
 Top 10 slowest example groups:
   Reports::CombinedInvoiceSupplementReport
-    0.56989 seconds average (1.71 seconds / 3 examples) ./spec/jobs/reports/combined_invoice_supplement_report_spec.rb:3
+    0.54933 seconds average (1.65 seconds / 3 examples) ./spec/jobs/reports/combined_invoice_supplement_report_spec.rb:3
+  InPerson::EmailReminderJob
+    0.54337 seconds average (2.72 seconds / 5 examples) ./spec/jobs/in_person/email_reminder_job_spec.rb:3
   GetUspsProofingResultsJob
-    0.32579 seconds average (16.94 seconds / 52 examples) ./spec/jobs/get_usps_proofing_results_job_spec.rb:132
-  IrsAttemptsEventsBatchJob
-    0.17063 seconds average (0.51189 seconds / 3 examples) ./spec/jobs/irs_attempts_events_batch_job_spec.rb:3
-  Reports::DeletedUserAccountsReport
-    0.16209 seconds average (0.48626 seconds / 3 examples) ./spec/jobs/reports/deleted_user_accounts_report_spec.rb:3
+    0.36245 seconds average (18.85 seconds / 52 examples) ./spec/jobs/get_usps_proofing_results_job_spec.rb:132
+  IdentitiesBackfillJob
+    0.19797 seconds average (1.39 seconds / 7 examples) ./spec/jobs/identities_backfill_job_spec.rb:3
   Reports::AgreementSummaryReport
-    0.15994 seconds average (0.47983 seconds / 3 examples) ./spec/jobs/reports/agreement_summary_report_spec.rb:3
+    0.17792 seconds average (0.53375 seconds / 3 examples) ./spec/jobs/reports/agreement_summary_report_spec.rb:3
+  Reports::DailyDropoffsReport
+    0.17672 seconds average (0.70687 seconds / 4 examples) ./spec/jobs/reports/daily_dropoffs_report_spec.rb:3
+  IrsAttemptsEventsBatchJob
+    0.15614 seconds average (0.46841 seconds / 3 examples) ./spec/jobs/irs_attempts_events_batch_job_spec.rb:3
   ResolutionProofingJob
-    0.13106 seconds average (1.97 seconds / 15 examples) ./spec/jobs/resolution_proofing_job_spec.rb:3
+    0.1482 seconds average (2.22 seconds / 15 examples) ./spec/jobs/resolution_proofing_job_spec.rb:3
+  Reports::DeletedUserAccountsReport
+    0.13211 seconds average (0.39634 seconds / 3 examples) ./spec/jobs/reports/deleted_user_accounts_report_spec.rb:3
   DocumentProofingJob
-    0.11326 seconds average (1.36 seconds / 12 examples) ./spec/jobs/document_proofing_job_spec.rb:3
-  PhoneNumberOptOutSyncJob
-    0.10301 seconds average (0.20603 seconds / 2 examples) ./spec/jobs/phone_number_opt_out_sync_job_spec.rb:3
-  HeartbeatJob
-    0.09627 seconds average (0.19255 seconds / 2 examples) ./spec/jobs/heartbeat_job_spec.rb:3
-  AddressProofingJob
-    0.09481 seconds average (0.47406 seconds / 5 examples) ./spec/jobs/address_proofing_job_spec.rb:3
+    0.12712 seconds average (1.53 seconds / 12 examples) ./spec/jobs/document_proofing_job_spec.rb:3
 
-Finished in 31.44 seconds (files took 1.71 seconds to load)
-188 examples, 0 failures
+Finished in 38.94 seconds (files took 2.12 seconds to load)
+200 examples, 0 failures
 
-Randomized with seed 24754
+Randomized with seed 13689
 
+Coverage report generated for RSpec to /home/jmax/projects/identity-idp/coverage. 5324 / 32853 LOC (16.21%) covered.

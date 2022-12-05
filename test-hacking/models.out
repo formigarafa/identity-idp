@@ -1,92 +1,163 @@
 
-Randomized with seed 54515
+Randomized with seed 26842
 
-Agreements::Integration
-  validations and associations
-    is expected to validate that :issuer cannot be empty/falsy
+PhoneNumberOptOut
+  #opt_in
+    deletes the row
+  #formatted_phone
+    formats the phone internationally
+  .create_or_find_by_phone
+    returns an existing row if there already is one
+    creates a record for the phone
+    normalizes phone numbers when creating
+  .find_with_phone
+    is nil when the row does not exist
+    is the row when it exists
+  #to_param
+    is the uuid
+
+UserOtpMethods
+  #clear_direct_otp
+    clears otp attributes
+
+AnonymousUser
+  Methods
+    is expected to respond to #email
+    is expected to respond to #phone_configurations
+    is expected to respond to #phone
+    is expected to respond to #uuid
+    is expected to respond to #second_factor_locked_at
+  #phone_configurations
+    is expected to eq []
+
+WebauthnConfiguration
+  #selection_presenters
+    for a roaming authenticator
+      returns a WebauthnSelectionPresenter in an array
+    for a platform authenticator
+      returns a WebauthnPlatformSelectionPresenter in an array
+  #mfa_enabled?
+    is expected to be truthy
+  Associations
     is expected to validate that :name cannot be empty/falsy
-    is expected to belong to integration_status required: false
-    is expected to validate that :issuer is case-sensitively unique
-    is expected to validate that :dashboard_identifier is case-sensitively unique as long as it is not nil
-    is expected to validate that :dashboard_identifier looks like an integer greater than 0
-    is expected to belong to service_provider required: false
-    is expected to have many integration_usages dependent => restrict_with_exception
-    is expected to belong to partner_account required: false
-    is expected to have many iaa_orders through integration_usages
+    is expected to validate that :credential_id cannot be empty/falsy
+    is expected to validate that :credential_public_key cannot be empty/falsy
+    is expected to belong to user required: false
+  class#selection_presenters
+    returns an empty array for an empty set
+
+Agreements::IntegrationUsage
+  validations and associations
+    is expected to validate that :integration cannot be empty/falsy
+    is expected to validate that :iaa_order cannot be empty/falsy
+    is expected to belong to iaa_order required: false
+    is expected to validate that :integration_id is case-sensitively unique within the scope of :iaa_order_id
+    is expected to belong to integration required: false
+    validates that the IAA Order and Integration belong to the same account (PENDING: Temporarily skipped with xit)
+    is expected to have one partner_account through integration
+
+Agreements::IntegrationStatus
+  validations and associations
+    is expected to validate that :order looks like an integer
+    is expected to validate that :name cannot be empty/falsy
+    is expected to validate that :order cannot be empty/falsy
+    is expected to have many integrations dependent => restrict_with_exception
+    is expected to validate that :name is case-sensitively unique
+    is expected to validate that :order is case-sensitively unique
 
 User
   does not send an email when #create is called
-  password validations
-    allows long phrases that contain common words
-    allows unconfirmed visitors
-  when a user has multiple phone_configurations
-    #default_phone_configuration
-      returns earliest created phone_configuration when no default set
-      returns the latest default phone_configuration
-  when user has multiple profiles
-    #active_profile
-      returns the only active profile
-  .find_with_email
-    does not blow up with malformed input
-    strips whitespace and downcases email before looking it up
-  #generate_uuid
-    calls generate_uuid before creation
-    when the user already has a uuid
-      returns the current uuid
-    when the user does not already have a uuid
-      generates it via SecureRandom.uuid
-  encrypted attributes
-    decrypts otp_secret_key
-    input is MixEd CaSe with whitespace
-      normalizes email
+  Associations
+    is expected to have many events
+    is expected to have many profiles
+    is expected to have many agency_identities
+    is expected to have many identities
+    is expected to have many phone_configurations
+    is expected to have many in_person_enrollments dependent => destroy
+    is expected to have many webauthn_configurations
+    is expected to have one account_reset_request
+    is expected to have one proofing_component
+    is expected to have one pending_in_person_enrollment class_name => InPersonEnrollment order => {:created_at=>:desc} inverse_of => user dependent => destroy
   when user has IPP enrollments
     #establishing_in_person_enrollment
       returns the establishing IPP enrollment
-    #in_person_enrollments
-      deletes everything under the profile and does not result in an error when the profile is deleted before the user
-      deletes everything and does not result in an error when the user is deleted before the profile
-      returns multiple IPP enrollments
     #pending_in_person_enrollment
       returns the pending IPP enrollment
-  Associations
-    is expected to have many profiles
-    is expected to have one account_reset_request
-    is expected to have one proofing_component
-    is expected to have many in_person_enrollments dependent => destroy
-    is expected to have many webauthn_configurations
-    is expected to have many phone_configurations
-    is expected to have one pending_in_person_enrollment class_name => InPersonEnrollment order => {:created_at=>:desc} inverse_of => user dependent => destroy
-    is expected to have many agency_identities
-    is expected to have many events
-    is expected to have many identities
+    #in_person_enrollments
+      returns multiple IPP enrollments
+      deletes everything under the profile and does not result in an error when the profile is deleted before the user
+      deletes everything and does not result in an error when the user is deleted before the profile
+  #decorate
+    returns a UserDecorator
+  .find_with_email
+    does not blow up with malformed input
+    strips whitespace and downcases email before looking it up
+  #should_receive_in_person_completion_survey?
+    user has completed enrollment and survey
+      should not send survey
+    user has multiple enrollments but only completed a survey for the last one
+      should not send survey
+    user has no enrollments
+      should not send survey
+    user has completed enrollment but no survey and feature is disabled
+      should not send survey
+    user has completed survey for other issuer and enrollments for both issuers
+      should send survey
+    user has completed enrollment but no survey
+      should send survey
+    user has incomplete enrollment but no survey
+      should not send survey
+    user has completed enrollment for different issuer but no survey
+      should not send survey
+  #authenticatable_salt
+    returns the password salt
+  when user has multiple identities
+    #last_identity
+      returns the most recently authenticated identity
+  #need_two_factor_authentication?
+    is true when two_factor_enabled
+    is false when not two_factor_enabled
+  when user has multiple profiles
+    #active_profile
+      returns the only active profile
   #pending_profile
     when a gpo_verification_pending profile does not exist
       returns nil
     when a profile with a gpo_verification_pending deactivation_reason exists
       returns the most recent profile
-  #should_receive_in_person_completion_survey?
-    user has completed enrollment but no survey and feature is disabled
-      should not send survey
-    user has completed survey for other issuer and enrollments for both issuers
-      should send survey
-    user has no enrollments
-      should not send survey
-    user has incomplete enrollment but no survey
-      should not send survey
-    user has completed enrollment and survey
-      should not send survey
-    user has multiple enrollments but only completed a survey for the last one
-      should not send survey
-    user has completed enrollment but no survey
-      should send survey
-    user has completed enrollment for different issuer but no survey
-      should not send survey
-  #authenticatable_salt
-    returns the password salt
-  #need_two_factor_authentication?
-    is false when not two_factor_enabled
-    is true when two_factor_enabled
+  encrypted attributes
+    decrypts otp_secret_key
+    input is MixEd CaSe with whitespace
+      normalizes email
+  #accepted_rules_of_use_still_valid?
+    with a user who accepted the rules of use more than 6 years ago
+      should return a falsey value
+    when a user has not accepted rules of use yet
+      should return a falsey value
+    with a user who is up to date with rules of use
+      should return a truthy value
+    with a user who is not up to date with rules of use
+      should return a falsey value
+  deleting identities
+    does not delete identities when the user is destroyed preventing uuid reuse
+  password validations
+    allows long phrases that contain common words
+    allows unconfirmed visitors
+  when identities are present
+    #active_identities
+      only returns active identities
+  when a user has multiple phone_configurations
+    #default_phone_configuration
+      returns the latest default phone_configuration
+      returns earliest created phone_configuration when no default set
+  #generate_totp_secret
+    generates a secret 32 characters long
+  #two_factor_enabled?
+    is false when user does not have a phone
+    is true when user has a confirmed phone
   #broken_personal_key?
+    for a user with a profile verified before the broken key window
+      is expected to eq false
     for a user with a profile verified after the broken key window
       is expected to eq false
     for a user with a profile verified during the broken key window
@@ -100,256 +171,67 @@ User
       is expected to eq false
     for a user with no profile
       is expected to eq false
-    for a user with a profile verified before the broken key window
-      is expected to eq false
     for a user that has encrypted profile data that is suspiciously too short
       is expected to eq true
-  #decorate
-    returns a UserDecorator
-  when identities are present
-    #active_identities
-      only returns active identities
-  #generate_totp_secret
-    generates a secret 32 characters long
-  when user has multiple identities
-    #last_identity
-      returns the most recently authenticated identity
-  #accepted_rules_of_use_still_valid?
-    when a user has not accepted rules of use yet
-      should return a falsey value
-    with a user who accepted the rules of use more than 6 years ago
-      should return a falsey value
-    with a user who is not up to date with rules of use
-      should return a falsey value
-    with a user who is up to date with rules of use
-      should return a truthy value
-  deleting identities
-    does not delete identities when the user is destroyed preventing uuid reuse
+  #generate_uuid
+    calls generate_uuid before creation
+    when the user already has a uuid
+      returns the current uuid
+    when the user does not already have a uuid
+      generates it via SecureRandom.uuid
+  uuid validations
+    uses a DB index to enforce uniqueness
+    uses a DB constraint to enforce presence
   OTP length
     is set to 6
     uses TwoFactorAuthenticatable setting when set
-  uuid validations
-    uses a DB constraint to enforce presence
-    uses a DB index to enforce uniqueness
-  #two_factor_enabled?
-    is false when user does not have a phone
-    is true when user has a confirmed phone
 
-Agreements::IaaOrder
-  #in_pop?
-    raises an argument error if a non-date/datetime is passed in
-    returns false if the date is outside the POP
-    returns false if the start_date is nil
-    returns false if the end_date is nil
-    returns true if the date is within the POP
-  #status
-    returns "expired" if the agreement is no longer in force
-    returns "active" if the agreement is in force
-    returns "pending_start" if the agreement is not yet in force
-  validations and associations
-    is expected to have many integrations through integration_usages
-    is expected to validate that :end_date cannot be empty/falsy
-    is expected to validate that :pricing_model cannot be empty/falsy
-    is expected to validate that :start_date cannot be empty/falsy
-    is expected to have one partner_account through iaa_gtc
-    is expected to belong to iaa_gtc required: false
-    is expected to validate that :order_number cannot be empty/falsy
-    is expected to validate that :mod_number cannot be empty/falsy
-    validates that the end_date must be after the start_date
-    is expected to validate that :order_number is case-sensitively unique within the scope of :iaa_gtc_id
-    is expected to validate that :mod_number looks like an integer greater than or equal to 0
-    is expected to validate that :estimated_amount looks like a number less than 10000000000 and greater than or equal to 0 as long as it is not nil
-    is expected to validate that :order_number looks like an integer greater than or equal to 0
-    is expected to validate that :pricing_model looks like an integer greater than or equal to 0
-    is expected to have many integration_usages dependent => restrict_with_exception
+Agreements::Iaa
+  is expected to delegate #gtc_mod_number to the #gtc object as #mod_number
+  is expected to delegate #order_status to the #order object as #status
+  is expected to delegate #order_mod_number to the #order object as #mod_number
+  is expected to delegate #gtc_estimated_amount to the #gtc object as #estimated_amount
+  is expected to delegate #order_estimated_amount to the #order object as #estimated_amount
+  is expected to delegate #gtc_number to the #gtc object
+  is expected to delegate #gtc_start_date to the #gtc object as #start_date
+  is expected to delegate #order_number to the #order object
+  is expected to delegate #gtc_end_date to the #gtc object as #end_date
+  is expected to delegate #order_end_date to the #order object as #end_date
+  is expected to delegate #order_start_date to the #order object as #start_date
+  is expected to delegate #gtc_status to the #gtc object as #status
+  #==
+    returns true when both the order and the gtc are equal
+    returns false when the order does not match
+  #iaa_number
+    returns the formatted IAA number
+  delegated methods
+    does not permit arbitrary sends to the gtc or order objects
+  attributes
+    authentications
+      defaults to an empty hash
+      can be set to a custom value
+    ial2_users
+      can be set to a custom value
+      defaults to zero
+  #partner_account
+    returns the requesting agency of the partner account
 
-Agreements::IaaGtc
-  #status
-    returns "pending_start" if the agreement is not yet in force
-    returns "active" if the agreement is in force
-    returns "expired" if the agreement is no longer in force
+Agreements::Integration
   validations and associations
-    is expected to validate that :start_date cannot be empty/falsy
-    is expected to validate that :gtc_number is case-sensitively unique
-    validates that the end_date must be after the start_date
-    is expected to validate that :gtc_number cannot be empty/falsy
     is expected to belong to partner_account required: false
-    is expected to have many iaa_orders dependent => restrict_with_exception
-    is expected to validate that :mod_number cannot be empty/falsy
-    is expected to validate that :estimated_amount looks like a number less than 10000000000 and greater than or equal to 0 as long as it is not nil
-    is expected to validate that :mod_number looks like an integer greater than or equal to 0
-    is expected to validate that :end_date cannot be empty/falsy
-
-AgencyIdentity
-  is expected to belong to user required: false
-  is expected to belong to agency required: false
-  validations
-    is expected to validate that :uuid cannot be empty/falsy
-
-DocumentCaptureSession
-  #expired?
-    requested_at is datetime
-      returns true if expired
-      returns false if not expired
-    requested_at is nil
-      returns true
-  #load_result
-    loads the previously stored result
-    returns nil if the previously stored result does not exist or expired
-  #store_result_from_response
-    generates a result ID stores the result encrypted in redis
-    with attention with barcode response
-      sets record as pending ocr confirmation
-  #store_doc_auth_result
-    generates a result ID stores the result encrypted in redis
-    with attention with barcode response
-      sets record as pending ocr confirmation
-
-InPersonEnrollment
-  minutes_since_last_status_check
-    returns nil if enrollment has not been status-checked
-    returns number of minutes since last status check
-  minutes_since_status_updated
-    returns nil if enrollment status has not been updated
-    returns number of minutes since the status was updated
-  Associations
-    is expected to belong to user required: false
-    is expected to belong to profile required: false
-  Constraints
-    does not allow more than one pending enrollment per user
-    requires the profile to be associated with the user
-    does not constrain enrollments for non-pending status
-    does not allow duplicate unique ids
-  needs_usps_status_check
-    indicates whether an enrollment needs a status check
-    returns only pending enrollments
-  minutes_since_established
-    returns nil if enrollment has not been established
-    returns number of minutes since enrollment was established
-  Status
-    defines enum correctly
-  Triggers
-    generates a unique ID if one is not provided
-    does not generated a unique ID if one is provided
-
-Agreements::IntegrationStatus
-  validations and associations
-    is expected to validate that :order cannot be empty/falsy
-    is expected to validate that :order is case-sensitively unique
-    is expected to have many integrations dependent => restrict_with_exception
+    is expected to validate that :issuer is case-sensitively unique
+    is expected to have many integration_usages dependent => restrict_with_exception
+    is expected to validate that :issuer cannot be empty/falsy
     is expected to validate that :name cannot be empty/falsy
-    is expected to validate that :name is case-sensitively unique
-    is expected to validate that :order looks like an integer
-
-EmailAddress
-  Associations
-    is expected to validate that :email_fingerprint cannot be empty/falsy
-    is expected to validate that :encrypted_email cannot be empty/falsy
-    is expected to belong to user required: false
-  encrypted attributes
-    decrypts email
-    with unnormalized email
-      normalizes email
-  .find_with_email
-    finds by email
-    when email is fingerprinted with an old key
-      looks up by older fingerprints too
-    .update_last_sign_in_at_on_user_id_and_email
-      updates attributes and can look up by previous fingerprints
-  #confirmation_period_expired?
-    returns false when within add_email_link_valid_for_hours value
-    returns true when beyond add_email_link_valid_for_hours value
-  creation
-    stores an encrypted form of the email address
-
-Profile
-  is expected to belong to user required: false
-  is expected to have many gpo_confirmation_codes dependent => destroy
-  is expected to have one in_person_enrollment dependent => destroy
-  #has_proofed_before
-    is false when the user has only been activated once
-    is true when the user is re-activated
-  #recover_pii
-    decrypts the encrypted_pii_recovery using a personal key
-  #encrypt_pii
-    encrypts PII
-    generates new personal key
-    updates the personal key digest generation time
-    fingerprints the PII
-    when a part of the compound PII key is missing
-      does not write a fingerprint
-    ssn fingerprinting
-      fingerprints the ssn
-      ssn is blank
-        does not fingerprint the SSN
-  #decrypt_pii
-    fails if the encryption context from the uuid is incorrect
-    decrypts PII
-  scopes
-    #verified
-      returns only verified Profiles
-    #active
-      returns only active Profiles
-  #encrypt_recovery_pii
-    generates new personal key
-  #deactivate
-    sets active flag to false
-  allows only one active Profile per user
-    prevents save! via psql unique partial index
-    prevents create! via ActiveRecord uniqueness validation
-  #activate
-    activates current Profile, de-activates all other Profile for the user
-    does not send a reproof event when there is a non active profile
-    does not send a reproof event when there is no active profile
-    sends a reproof completed push event
-  #includes_phone_check?
-    returns true if the address_check component is lexis_nexis_address
-    returns false if proofing_components is blank
-    returns false if the address_check componet is gpo_letter
-  #proofing_components
-    when the value is nil
-      is nil
-    when the value is the empty string
-      is the empty string
-    when the value is a JSON object
-      is the object
-
-WebauthnConfiguration
-  #mfa_enabled?
-    is expected to be truthy
-  #selection_presenters
-    for a roaming authenticator
-      returns a WebauthnSelectionPresenter in an array
-    for a platform authenticator
-      returns a WebauthnPlatformSelectionPresenter in an array
-  Associations
-    is expected to belong to user required: false
-    is expected to validate that :credential_public_key cannot be empty/falsy
-    is expected to validate that :credential_id cannot be empty/falsy
-    is expected to validate that :name cannot be empty/falsy
-  class#selection_presenters
-    returns an empty array for an empty set
-
-GpoConfirmationCode
-  .first_with_otp
-    return the record with the matching OTP
-    returns nil if no record matches the OTP
-    normalizes the entered otp before searching
-  #expired?
-    returns true for an expired otp
-    returns false for a valid otp
-
-AnonymousUser
-  #phone_configurations
-    is expected to eq []
-  Methods
-    is expected to respond to #email
-    is expected to respond to #second_factor_locked_at
-    is expected to respond to #phone_configurations
-    is expected to respond to #uuid
-    is expected to respond to #phone
+    is expected to have many iaa_orders through integration_usages
+    is expected to belong to integration_status required: false
+    is expected to belong to service_provider required: false
+    is expected to validate that :dashboard_identifier looks like an integer greater than 0
+    is expected to validate that :dashboard_identifier is case-sensitively unique as long as it is not nil
 
 PhoneConfiguration
+  creation
+    stores an encrypted form of the phone number
   encrypted attributes
     decrypts phone
     with unnormalized phone
@@ -361,206 +243,171 @@ PhoneConfiguration
     with a blank phone number
       is the empty string
   Associations
+    is expected to belong to user required: false
     is expected to validate that :encrypted_phone cannot be empty/falsy
-    is expected to belong to user required: false
-  creation
-    stores an encrypted form of the phone number
 
-SpReturnLog
-  associations
-    is expected to belong to user required: false
-
-PhoneNumberOptOut
-  #to_param
-    is the uuid
-  #opt_in
-    deletes the row
-  .create_or_find_by_phone
-    normalizes phone numbers when creating
-    returns an existing row if there already is one
-    creates a record for the phone
-  .find_with_phone
-    is nil when the row does not exist
-    is the row when it exists
-  #formatted_phone
-    formats the phone internationally
-
-Agreements::PartnerAccountStatus
-  #partner_name
-    returns the name if no partner_name is set
-    returns the partner_name if set
-  validations and associations
-    is expected to have many partner_accounts
-    is expected to validate that :order cannot be empty/falsy
-    is expected to validate that :order is case-sensitively unique
-    is expected to validate that :order looks like an integer
-    is expected to validate that :name is case-sensitively unique
-    is expected to validate that :name cannot be empty/falsy
-
-Event
-  has a translation for every event type
+AccountResetRequest
   is expected to belong to user required: false
-  validations
-    is expected to validate that :event_type cannot be empty/falsy
-    factory built event is valid
+  #granted_token_expired?
+    returns false if the token does not exist
+    returns true if the token is expired
+    returns false if the token is valid
+  #granted_token_valid?
+    returns true if the token is valid
+    returns false if the token does not exist
+    returns false if the token is expired
 
-Agreements::Iaa
-  is expected to delegate #gtc_end_date to the #gtc object as #end_date
-  is expected to delegate #gtc_status to the #gtc object as #status
-  is expected to delegate #order_end_date to the #order object as #end_date
-  is expected to delegate #gtc_start_date to the #gtc object as #start_date
-  is expected to delegate #gtc_mod_number to the #gtc object as #mod_number
-  is expected to delegate #gtc_number to the #gtc object
-  is expected to delegate #order_estimated_amount to the #order object as #estimated_amount
-  is expected to delegate #order_start_date to the #order object as #start_date
-  is expected to delegate #gtc_estimated_amount to the #gtc object as #estimated_amount
-  is expected to delegate #order_number to the #order object
-  is expected to delegate #order_mod_number to the #order object as #mod_number
-  is expected to delegate #order_status to the #order object as #status
-  #==
-    returns false when the order does not match
-    returns true when both the order and the gtc are equal
-  #partner_account
-    returns the requesting agency of the partner account
-  delegated methods
-    does not permit arbitrary sends to the gtc or order objects
-  #iaa_number
-    returns the formatted IAA number
-  attributes
-    authentications
-      defaults to an empty hash
-      can be set to a custom value
-    ial2_users
-      defaults to zero
-      can be set to a custom value
+DeletedUser
+  .create_from_user
+    does nothing if the user does not exist
+    fails gracefully if we try to insert the same user twice and returns the deleted user
+    creates a deleted_user and retains some fields
+    fails gracefully if we try to insert the same user while in a transaction
+
+NullIdentity
+  #service_provider
+    uses constant
 
 BackupCodeConfiguration
   self.selection_presenters(set)
-    returns a selection presenter
     returns [] if set is []
+    returns a selection presenter
     returns only one selection presenter if multiple backup code configurations
+  Methods
+    is expected to respond to #friendly_name
+    is expected to respond to #selection_presenters
+    is expected to belong to user required: false
+    is expected to respond to #mfa_enabled?
+  self.unused
+    count is zero
+  selection_presenters
+    returns an array containing the presenter
+  .find_with_code
+    finds codes if they were generated the old way (with SecureRandom.hex)
+    returns the code
+    finds codes if they have different salts and costs from each other
+    does not return the code with a wrong user id
+    finds codes via salted_code_fingerprint
+    base32 crockford normalizes codes when searching
+  friendly_name
+    returns a friendly name
   will_save_change_to_code?
     returns true if code changed
     returns false if code did not change
-  self.unused
-    count is zero
-  .find_with_code
-    base32 crockford normalizes codes when searching
-    finds codes if they have different salts and costs from each other
-    finds codes if they were generated the old way (with SecureRandom.hex)
-    returns the code
-    finds codes via salted_code_fingerprint
-    does not return the code with a wrong user id
-  friendly_name
-    returns a friendly name
   mfa_enabled?
     is truthy if there is a backup code configuration event
     is falsey if there is no backup code configuration event
-  Methods
-    is expected to respond to #selection_presenters
-    is expected to respond to #friendly_name
-    is expected to belong to user required: false
-    is expected to respond to #mfa_enabled?
-  selection_presenters
-    returns an array containing the presenter
 
-Device
+AgencyIdentity
   is expected to belong to user required: false
+  is expected to belong to agency required: false
   validations
-    is expected to validate that :last_used_at cannot be empty/falsy
-    is expected to validate that :user_id cannot be empty/falsy
-    is expected to validate that :cookie_uuid cannot be empty/falsy
-    is expected to validate that :last_ip cannot be empty/falsy
-    factory built event is valid
-  #update_last_used_ip
-    updates the last ip and last_used_at
-
-UserOtpMethods
-  #authenticate_direct_otp
-    crockford base-32 normalizes incoming codes
-    rejects similar crockford encodings but the wrong length
-    is false when the OTP has expired
-    is true when the code is the same code
+    is expected to validate that :uuid cannot be empty/falsy
 
 ServiceProvider
-  #skip_encryption_allowed
-    SP in allowed list
-      allows the SP to optionally skip encrypting the SAML response
-    SP not in allowed list
-      does not allow the SP to optionally skip encrypting the SAML response
-  #ssl_certs
-    when a cert is named in the DB but does not exist on disk
-      is an array of the existing certs only
-    with the PEM of a cert in the plural column
-      is an array of the X509 cert
-    with an empty string plural cert
-      is the empty array
-    with the name of a cert in the plural column
-      is an array of the X509 cert
-  associations
-    is expected to have many identities inverse_of => service_provider_record
-    is expected to belong to agency required: false
   #metadata
     when the service provider is defined in the YAML
       returns a hash with symbolized attributes from YAML
   #issuer
     returns the constructor value
-
-AccountResetRequest
-  is expected to belong to user required: false
-  #granted_token_valid?
-    returns false if the token is expired
-    returns false if the token does not exist
-    returns true if the token is valid
-  #granted_token_expired?
-    returns true if the token is expired
-    returns false if the token does not exist
-    returns false if the token is valid
-
-Agreements::IntegrationUsage
-  validations and associations
-    is expected to validate that :integration cannot be empty/falsy
-    is expected to belong to integration required: false
-    validates that the IAA Order and Integration belong to the same account (PENDING: Temporarily skipped with xit)
-    is expected to validate that :iaa_order cannot be empty/falsy
-    is expected to belong to iaa_order required: false
-    is expected to have one partner_account through integration
-    is expected to validate that :integration_id is case-sensitively unique within the scope of :iaa_order_id
+  associations
+    is expected to have many identities inverse_of => service_provider_record
+    is expected to belong to agency required: false
+  #ssl_certs
+    with the name of a cert in the plural column
+      is an array of the X509 cert
+    with an empty string plural cert
+      is the empty array
+    with the PEM of a cert in the plural column
+      is an array of the X509 cert
+    when a cert is named in the DB but does not exist on disk
+      is an array of the existing certs only
+  #skip_encryption_allowed
+    SP in allowed list
+      allows the SP to optionally skip encrypting the SAML response
+    SP not in allowed list
+      does not allow the SP to optionally skip encrypting the SAML response
 
 ServiceProviderIdentity
   is expected to belong to user required: false
   is expected to validate that :service_provider cannot be empty/falsy
   .deactivate
     sets last_authenticated_at to nil
-  #failure_to_proof_url
-    for an sp without a failure to proof URL
-      returns nil
-    for an sp with a failure to proof url
-      returns the failure_to_proof_url for the sp
-  #display_name
-    returns service provider friendly name first
-    returns service_provider friendly_name if agency is missing
   #generate_uuid
     calls generate_uuid before creation
     when does not already have a uuid
       generates it via SecureRandom.uuid
     when already has a uuid
       returns the current uuid
-  uniqueness validation for service provider per user
-    does not raise an error for a different service provider
-    raises an error when uniqueness constraint is broken
-  #agency_name
-    returns service_provider friendly_name if agency is missing
-    returns service_provider friendly_name if agency is missing
-    returns service provider agency first
   uuid validations
-    uses a DB constraint to enforce presence
     uses a DB index to enforce uniqueness
+    uses a DB constraint to enforce presence
   #return_to_sp_url
     for an sp without a return URL
       returns nil
     for an sp with a return URL
       returns the return url for the sp
+  #display_name
+    returns service provider friendly name first
+    returns service_provider friendly_name if agency is missing
+  #failure_to_proof_url
+    for an sp with a failure to proof url
+      returns the failure_to_proof_url for the sp
+    for an sp without a failure to proof URL
+      returns nil
+  #agency_name
+    returns service_provider friendly_name if agency is missing
+    returns service provider agency first
+    returns service_provider friendly_name if agency is missing
+  uniqueness validation for service provider per user
+    raises an error when uniqueness constraint is broken
+    does not raise an error for a different service provider
+
+GpoConfirmationCode
+  #expired?
+    returns true for an expired otp
+    returns false for a valid otp
+  .first_with_otp
+    returns nil if no record matches the OTP
+    normalizes the entered otp before searching
+    return the record with the matching OTP
+
+DocumentCaptureSession
+  #store_doc_auth_result
+    generates a result ID stores the result encrypted in redis
+    with attention with barcode response
+      sets record as pending ocr confirmation
+  #expired?
+    requested_at is datetime
+      returns false if not expired
+      returns true if expired
+    requested_at is nil
+      returns true
+  #load_result
+    returns nil if the previously stored result does not exist or expired
+    loads the previously stored result
+  #store_result_from_response
+    generates a result ID stores the result encrypted in redis
+    with attention with barcode response
+      sets record as pending ocr confirmation
+
+Agreements::PartnerAccount
+  validations and associations
+    is expected to validate that :requesting_agency cannot be empty/falsy
+    is expected to belong to agency required: false
+    is expected to have many iaa_orders through iaa_gtcs
+    is expected to belong to partner_account_status required: false
+    is expected to validate that :requesting_agency is case-sensitively unique
+    is expected to have many iaa_gtcs
+    is expected to validate that :name cannot be empty/falsy
+    is expected to validate that :name is case-sensitively unique
+    is expected to have many integrations
+  #partner_status
+    returns the partner_name of the associated partner_account_status
+
+SpReturnLog
+  associations
+    is expected to belong to user required: false
 
 OtpRequestsTracker
   .atomic_increment
@@ -572,32 +419,192 @@ OtpRequestsTracker
     match found
       returns the existing record and does not change it
 
-Agency
-  validations
-    is expected to validate that :abbreviation is case-insensitively unique
-    is expected to validate that :name cannot be empty/falsy
+Agreements::IaaOrder
+  #status
+    returns "pending_start" if the agreement is not yet in force
+    returns "active" if the agreement is in force
+    returns "expired" if the agreement is no longer in force
+  #in_pop?
+    returns false if the date is outside the POP
+    raises an argument error if a non-date/datetime is passed in
+    returns true if the date is within the POP
+    returns false if the start_date is nil
+    returns false if the end_date is nil
+  validations and associations
+    is expected to have many integrations through integration_usages
+    is expected to have many integration_usages dependent => restrict_with_exception
+    is expected to validate that :order_number cannot be empty/falsy
+    is expected to validate that :mod_number looks like an integer greater than or equal to 0
+    is expected to validate that :estimated_amount looks like a number less than 10000000000 and greater than or equal to 0 as long as it is not nil
+    is expected to validate that :start_date cannot be empty/falsy
+    is expected to validate that :end_date cannot be empty/falsy
+    is expected to belong to iaa_gtc required: false
+    is expected to validate that :order_number is case-sensitively unique within the scope of :iaa_gtc_id
+    validates that the end_date must be after the start_date
+    is expected to validate that :pricing_model cannot be empty/falsy
+    is expected to have one partner_account through iaa_gtc
+    is expected to validate that :order_number looks like an integer greater than or equal to 0
+    is expected to validate that :mod_number cannot be empty/falsy
+    is expected to validate that :pricing_model looks like an integer greater than or equal to 0
+
+EmailAddress
   Associations
-    is expected to have many agency_identities dependent => destroy
-    is expected to have many partner_accounts class_name => Agreements::PartnerAccount
-    is expected to have many service_providers inverse_of => agency
+    is expected to validate that :encrypted_email cannot be empty/falsy
+    is expected to validate that :email_fingerprint cannot be empty/falsy
+    is expected to belong to user required: false
+  encrypted attributes
+    decrypts email
+    with unnormalized email
+      normalizes email
+  #confirmation_period_expired?
+    returns true when beyond add_email_link_valid_for_hours value
+    returns false when within add_email_link_valid_for_hours value
+  creation
+    stores an encrypted form of the email address
+  .find_with_email
+    finds by email
+    .update_last_sign_in_at_on_user_id_and_email
+      updates attributes and can look up by previous fingerprints
+    when email is fingerprinted with an old key
+      looks up by older fingerprints too
 
-NullIdentity
-  #service_provider
-    uses constant
+InPersonEnrollment
+  minutes_since_last_status_check
+    returns number of minutes since last status check
+    returns nil if enrollment has not been status-checked
+  email_reminders
+    returns pending enrollments that need early reminder
+    returns pending enrollments that need late reminder
+  needs_usps_status_check
+    returns only pending enrollments
+    indicates whether an enrollment needs a status check
+  minutes_since_established
+    returns number of minutes since enrollment was established
+    returns nil if enrollment has not been established
+  Triggers
+    generates a unique ID if one is not provided
+    does not generated a unique ID if one is provided
+  Status
+    defines enum correctly
+  Associations
+    is expected to belong to profile required: false
+    is expected to belong to user required: false
+  minutes_since_status_updated
+    returns nil if enrollment status has not been updated
+    returns number of minutes since the status was updated
+  Constraints
+    does not allow more than one pending enrollment per user
+    requires the profile to be associated with the user
+    does not constrain enrollments for non-pending status
+    does not allow duplicate unique ids
 
-Agreements::PartnerAccount
-  #partner_status
-    returns the partner_name of the associated partner_account_status
+Agreements::PartnerAccountStatus
+  #partner_name
+    returns the partner_name if set
+    returns the name if no partner_name is set
   validations and associations
     is expected to validate that :name cannot be empty/falsy
+    is expected to have many partner_accounts
+    is expected to validate that :order looks like an integer
+    is expected to validate that :order cannot be empty/falsy
     is expected to validate that :name is case-sensitively unique
-    is expected to belong to partner_account_status required: false
-    is expected to validate that :requesting_agency is case-sensitively unique
-    is expected to validate that :requesting_agency cannot be empty/falsy
-    is expected to belong to agency required: false
-    is expected to have many integrations
-    is expected to have many iaa_gtcs
-    is expected to have many iaa_orders through iaa_gtcs
+    is expected to validate that :order is case-sensitively unique
+
+Agency
+  Associations
+    is expected to have many partner_accounts class_name => Agreements::PartnerAccount
+    is expected to have many agency_identities dependent => destroy
+    is expected to have many service_providers inverse_of => agency
+  validations
+    is expected to validate that :name cannot be empty/falsy
+    is expected to validate that :abbreviation is case-insensitively unique
+
+Profile
+  is expected to have many gpo_confirmation_codes dependent => destroy
+  is expected to have one in_person_enrollment dependent => destroy
+  is expected to belong to user required: false
+  #encrypt_pii
+    fingerprints the PII
+    encrypts PII
+    generates new personal key
+    updates the personal key digest generation time
+    when a part of the compound PII key is missing
+      does not write a fingerprint
+    ssn fingerprinting
+      fingerprints the ssn
+      ssn is blank
+        does not fingerprint the SSN
+  #encrypt_recovery_pii
+    generates new personal key
+  #decrypt_pii
+    fails if the encryption context from the uuid is incorrect
+    decrypts PII
+  #includes_phone_check?
+    returns true if the address_check component is lexis_nexis_address
+    returns false if the address_check componet is gpo_letter
+    returns false if proofing_components is blank
+  #has_proofed_before
+    is true when the user is re-activated
+    is false when the user has only been activated once
+  scopes
+    #active
+      returns only active Profiles
+    #verified
+      returns only verified Profiles
+  #deactivate
+    sets active flag to false
+  #activate
+    sends a reproof completed push event
+    activates current Profile, de-activates all other Profile for the user
+    does not send a reproof event when there is a non active profile
+    does not send a reproof event when there is no active profile
+  #recover_pii
+    decrypts the encrypted_pii_recovery using a personal key
+  #proofing_components
+    when the value is nil
+      is nil
+    when the value is a JSON object
+      is the object
+    when the value is the empty string
+      is the empty string
+  allows only one active Profile per user
+    prevents save! via psql unique partial index
+    prevents create! via ActiveRecord uniqueness validation
+
+Event
+  has a translation for every event type
+  is expected to belong to user required: false
+  validations
+    is expected to validate that :event_type cannot be empty/falsy
+    factory built event is valid
+
+Device
+  is expected to belong to user required: false
+  #update_last_used_ip
+    updates the last ip and last_used_at
+  validations
+    is expected to validate that :cookie_uuid cannot be empty/falsy
+    is expected to validate that :last_ip cannot be empty/falsy
+    is expected to validate that :last_used_at cannot be empty/falsy
+    factory built event is valid
+    is expected to validate that :user_id cannot be empty/falsy
+
+Agreements::IaaGtc
+  #status
+    returns "pending_start" if the agreement is not yet in force
+    returns "active" if the agreement is in force
+    returns "expired" if the agreement is no longer in force
+  validations and associations
+    is expected to validate that :mod_number looks like an integer greater than or equal to 0
+    is expected to validate that :mod_number cannot be empty/falsy
+    is expected to validate that :gtc_number is case-sensitively unique
+    is expected to validate that :estimated_amount looks like a number less than 10000000000 and greater than or equal to 0 as long as it is not nil
+    validates that the end_date must be after the start_date
+    is expected to belong to partner_account required: false
+    is expected to validate that :gtc_number cannot be empty/falsy
+    is expected to have many iaa_orders dependent => restrict_with_exception
+    is expected to validate that :end_date cannot be empty/falsy
+    is expected to validate that :start_date cannot be empty/falsy
 
 Pending: (Failures listed here are expected and do not affect your suite's status)
 
@@ -605,52 +612,53 @@ Pending: (Failures listed here are expected and do not affect your suite's statu
      # Temporarily skipped with xit
      # ./spec/models/agreements/integration_usage_spec.rb:11
 
-Top 10 slowest examples (3.62 seconds, 11.0% of total time):
-  InPersonEnrollment needs_usps_status_check returns only pending enrollments
-    0.4786 seconds ./spec/models/in_person_enrollment_spec.rb:108
-  Agreements::Integration validations and associations is expected to validate that :issuer cannot be empty/falsy
-    0.44634 seconds ./spec/models/agreements/integration_spec.rb:7
+Top 10 slowest examples (4.9 seconds, 13.0% of total time):
   InPersonEnrollment needs_usps_status_check indicates whether an enrollment needs a status check
-    0.4419 seconds ./spec/models/in_person_enrollment_spec.rb:118
+    0.71339 seconds ./spec/models/in_person_enrollment_spec.rb:172
+  InPersonEnrollment email_reminders returns pending enrollments that need early reminder
+    0.55531 seconds ./spec/models/in_person_enrollment_spec.rb:122
+  InPersonEnrollment email_reminders returns pending enrollments that need late reminder
+    0.55211 seconds ./spec/models/in_person_enrollment_spec.rb:133
+  InPersonEnrollment needs_usps_status_check returns only pending enrollments
+    0.50914 seconds ./spec/models/in_person_enrollment_spec.rb:162
   User when user has IPP enrollments #in_person_enrollments deletes everything under the profile and does not result in an error when the profile is deleted before the user
-    0.39316 seconds ./spec/models/user_spec.rb:262
-  BackupCodeConfiguration.find_with_code returns the code
-    0.33642 seconds ./spec/models/backup_code_configuration_spec.rb:71
-  BackupCodeConfiguration.find_with_code does not return the code with a wrong user id
-    0.32811 seconds ./spec/models/backup_code_configuration_spec.rb:78
-  User when user has IPP enrollments #in_person_enrollments deletes everything and does not result in an error when the user is deleted before the profile
-    0.31835 seconds ./spec/models/user_spec.rb:230
+    0.49031 seconds ./spec/models/user_spec.rb:262
+  Agreements::PartnerAccountStatus validations and associations is expected to validate that :name is case-sensitively unique
+    0.46898 seconds ./spec/models/agreements/partner_account_status_spec.rb:8
   InPersonEnrollment Constraints does not constrain enrollments for non-pending status
-    0.29678 seconds ./spec/models/in_person_enrollment_spec.rb:47
+    0.45513 seconds ./spec/models/in_person_enrollment_spec.rb:47
+  PhoneNumberOptOut#opt_in deletes the row
+    0.42509 seconds ./spec/models/phone_number_opt_out_spec.rb:60
+  User when user has IPP enrollments #in_person_enrollments deletes everything and does not result in an error when the user is deleted before the profile
+    0.36643 seconds ./spec/models/user_spec.rb:230
   User when user has IPP enrollments #establishing_in_person_enrollment returns the establishing IPP enrollment
-    0.29593 seconds ./spec/models/user_spec.rb:303
-  BackupCodeConfiguration.find_with_code finds codes via salted_code_fingerprint
-    0.28604 seconds ./spec/models/backup_code_configuration_spec.rb:85
+    0.35964 seconds ./spec/models/user_spec.rb:303
 
 Top 10 slowest example groups:
-  Agreements::Integration
-    0.19144 seconds average (1.91 seconds / 10 examples) ./spec/models/agreements/integration_spec.rb:3
-  Agreements::IntegrationUsage
-    0.1759 seconds average (1.23 seconds / 7 examples) ./spec/models/agreements/integration_usage_spec.rb:3
   InPersonEnrollment
-    0.13839 seconds average (2.35 seconds / 17 examples) ./spec/models/in_person_enrollment_spec.rb:3
-  User
-    0.1073 seconds average (6.87 seconds / 64 examples) ./spec/models/user_spec.rb:4
-  Agreements::PartnerAccount
-    0.1048 seconds average (1.05 seconds / 10 examples) ./spec/models/agreements/partner_account_spec.rb:3
-  BackupCodeConfiguration
-    0.10089 seconds average (2.02 seconds / 20 examples) ./spec/models/backup_code_configuration_spec.rb:3
-  Agreements::IaaGtc
-    0.10036 seconds average (1.3 seconds / 13 examples) ./spec/models/agreements/iaa_gtc_spec.rb:3
-  Agreements::IaaOrder
-    0.09814 seconds average (2.26 seconds / 23 examples) ./spec/models/agreements/iaa_order_spec.rb:3
+    0.232 seconds average (4.41 seconds / 19 examples) ./spec/models/in_person_enrollment_spec.rb:3
+  Agreements::IntegrationUsage
+    0.19595 seconds average (1.37 seconds / 7 examples) ./spec/models/agreements/integration_usage_spec.rb:3
+  Agreements::Integration
+    0.15283 seconds average (1.53 seconds / 10 examples) ./spec/models/agreements/integration_spec.rb:3
+  Agency
+    0.15032 seconds average (0.7516 seconds / 5 examples) ./spec/models/agency_spec.rb:3
+  Agreements::PartnerAccountStatus
+    0.13302 seconds average (1.06 seconds / 8 examples) ./spec/models/agreements/partner_account_status_spec.rb:3
+  PhoneNumberOptOut
+    0.12621 seconds average (1.01 seconds / 8 examples) ./spec/models/phone_number_opt_out_spec.rb:3
   Profile
-    0.09531 seconds average (2.95 seconds / 31 examples) ./spec/models/profile_spec.rb:3
-  ServiceProviderIdentity
-    0.09442 seconds average (1.79 seconds / 19 examples) ./spec/models/service_provider_identity_spec.rb:3
+    0.11942 seconds average (3.7 seconds / 31 examples) ./spec/models/profile_spec.rb:3
+  User
+    0.10713 seconds average (6.86 seconds / 64 examples) ./spec/models/user_spec.rb:4
+  Agreements::IaaOrder
+    0.10303 seconds average (2.37 seconds / 23 examples) ./spec/models/agreements/iaa_order_spec.rb:3
+  BackupCodeConfiguration
+    0.09754 seconds average (1.95 seconds / 20 examples) ./spec/models/backup_code_configuration_spec.rb:3
 
-Finished in 32.98 seconds (files took 1.05 seconds to load)
-350 examples, 0 failures, 1 pending
+Finished in 37.74 seconds (files took 3.27 seconds to load)
+353 examples, 0 failures, 1 pending
 
-Randomized with seed 54515
+Randomized with seed 26842
 
+Coverage report generated for RSpec to /home/jmax/projects/identity-idp/coverage. 3004 / 35889 LOC (8.37%) covered.
