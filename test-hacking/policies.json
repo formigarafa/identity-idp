@@ -1,0 +1,540 @@
+{
+  "version": "3.11.0",
+  "seed": 13125,
+  "examples": [
+    {
+      "id": "./spec/policies/two_factor_authentication/piv_cac_policy_spec.rb[1:1:1:1]",
+      "description": "is expected to be falsey",
+      "full_description": "TwoFactorAuthentication::PivCacPolicy#configured? without a piv configured is expected to be falsey",
+      "status": "passed",
+      "file_path": "./spec/policies/two_factor_authentication/piv_cac_policy_spec.rb",
+      "line_number": 10,
+      "run_time": 0.49617574,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/two_factor_authentication/piv_cac_policy_spec.rb[1:1:2:1]",
+      "description": "is expected to be truthy",
+      "full_description": "TwoFactorAuthentication::PivCacPolicy#configured? with a piv configured is expected to be truthy",
+      "status": "passed",
+      "file_path": "./spec/policies/two_factor_authentication/piv_cac_policy_spec.rb",
+      "line_number": 16,
+      "run_time": 0.066071316,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/two_factor_authentication/piv_cac_policy_spec.rb[1:2:2:1]",
+      "description": "is expected to be truthy",
+      "full_description": "TwoFactorAuthentication::PivCacPolicy#enabled? with a piv configured is expected to be truthy",
+      "status": "passed",
+      "file_path": "./spec/policies/two_factor_authentication/piv_cac_policy_spec.rb",
+      "line_number": 30,
+      "run_time": 0.079299994,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/two_factor_authentication/piv_cac_policy_spec.rb[1:2:1:1]",
+      "description": "is expected to be falsey",
+      "full_description": "TwoFactorAuthentication::PivCacPolicy#enabled? without a piv configured is expected to be falsey",
+      "status": "passed",
+      "file_path": "./spec/policies/two_factor_authentication/piv_cac_policy_spec.rb",
+      "line_number": 24,
+      "run_time": 0.083189648,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/user_mfa_policy_spec.rb[1:5:1:1]",
+      "description": "is expected to eq true",
+      "full_description": "MfaPolicy#multiple_non_restricted_factors_enabled? with multi mfa disabled returns true  is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/user_mfa_policy_spec.rb",
+      "line_number": 49,
+      "run_time": 0.130850829,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/user_mfa_policy_spec.rb[1:4:2:1]",
+      "description": "is expected to eq false",
+      "full_description": "MfaPolicy#unphishable? with phishable configuration is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/user_mfa_policy_spec.rb",
+      "line_number": 37,
+      "run_time": 0.075250541,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/user_mfa_policy_spec.rb[1:4:1:1]",
+      "description": "is expected to eq true",
+      "full_description": "MfaPolicy#unphishable? with unphishable configuration is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/user_mfa_policy_spec.rb",
+      "line_number": 31,
+      "run_time": 0.166761473,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/user_mfa_policy_spec.rb[1:3:1]",
+      "description": "is expected to eq true",
+      "full_description": "MfaPolicy two mfa configuration is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/user_mfa_policy_spec.rb",
+      "line_number": 23,
+      "run_time": 0.08854096,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/user_mfa_policy_spec.rb[1:3:2]",
+      "description": "is expected to eq true",
+      "full_description": "MfaPolicy two mfa configuration is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/user_mfa_policy_spec.rb",
+      "line_number": 24,
+      "run_time": 0.101916028,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/user_mfa_policy_spec.rb[1:2:1]",
+      "description": "is expected to eq true",
+      "full_description": "MfaPolicy one mfa configuration is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/user_mfa_policy_spec.rb",
+      "line_number": 16,
+      "run_time": 0.085391635,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/user_mfa_policy_spec.rb[1:2:2]",
+      "description": "is expected to eq false",
+      "full_description": "MfaPolicy one mfa configuration is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/user_mfa_policy_spec.rb",
+      "line_number": 17,
+      "run_time": 0.083867677,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/user_mfa_policy_spec.rb[1:6:1:1]",
+      "description": "is expected to eq false",
+      "full_description": "MfaPolicy#multiple_non_restricted_factors_enabled? with multi mfa enabled returns false  is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/user_mfa_policy_spec.rb",
+      "line_number": 61,
+      "run_time": 0.129647866,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/user_mfa_policy_spec.rb[1:1:2]",
+      "description": "is expected to eq false",
+      "full_description": "MfaPolicy no mfa configurations is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/user_mfa_policy_spec.rb",
+      "line_number": 10,
+      "run_time": 0.09594284,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/user_mfa_policy_spec.rb[1:1:1]",
+      "description": "is expected to eq false",
+      "full_description": "MfaPolicy no mfa configurations is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/user_mfa_policy_spec.rb",
+      "line_number": 9,
+      "run_time": 0.087945625,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:5:1:2:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#allow_user_to_switch_method? phishing-resistant required the user does not have more than one aal3 method is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 262,
+      "run_time": 0.124996932,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:5:1:1:1]",
+      "description": "is expected to eq true",
+      "full_description": "ServiceProviderMfaPolicy#allow_user_to_switch_method? phishing-resistant required the user has more than one phishing-resistant method is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 254,
+      "run_time": 0.151305665,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:5:2:3:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#allow_user_to_switch_method? piv/cac required the user has a PIV and webauthn token is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 288,
+      "run_time": 0.231787949,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:5:2:2:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#allow_user_to_switch_method? piv/cac required the user does not have a PIV is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 279,
+      "run_time": 0.142729318,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:5:2:1:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#allow_user_to_switch_method? piv/cac required the user has a PIV is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 273,
+      "run_time": 0.154276754,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:5:3:1]",
+      "description": "is expected to eq true",
+      "full_description": "ServiceProviderMfaPolicy#allow_user_to_switch_method? there are no MFA reqirements is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 295,
+      "run_time": 0.151849876,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:1:2:1]",
+      "description": "is expected to eq true",
+      "full_description": "ServiceProviderMfaPolicy#phishing_resistant_required? phishing-resistant requested is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 34,
+      "run_time": 0.103883065,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:1:5:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#phishing_resistant_required? aal2 level requested, SP default is aal3 is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 55,
+      "run_time": 0.103857363,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:1:1:1]",
+      "description": "is expected to eq true",
+      "full_description": "ServiceProviderMfaPolicy#phishing_resistant_required? AAL 3 requested is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 27,
+      "run_time": 0.129293068,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:1:3:1]",
+      "description": "is expected to eq true",
+      "full_description": "ServiceProviderMfaPolicy#phishing_resistant_required? no aal level requested, SP default is aal3 is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 41,
+      "run_time": 0.116206309,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:1:4:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#phishing_resistant_required? aal2 requested, no default set is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 48,
+      "run_time": 0.128173078,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:2:1:3:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_verification? aal3 required the user used webauthn is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 82,
+      "run_time": 0.163089168,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:2:1:1:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_verification? aal3 required the user needs to setup an AAL3 method is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 66,
+      "run_time": 0.249673707,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:2:1:2:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_verification? aal3 required the user used PIV/CAC is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 74,
+      "run_time": 0.15995353,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:2:1:4:1]",
+      "description": "is expected to eq true",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_verification? aal3 required the user did not use an AAL3 method is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 93,
+      "run_time": 0.253934922,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:2:2:4:1]",
+      "description": "is expected to eq true",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_verification? piv/cac required the user did not use an AAL3 method is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 134,
+      "run_time": 0.218619334,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:2:2:1:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_verification? piv/cac required the user needs to setup a PIV is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 104,
+      "run_time": 0.174705329,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:2:2:3:1]",
+      "description": "is expected to eq true",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_verification? piv/cac required the user used webauthn is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 123,
+      "run_time": 0.24016315,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:2:2:2:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_verification? piv/cac required the user used PIV/CAC is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 112,
+      "run_time": 0.179456557,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:2:3:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_verification? no MFA requirements is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 143,
+      "run_time": 0.15436252,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:4:3:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#auth_method_confirms_to_sp_request? the user has not setup the required MFA is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 231,
+      "run_time": 0.188132359,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:4:4:1]",
+      "description": "is expected to eq true",
+      "full_description": "ServiceProviderMfaPolicy#auth_method_confirms_to_sp_request? there are no MFA requirements is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 240,
+      "run_time": 0.175563829,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:4:2:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#auth_method_confirms_to_sp_request? the user did not use the required MFA is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 222,
+      "run_time": 0.151095021,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:4:1:1]",
+      "description": "is expected to eq true",
+      "full_description": "ServiceProviderMfaPolicy#auth_method_confirms_to_sp_request? the user used the required MFA is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 210,
+      "run_time": 0.170384609,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:3:3:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_setup? no MFA requirements is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 196,
+      "run_time": 0.140179238,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:3:2:3:1]",
+      "description": "is expected to eq true",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_setup? piv/cac required the user does not have an AAL3 method configured is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 189,
+      "run_time": 0.136858938,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:3:2:1:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_setup? piv/cac required the user has PIV/CAC configured is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 177,
+      "run_time": 0.173907172,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:3:2:2:1]",
+      "description": "is expected to eq true",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_setup? piv/cac required the user has webauthn configured is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 183,
+      "run_time": 0.193877303,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:3:1:1:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_setup? aal3 required the user has PIV/CAC configured is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 154,
+      "run_time": 0.147744269,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:3:1:2:1]",
+      "description": "is expected to eq false",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_setup? aal3 required the user has webauthn configured is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 160,
+      "run_time": 0.184041839,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/service_provider_mfa_policy_spec.rb[1:3:1:3:1]",
+      "description": "is expected to eq true",
+      "full_description": "ServiceProviderMfaPolicy#user_needs_sp_auth_method_setup? aal3 required the user does not have an AAL3 method configured is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/policies/service_provider_mfa_policy_spec.rb",
+      "line_number": 166,
+      "run_time": 0.166967088,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/webauthn_login_option_policy_spec.rb[1:1:1:1]",
+      "description": "is expected to be falsey",
+      "full_description": "TwoFactorAuthentication::WebauthnPolicy#configured? without a webauthn configured is expected to be falsey",
+      "status": "passed",
+      "file_path": "./spec/policies/webauthn_login_option_policy_spec.rb",
+      "line_number": 12,
+      "run_time": 0.095814331,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/webauthn_login_option_policy_spec.rb[1:1:2:1]",
+      "description": "returns a truthy value",
+      "full_description": "TwoFactorAuthentication::WebauthnPolicy#configured? with a webauthn configured returns a truthy value",
+      "status": "passed",
+      "file_path": "./spec/policies/webauthn_login_option_policy_spec.rb",
+      "line_number": 26,
+      "run_time": 0.106783194,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/webauthn_login_option_policy_spec.rb[1:2:2:1]",
+      "description": "returns a truthy value",
+      "full_description": "TwoFactorAuthentication::WebauthnPolicy#roaming_enabled? with a roaming webauthn configured returns a truthy value",
+      "status": "passed",
+      "file_path": "./spec/policies/webauthn_login_option_policy_spec.rb",
+      "line_number": 51,
+      "run_time": 0.111932243,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/webauthn_login_option_policy_spec.rb[1:2:1:1]",
+      "description": "is expected to be falsey",
+      "full_description": "TwoFactorAuthentication::WebauthnPolicy#roaming_enabled? without a webauthn configured is expected to be falsey",
+      "status": "passed",
+      "file_path": "./spec/policies/webauthn_login_option_policy_spec.rb",
+      "line_number": 36,
+      "run_time": 0.10021076,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/backup_code_policy_spec.rb[1:1:1]",
+      "description": "returns false if there are no codes",
+      "full_description": "TwoFactorAuthentication::BackupCodePolicy#configured? returns false if there are no codes",
+      "status": "passed",
+      "file_path": "./spec/policies/backup_code_policy_spec.rb",
+      "line_number": 8,
+      "run_time": 0.078852445,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/backup_code_policy_spec.rb[1:1:3]",
+      "description": "returns true if there are usable codes",
+      "full_description": "TwoFactorAuthentication::BackupCodePolicy#configured? returns true if there are usable codes",
+      "status": "passed",
+      "file_path": "./spec/policies/backup_code_policy_spec.rb",
+      "line_number": 19,
+      "run_time": 0.090236451,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/policies/backup_code_policy_spec.rb[1:1:2]",
+      "description": "returns false if all the backup codes are used",
+      "full_description": "TwoFactorAuthentication::BackupCodePolicy#configured? returns false if all the backup codes are used",
+      "status": "passed",
+      "file_path": "./spec/policies/backup_code_policy_spec.rb",
+      "line_number": 12,
+      "run_time": 0.082395403,
+      "pending_message": null
+    }
+  ],
+  "profile": {
+    "examples": [],
+    "slowest": 0.0,
+    "total": 9.001076507,
+    "groups": []
+  },
+  "summary": {
+    "duration": 9.001076507,
+    "example_count": 52,
+    "failure_count": 0,
+    "pending_count": 0,
+    "errors_outside_of_examples_count": 0
+  },
+  "summary_line": "52 examples, 0 failures"
+}

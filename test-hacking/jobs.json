@@ -1,0 +1,2060 @@
+{
+  "version": "3.11.0",
+  "seed": 2386,
+  "examples": [
+    {
+      "id": "./spec/jobs/reports/month_helper_spec.rb[1:1:1]",
+      "description": "breaks a range into months",
+      "full_description": "Reports::MonthHelper.months breaks a range into months",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/month_helper_spec.rb",
+      "line_number": 7,
+      "run_time": 0.125594503,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/month_helper_spec.rb[1:1:2]",
+      "description": "does not double-count when first and last are the same month",
+      "full_description": "Reports::MonthHelper.months does not double-count when first and last are the same month",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/month_helper_spec.rb",
+      "line_number": 17,
+      "run_time": 0.04971147,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/irs_weekly_summary_report_spec.rb[1:1:2]",
+      "description": "uploads a file to S3 based on the report date",
+      "full_description": "Reports::IrsWeeklySummaryReport#perform uploads a file to S3 based on the report date",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/irs_weekly_summary_report_spec.rb",
+      "line_number": 25,
+      "run_time": 0.767238772,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/irs_weekly_summary_report_spec.rb[1:1:1]",
+      "description": "sends out a report to the email listed with system demand",
+      "full_description": "Reports::IrsWeeklySummaryReport#perform sends out a report to the email listed with system demand",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/irs_weekly_summary_report_spec.rb",
+      "line_number": 13,
+      "run_time": 0.312077747,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/base_report_spec.rb[1:1:1]",
+      "description": "sets the statement_timeout inside a transaction",
+      "full_description": "Reports::BaseReport#transaction_with_timeout sets the statement_timeout inside a transaction",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/base_report_spec.rb",
+      "line_number": 14,
+      "run_time": 0.055244372,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/stale_job_helper_spec.rb[1:1:1:1]",
+      "description": "is expected to be falsey",
+      "full_description": "JobHelpers::StaleJobHelper#stale_job? with a nil enqueued_at is expected to be falsey",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/stale_job_helper_spec.rb",
+      "line_number": 24,
+      "run_time": 0.060516344,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/stale_job_helper_spec.rb[1:1:3:1]",
+      "description": "is expected to be truthy",
+      "full_description": "JobHelpers::StaleJobHelper#stale_job? with a stale enqueued_at is expected to be truthy",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/stale_job_helper_spec.rb",
+      "line_number": 36,
+      "run_time": 0.092336188,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/stale_job_helper_spec.rb[1:1:2:1]",
+      "description": "is expected to be falsey",
+      "full_description": "JobHelpers::StaleJobHelper#stale_job? with a recent enqueued_at is expected to be falsey",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/stale_job_helper_spec.rb",
+      "line_number": 30,
+      "run_time": 0.057328464,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/stale_job_helper_spec.rb[1:2:1]",
+      "description": "raises",
+      "full_description": "JobHelpers::StaleJobHelper#raise_stale_job! raises",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/stale_job_helper_spec.rb",
+      "line_number": 41,
+      "run_time": 0.081297761,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/irs_attempts_events_batch_job_spec.rb[1:1:3:1]",
+      "description": "returns nil",
+      "full_description": "IrsAttemptsEventsBatchJob#perform IRS attempts bucket name is not set returns nil",
+      "status": "passed",
+      "file_path": "./spec/jobs/irs_attempts_events_batch_job_spec.rb",
+      "line_number": 114,
+      "run_time": 0.127302284,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/irs_attempts_events_batch_job_spec.rb[1:1:2:1]",
+      "description": "returns nil",
+      "full_description": "IrsAttemptsEventsBatchJob#perform IRS attempts API is not enabled returns nil",
+      "status": "passed",
+      "file_path": "./spec/jobs/irs_attempts_events_batch_job_spec.rb",
+      "line_number": 103,
+      "run_time": 0.10823256,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/irs_attempts_events_batch_job_spec.rb[1:1:1:1]",
+      "description": "batches and writes attempt events to an encrypted file",
+      "full_description": "IrsAttemptsEventsBatchJob#perform IRS attempts API is enabled batches and writes attempt events to an encrypted file",
+      "status": "passed",
+      "file_path": "./spec/jobs/irs_attempts_events_batch_job_spec.rb",
+      "line_number": 62,
+      "run_time": 0.376743837,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:1]",
+      "description": "requests the enrollments that need their status checked",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled requests the enrollments that need their status checked",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 180,
+      "run_time": 0.580782347,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:3]",
+      "description": "logs a message when the job starts",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled logs a message when the job starts",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 222,
+      "run_time": 0.551965439,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:2]",
+      "description": "records the last attempted status check regardless of response code and contents",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled records the last attempted status check regardless of response code and contents",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 193,
+      "run_time": 0.494096955,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:4]",
+      "description": "logs a message with counts of various outcomes when the job completes",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled logs a message with counts of various outcomes when the job completes",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 241,
+      "run_time": 0.519751406,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:9:2]",
+      "description": "logs details about the success",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment passes logs details about the success",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 434,
+      "run_time": 0.38670781,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:9:1:1]",
+      "description": "logs a message with common attributes",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment passes behaves like enrollment_with_a_status_update logs a message with common attributes",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 4,
+      "run_time": 0.412302196,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:9:1:3]",
+      "description": "updates the status of the enrollment and profile appropriately",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment passes behaves like enrollment_with_a_status_update updates the status of the enrollment and profile appropriately",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 59,
+      "run_time": 0.488036884,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:9:1:2:1]",
+      "description": "logs message with email analytics attributes",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment passes behaves like enrollment_with_a_status_update email_analytics_attributes logs message with email analytics attributes",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 45,
+      "run_time": 0.389590059,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:21:1:1]",
+      "description": "logs that response is not present",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when a timeout error occurs behaves like enrollment_encountering_an_error_that_has_a_nil_response logs that response is not present",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 119,
+      "run_time": 0.434046879,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:11:2]",
+      "description": "logs fraud failure details",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment fails and fraud is suspected logs fraud failure details",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 487,
+      "run_time": 0.552904957,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:11:1:3]",
+      "description": "updates the status of the enrollment and profile appropriately",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment fails and fraud is suspected behaves like enrollment_with_a_status_update updates the status of the enrollment and profile appropriately",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 59,
+      "run_time": 0.474117605,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:11:1:1]",
+      "description": "logs a message with common attributes",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment fails and fraud is suspected behaves like enrollment_with_a_status_update logs a message with common attributes",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 4,
+      "run_time": 0.463445991,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:11:1:2:1]",
+      "description": "logs message with email analytics attributes",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment fails and fraud is suspected behaves like enrollment_with_a_status_update email_analytics_attributes logs message with email analytics attributes",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 45,
+      "run_time": 0.456993964,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:12:2]",
+      "description": "logs a message about the unsupported ID",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment passes proofing with an unsupported ID logs a message about the unsupported ID",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 513,
+      "run_time": 0.373826107,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:12:1:3]",
+      "description": "updates the status of the enrollment and profile appropriately",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment passes proofing with an unsupported ID behaves like enrollment_with_a_status_update updates the status of the enrollment and profile appropriately",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 59,
+      "run_time": 0.394414761,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:12:1:1]",
+      "description": "logs a message with common attributes",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment passes proofing with an unsupported ID behaves like enrollment_with_a_status_update logs a message with common attributes",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 4,
+      "run_time": 0.432130407,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:12:1:2:1]",
+      "description": "logs message with email analytics attributes",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment passes proofing with an unsupported ID behaves like enrollment_with_a_status_update email_analytics_attributes logs message with email analytics attributes",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 45,
+      "run_time": 0.457264674,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:6:1]",
+      "description": "adds a delay between requests to USPS",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled with a request delay in ms adds a delay between requests to USPS",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 292,
+      "run_time": 0.688630216,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:10:2]",
+      "description": "logs failure details",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment fails logs failure details",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 461,
+      "run_time": 0.468013114,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:10:1:1]",
+      "description": "logs a message with common attributes",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment fails behaves like enrollment_with_a_status_update logs a message with common attributes",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 4,
+      "run_time": 0.44071765,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:10:1:3]",
+      "description": "updates the status of the enrollment and profile appropriately",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment fails behaves like enrollment_with_a_status_update updates the status of the enrollment and profile appropriately",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 59,
+      "run_time": 0.466401435,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:10:1:2:1]",
+      "description": "logs message with email analytics attributes",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment fails behaves like enrollment_with_a_status_update email_analytics_attributes logs message with email analytics attributes",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 45,
+      "run_time": 0.436443026,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:17:2]",
+      "description": "logs the error to NewRelic",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns an unexpected 400 status code logs the error to NewRelic",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 609,
+      "run_time": 0.357964377,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:17:1:2]",
+      "description": "updates the status_check_attempted_at timestamp",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns an unexpected 400 status code behaves like enrollment_encountering_an_exception updates the status_check_attempted_at timestamp",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 103,
+      "run_time": 0.441073008,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:17:1:1]",
+      "description": "logs an error message and leaves the enrollment and profile pending",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns an unexpected 400 status code behaves like enrollment_encountering_an_exception logs an error message and leaves the enrollment and profile pending",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 83,
+      "run_time": 0.414852276,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:13:2]",
+      "description": "logs that the enrollment expired",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment expires logs that the enrollment expired",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 536,
+      "run_time": 0.478367924,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:13:1:1]",
+      "description": "logs a message with common attributes",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment expires behaves like enrollment_with_a_status_update logs a message with common attributes",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 4,
+      "run_time": 0.416928826,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:13:1:3]",
+      "description": "updates the status of the enrollment and profile appropriately",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment expires behaves like enrollment_with_a_status_update updates the status of the enrollment and profile appropriately",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 59,
+      "run_time": 0.397803506,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:13:1:2:1]",
+      "description": "logs message with email analytics attributes",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment expires behaves like enrollment_with_a_status_update email_analytics_attributes logs message with email analytics attributes",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 45,
+      "run_time": 0.421749616,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:8:2]",
+      "description": "sends deadline passed email on response with expired status",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled sending emails sends deadline passed email on response with expired status",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 331,
+      "run_time": 0.535376232,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:8:1]",
+      "description": "sends proofing failed email on response with failed status",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled sending emails sends proofing failed email on response with failed status",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 316,
+      "run_time": 0.447115479,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:8:3]",
+      "description": "sends failed email when fraudSuspected is true",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled sending emails sends failed email when fraudSuspected is true",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 352,
+      "run_time": 0.550984855,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:8:4]",
+      "description": "sends proofing verifed email on 2xx responses with valid JSON",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled sending emails sends proofing verifed email on 2xx responses with valid JSON",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 367,
+      "run_time": 0.62994374,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:8:6:1]",
+      "description": "does not delay sending the email",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled sending emails a custom delay of zero is set does not delay sending the email",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 402,
+      "run_time": 0.514129385,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:8:5:1]",
+      "description": "uses the custom delay",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled sending emails a custom delay greater than zero is set uses the custom delay",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 383,
+      "run_time": 0.671187257,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:7:1]",
+      "description": "generates a backwards-compatible unique ID",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when an enrollment does not have a unique ID generates a backwards-compatible unique ID",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 304,
+      "run_time": 0.525927136,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:20:1]",
+      "description": "updates the timestamp but does not update the status or log a message",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when there is no status update updates the timestamp but does not update the status or log a message",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 665,
+      "run_time": 0.566781772,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:5:1]",
+      "description": "logs failure details",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled a standard error is raised when requesting proofing results logs failure details",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 275,
+      "run_time": 0.478177954,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:14:1:2]",
+      "description": "updates the status_check_attempted_at timestamp",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns a non-hash response behaves like enrollment_encountering_an_exception updates the status_check_attempted_at timestamp",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 103,
+      "run_time": 0.499908668,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:14:1:1]",
+      "description": "logs an error message and leaves the enrollment and profile pending",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns a non-hash response behaves like enrollment_encountering_an_exception logs an error message and leaves the enrollment and profile pending",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 83,
+      "run_time": 0.44568958,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:22:1:1]",
+      "description": "logs that response is not present",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when a nil status error occurs behaves like enrollment_encountering_an_error_that_has_a_nil_response logs that response is not present",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 119,
+      "run_time": 0.433132783,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:16:1:1]",
+      "description": "logs an error message and leaves the enrollment and profile pending",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns invalid JSON behaves like enrollment_encountering_an_exception logs an error message and leaves the enrollment and profile pending",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 83,
+      "run_time": 0.512856022,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:16:1:2]",
+      "description": "updates the status_check_attempted_at timestamp",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns invalid JSON behaves like enrollment_encountering_an_exception updates the status_check_attempted_at timestamp",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 103,
+      "run_time": 0.463011292,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:15:2]",
+      "description": "logs the status received",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns an unexpected status logs the status received",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 567,
+      "run_time": 0.45397231,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:15:1:2]",
+      "description": "updates the status_check_attempted_at timestamp",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns an unexpected status behaves like enrollment_encountering_an_exception updates the status_check_attempted_at timestamp",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 103,
+      "run_time": 0.394055772,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:15:1:1]",
+      "description": "logs an error message and leaves the enrollment and profile pending",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns an unexpected status behaves like enrollment_encountering_an_exception logs an error message and leaves the enrollment and profile pending",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 83,
+      "run_time": 0.432534375,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:19:2]",
+      "description": "logs the error to NewRelic",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns a 5xx status code logs the error to NewRelic",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 654,
+      "run_time": 0.393874462,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:19:1:1]",
+      "description": "logs an error message and leaves the enrollment and profile pending",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns a 5xx status code behaves like enrollment_encountering_an_exception logs an error message and leaves the enrollment and profile pending",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 83,
+      "run_time": 0.421052031,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:19:1:2]",
+      "description": "updates the status_check_attempted_at timestamp",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns a 5xx status code behaves like enrollment_encountering_an_exception updates the status_check_attempted_at timestamp",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 103,
+      "run_time": 0.423205687,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:18:2]",
+      "description": "logs the error to NewRelic",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns a >400 status code logs the error to NewRelic",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 635,
+      "run_time": 0.403033014,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:18:1:2]",
+      "description": "updates the status_check_attempted_at timestamp",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns a >400 status code behaves like enrollment_encountering_an_exception updates the status_check_attempted_at timestamp",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 103,
+      "run_time": 0.464060044,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:1:18:1:1]",
+      "description": "logs an error message and leaves the enrollment and profile pending",
+      "full_description": "GetUspsProofingResultsJob#perform IPP enabled when USPS returns a >400 status code behaves like enrollment_encountering_an_exception logs an error message and leaves the enrollment and profile pending",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 83,
+      "run_time": 0.480728034,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/get_usps_proofing_results_job_spec.rb[1:1:2:1]",
+      "description": "does not request any enrollment records",
+      "full_description": "GetUspsProofingResultsJob#perform IPP disabled does not request any enrollment records",
+      "status": "passed",
+      "file_path": "./spec/jobs/get_usps_proofing_results_job_spec.rb",
+      "line_number": 716,
+      "run_time": 0.071294956,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/total_ial2_costs_report_spec.rb[1:1:1]",
+      "description": "writes a CSV report to S3",
+      "full_description": "Reports::TotalIal2CostsReport#perform writes a CSV report to S3",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/total_ial2_costs_report_spec.rb",
+      "line_number": 47,
+      "run_time": 0.37501147,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/total_ial2_costs_report_spec.rb[1:2:1]",
+      "description": "is the job name and the date",
+      "full_description": "Reports::TotalIal2CostsReport#good_job_concurrency_key is the job name and the date",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/total_ial2_costs_report_spec.rb",
+      "line_number": 75,
+      "run_time": 0.05478481,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/psql_stats_job_spec.rb[1:1:1]",
+      "description": "returns true",
+      "full_description": "PsqlStatsJob#perform returns true",
+      "status": "passed",
+      "file_path": "./spec/jobs/psql_stats_job_spec.rb",
+      "line_number": 5,
+      "run_time": 0.094573095,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/psql_stats_job_spec.rb[1:1:2]",
+      "description": "logs psql table bloat metrics",
+      "full_description": "PsqlStatsJob#perform logs psql table bloat metrics",
+      "status": "passed",
+      "file_path": "./spec/jobs/psql_stats_job_spec.rb",
+      "line_number": 11,
+      "run_time": 0.08393696,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/timer_spec.rb[1:1:3]",
+      "description": "returns the result of the block",
+      "full_description": "JobHelpers::Timer#time returns the result of the block",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/timer_spec.rb",
+      "line_number": 27,
+      "run_time": 0.084683154,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/timer_spec.rb[1:1:2]",
+      "description": "measure the block even if the block raises",
+      "full_description": "JobHelpers::Timer#time measure the block even if the block raises",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/timer_spec.rb",
+      "line_number": 19,
+      "run_time": 0.041789963,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/timer_spec.rb[1:1:1]",
+      "description": "measures the time in milliseconds it takes to execute a block",
+      "full_description": "JobHelpers::Timer#time measures the time in milliseconds it takes to execute a block",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/timer_spec.rb",
+      "line_number": 13,
+      "run_time": 0.039253852,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/query_helpers_spec.rb[1:1:2]",
+      "description": "quotes strings to be psql string literals",
+      "full_description": "Reports::QueryHelpers#quote quotes strings to be psql string literals",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/query_helpers_spec.rb",
+      "line_number": 11,
+      "run_time": 0.054902145,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/query_helpers_spec.rb[1:1:3]",
+      "description": "quotes arrays as list expressions",
+      "full_description": "Reports::QueryHelpers#quote quotes arrays as list expressions",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/query_helpers_spec.rb",
+      "line_number": 16,
+      "run_time": 0.085004708,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/query_helpers_spec.rb[1:1:1]",
+      "description": "quotes dates",
+      "full_description": "Reports::QueryHelpers#quote quotes dates",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/query_helpers_spec.rb",
+      "line_number": 7,
+      "run_time": 0.056638423,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/phone_number_opt_out_sync_job_spec.rb[1:2:1]",
+      "description": "is the job name and the current time, rounded to the nearest hour",
+      "full_description": "PhoneNumberOptOutSyncJob#good_job_concurrency_key is the job name and the current time, rounded to the nearest hour",
+      "status": "passed",
+      "file_path": "./spec/jobs/phone_number_opt_out_sync_job_spec.rb",
+      "line_number": 37,
+      "run_time": 0.087915174,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/phone_number_opt_out_sync_job_spec.rb[1:1:1]",
+      "description": "adds phone numbers that are opted out in AWS to the database",
+      "full_description": "PhoneNumberOptOutSyncJob#perform adds phone numbers that are opted out in AWS to the database",
+      "status": "passed",
+      "file_path": "./spec/jobs/phone_number_opt_out_sync_job_spec.rb",
+      "line_number": 27,
+      "run_time": 0.31915528,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/address_proofing_job_spec.rb[1:1:1]",
+      "description": "stores results",
+      "full_description": "AddressProofingJob.perform_later stores results",
+      "status": "passed",
+      "file_path": "./spec/jobs/address_proofing_job_spec.rb",
+      "line_number": 24,
+      "run_time": 0.186338532,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/address_proofing_job_spec.rb[1:2:1:1]",
+      "description": "runs",
+      "full_description": "AddressProofingJob#perform webmock vendor runs",
+      "status": "passed",
+      "file_path": "./spec/jobs/address_proofing_job_spec.rb",
+      "line_number": 73,
+      "run_time": 0.180046025,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/address_proofing_job_spec.rb[1:2:1:2]",
+      "description": "adds cost data",
+      "full_description": "AddressProofingJob#perform webmock vendor adds cost data",
+      "status": "passed",
+      "file_path": "./spec/jobs/address_proofing_job_spec.rb",
+      "line_number": 85,
+      "run_time": 0.149184975,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/address_proofing_job_spec.rb[1:2:3:1]",
+      "description": "bails and does not do any proofing",
+      "full_description": "AddressProofingJob#perform a stale job bails and does not do any proofing",
+      "status": "passed",
+      "file_path": "./spec/jobs/address_proofing_job_spec.rb",
+      "line_number": 115,
+      "run_time": 0.151944302,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/address_proofing_job_spec.rb[1:2:2:1:1]",
+      "description": "returns a result",
+      "full_description": "AddressProofingJob#perform mock proofer with an unsuccessful response from the proofer returns a result",
+      "status": "passed",
+      "file_path": "./spec/jobs/address_proofing_job_spec.rb",
+      "line_number": 102,
+      "run_time": 0.167194775,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/combined_invoice_supplement_report_spec.rb[1:2:1]",
+      "description": "is the job name and the date",
+      "full_description": "Reports::CombinedInvoiceSupplementReport#good_job_concurrency_key is the job name and the date",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/combined_invoice_supplement_report_spec.rb",
+      "line_number": 222,
+      "run_time": 0.535884683,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/combined_invoice_supplement_report_spec.rb[1:1:1]",
+      "description": "is empty with no data",
+      "full_description": "Reports::CombinedInvoiceSupplementReport#perform is empty with no data",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/combined_invoice_supplement_report_spec.rb",
+      "line_number": 78,
+      "run_time": 0.489399367,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/combined_invoice_supplement_report_spec.rb[1:1:2:1]",
+      "description": "generates a report by iaa + order number and issuer and year month",
+      "full_description": "Reports::CombinedInvoiceSupplementReport#perform with data generates a report by iaa + order number and issuer and year month",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/combined_invoice_supplement_report_spec.rb",
+      "line_number": 136,
+      "run_time": 1.510635918,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/application_job_spec.rb[1:1:1]",
+      "description": "is empty by default",
+      "full_description": "ApplicationJob.warning_error_classes is empty by default",
+      "status": "passed",
+      "file_path": "./spec/jobs/application_job_spec.rb",
+      "line_number": 5,
+      "run_time": 0.091067853,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/encryption_helper_spec.rb[1:1:1]",
+      "description": "decrypts data",
+      "full_description": "JobHelpers::EncryptionHelper#decrypt decrypts data",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/encryption_helper_spec.rb",
+      "line_number": 11,
+      "run_time": 0.090866706,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/deleted_user_accounts_report_spec.rb[1:1]",
+      "description": "is does not send out an email with nothing configured",
+      "full_description": "Reports::DeletedUserAccountsReport is does not send out an email with nothing configured",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/deleted_user_accounts_report_spec.rb",
+      "line_number": 13,
+      "run_time": 0.083995069,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/deleted_user_accounts_report_spec.rb[1:2]",
+      "description": "sends out a report to the email listed with one deleted user account",
+      "full_description": "Reports::DeletedUserAccountsReport sends out a report to the email listed with one deleted user account",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/deleted_user_accounts_report_spec.rb",
+      "line_number": 19,
+      "run_time": 0.382959237,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/deleted_user_accounts_report_spec.rb[1:3:1]",
+      "description": "is the job name and the date",
+      "full_description": "Reports::DeletedUserAccountsReport#good_job_concurrency_key is the job name and the date",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/deleted_user_accounts_report_spec.rb",
+      "line_number": 45,
+      "run_time": 0.049935244,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/sp_active_users_report_spec.rb[1:3]",
+      "description": "when Oct 1, returns total active user counts per sp by ial1 and ial2 for last fiscal year",
+      "full_description": "Reports::SpActiveUsersReport when Oct 1, returns total active user counts per sp by ial1 and ial2 for last fiscal year",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/sp_active_users_report_spec.rb",
+      "line_number": 40,
+      "run_time": 0.269200479,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/sp_active_users_report_spec.rb[1:2]",
+      "description": "returns total active user counts per sp broken down by ial1 and ial2",
+      "full_description": "Reports::SpActiveUsersReport returns total active user counts per sp broken down by ial1 and ial2",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/sp_active_users_report_spec.rb",
+      "line_number": 14,
+      "run_time": 0.169683393,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/sp_active_users_report_spec.rb[1:1]",
+      "description": "is empty",
+      "full_description": "Reports::SpActiveUsersReport is empty",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/sp_active_users_report_spec.rb",
+      "line_number": 10,
+      "run_time": 0.103302815,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/sp_active_users_report_spec.rb[1:4:1]",
+      "description": "is the job name and the date",
+      "full_description": "Reports::SpActiveUsersReport#good_job_concurrency_key is the job name and the date",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/sp_active_users_report_spec.rb",
+      "line_number": 85,
+      "run_time": 0.067788596,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/sp_active_users_report_spec.rb[1:5:3]",
+      "description": "returns current fiscal year until end of day when after to Oct 1st",
+      "full_description": "Reports::SpActiveUsersReport#reporting_range returns current fiscal year until end of day when after to Oct 1st",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/sp_active_users_report_spec.rb",
+      "line_number": 107,
+      "run_time": 0.060574731,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/sp_active_users_report_spec.rb[1:5:2]",
+      "description": "returns current fiscal year until end of day when prior to Oct 1st",
+      "full_description": "Reports::SpActiveUsersReport#reporting_range returns current fiscal year until end of day when prior to Oct 1st",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/sp_active_users_report_spec.rb",
+      "line_number": 100,
+      "run_time": 0.044264893,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/sp_active_users_report_spec.rb[1:5:1]",
+      "description": "returns entire last fiscal year when it is October 1st",
+      "full_description": "Reports::SpActiveUsersReport#reporting_range returns entire last fiscal year when it is October 1st",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/sp_active_users_report_spec.rb",
+      "line_number": 93,
+      "run_time": 0.070148985,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/s3_helper_spec.rb[1:2:3]",
+      "description": "returns binary-encoded string bodies",
+      "full_description": "JobHelpers::S3Helper#download returns binary-encoded string bodies",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/s3_helper_spec.rb",
+      "line_number": 74,
+      "run_time": 0.076174973,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/s3_helper_spec.rb[1:2:2:1]",
+      "description": "downloads by extracing prefix and bucket from s3 URLs",
+      "full_description": "JobHelpers::S3Helper#download with path bucket format downloads by extracing prefix and bucket from s3 URLs",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/s3_helper_spec.rb",
+      "line_number": 65,
+      "run_time": 0.076643475,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/s3_helper_spec.rb[1:2:1:1]",
+      "description": "downloads by extracing prefix and bucket from s3 URLs",
+      "full_description": "JobHelpers::S3Helper#download with subdomain bucket format downloads by extracing prefix and bucket from s3 URLs",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/s3_helper_spec.rb",
+      "line_number": 55,
+      "run_time": 0.066657152,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/s3_helper_spec.rb[1:1:2:1]",
+      "description": "is expected to eq true",
+      "full_description": "JobHelpers::S3Helper#s3_url? with a path bucket format url is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/s3_helper_spec.rb",
+      "line_number": 16,
+      "run_time": 0.055560338,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/s3_helper_spec.rb[1:1:1:1]",
+      "description": "is expected to eq true",
+      "full_description": "JobHelpers::S3Helper#s3_url? with a subdomain bucket format url is expected to eq true",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/s3_helper_spec.rb",
+      "line_number": 11,
+      "run_time": 0.077534382,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/s3_helper_spec.rb[1:1:3:1]",
+      "description": "is expected to eq false",
+      "full_description": "JobHelpers::S3Helper#s3_url? with a non-s3 url is expected to eq false",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/s3_helper_spec.rb",
+      "line_number": 21,
+      "run_time": 0.068521381,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/job_helpers/s3_helper_spec.rb[1:1:4:1]",
+      "description": "gets fooled and returns true",
+      "full_description": "JobHelpers::S3Helper#s3_url? with a non-s3 url that has an s3 subdomain gets fooled and returns true",
+      "status": "passed",
+      "file_path": "./spec/jobs/job_helpers/s3_helper_spec.rb",
+      "line_number": 26,
+      "run_time": 0.073975781,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/daily_dropoffs_report_spec.rb[1:2:1]",
+      "description": "is the job name and the date",
+      "full_description": "Reports::DailyDropoffsReport#good_job_concurrency_key is the job name and the date",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/daily_dropoffs_report_spec.rb",
+      "line_number": 147,
+      "run_time": 0.07400679,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/daily_dropoffs_report_spec.rb[1:1:1]",
+      "description": "uploads a file to S3 based on the report date",
+      "full_description": "Reports::DailyDropoffsReport#perform uploads a file to S3 based on the report date",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/daily_dropoffs_report_spec.rb",
+      "line_number": 29,
+      "run_time": 0.130677061,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/daily_dropoffs_report_spec.rb[1:1:2:1]",
+      "description": "only uploads to one bucket",
+      "full_description": "Reports::DailyDropoffsReport#perform when s3 public reports are disabled only uploads to one bucket",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/daily_dropoffs_report_spec.rb",
+      "line_number": 47,
+      "run_time": 0.054340055,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/daily_dropoffs_report_spec.rb[1:1:3:1]",
+      "description": "aggregates by issuer",
+      "full_description": "Reports::DailyDropoffsReport#perform with data aggregates by issuer",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/daily_dropoffs_report_spec.rb",
+      "line_number": 107,
+      "run_time": 0.283036506,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/total_monthly_auths_report_spec.rb[1:1]",
+      "description": "is empty",
+      "full_description": "Reports::TotalMonthlyAuthsReport is empty",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/total_monthly_auths_report_spec.rb",
+      "line_number": 10,
+      "run_time": 0.047726554,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/total_monthly_auths_report_spec.rb[1:2]",
+      "description": "returns the total monthly auths",
+      "full_description": "Reports::TotalMonthlyAuthsReport returns the total monthly auths",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/total_monthly_auths_report_spec.rb",
+      "line_number": 14,
+      "run_time": 0.2029892,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/total_monthly_auths_report_spec.rb[1:3:1]",
+      "description": "is the job name and the date",
+      "full_description": "Reports::TotalMonthlyAuthsReport#good_job_concurrency_key is the job name and the date",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/total_monthly_auths_report_spec.rb",
+      "line_number": 41,
+      "run_time": 0.046313506,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/sp_user_counts_report_spec.rb[1:1]",
+      "description": "is empty",
+      "full_description": "Reports::SpUserCountsReport is empty",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/sp_user_counts_report_spec.rb",
+      "line_number": 9,
+      "run_time": 0.086766409,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/sp_user_counts_report_spec.rb[1:2]",
+      "description": "logs to analytics",
+      "full_description": "Reports::SpUserCountsReport logs to analytics",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/sp_user_counts_report_spec.rb",
+      "line_number": 13,
+      "run_time": 0.23497946,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/sp_user_counts_report_spec.rb[1:3]",
+      "description": "returns the total user counts per sp broken down by ial1 and ial2",
+      "full_description": "Reports::SpUserCountsReport returns the total user counts per sp broken down by ial1 and ial2",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/sp_user_counts_report_spec.rb",
+      "line_number": 56,
+      "run_time": 0.192124263,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/sp_user_counts_report_spec.rb[1:4:1]",
+      "description": "is the job name and the date",
+      "full_description": "Reports::SpUserCountsReport#good_job_concurrency_key is the job name and the date",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/sp_user_counts_report_spec.rb",
+      "line_number": 72,
+      "run_time": 0.053817635,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/threat_metrix_js_verification_job_spec.rb[1:1:2:1]",
+      "description": "logs an error_message, and raises",
+      "full_description": "ThreatMetrixJsVerificationJob#perform when certificate is expired logs an error_message, and raises",
+      "status": "passed",
+      "file_path": "./spec/jobs/threat_metrix_js_verification_job_spec.rb",
+      "line_number": 98,
+      "run_time": 0.138431785,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/threat_metrix_js_verification_job_spec.rb[1:1:3:1]",
+      "description": "logs an error_message, and raises",
+      "full_description": "ThreatMetrixJsVerificationJob#perform error that is not a configuration error logs an error_message, and raises",
+      "status": "passed",
+      "file_path": "./spec/jobs/threat_metrix_js_verification_job_spec.rb",
+      "line_number": 117,
+      "run_time": 0.166085958,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/threat_metrix_js_verification_job_spec.rb[1:1:1:1]",
+      "description": "logs an error_message but does not raise",
+      "full_description": "ThreatMetrixJsVerificationJob#perform when certificate is not configured logs an error_message but does not raise",
+      "status": "passed",
+      "file_path": "./spec/jobs/threat_metrix_js_verification_job_spec.rb",
+      "line_number": 83,
+      "run_time": 0.122497698,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/threat_metrix_js_verification_job_spec.rb[1:1:5:2:1]",
+      "description": "logs a failure including JS payload",
+      "full_description": "ThreatMetrixJsVerificationJob#perform http request succeeds signature not a hex number logs a failure including JS payload",
+      "status": "passed",
+      "file_path": "./spec/jobs/threat_metrix_js_verification_job_spec.rb",
+      "line_number": 164,
+      "run_time": 0.0740026,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/threat_metrix_js_verification_job_spec.rb[1:1:5:1:1]",
+      "description": "logs a failure including JS payload",
+      "full_description": "ThreatMetrixJsVerificationJob#perform http request succeeds signature not present logs a failure including JS payload",
+      "status": "passed",
+      "file_path": "./spec/jobs/threat_metrix_js_verification_job_spec.rb",
+      "line_number": 149,
+      "run_time": 0.064449858,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/threat_metrix_js_verification_job_spec.rb[1:1:5:4:1]",
+      "description": "logs on success",
+      "full_description": "ThreatMetrixJsVerificationJob#perform http request succeeds signature present and correct logs on success",
+      "status": "passed",
+      "file_path": "./spec/jobs/threat_metrix_js_verification_job_spec.rb",
+      "line_number": 194,
+      "run_time": 0.164032597,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/threat_metrix_js_verification_job_spec.rb[1:1:5:3:1]",
+      "description": "logs a failure including JS payload",
+      "full_description": "ThreatMetrixJsVerificationJob#perform http request succeeds signature present but invalid logs a failure including JS payload",
+      "status": "passed",
+      "file_path": "./spec/jobs/threat_metrix_js_verification_job_spec.rb",
+      "line_number": 180,
+      "run_time": 0.111107546,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/threat_metrix_js_verification_job_spec.rb[1:1:4:1]",
+      "description": "fails",
+      "full_description": "ThreatMetrixJsVerificationJob#perform http request returns empty 204 response fails",
+      "status": "passed",
+      "file_path": "./spec/jobs/threat_metrix_js_verification_job_spec.rb",
+      "line_number": 133,
+      "run_time": 0.213187843,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/identities_backfill_job_spec.rb[1:1:3]",
+      "description": "does update rows which are not deleted and have no last_consented_at date",
+      "full_description": "IdentitiesBackfillJob#perform does update rows which are not deleted and have no last_consented_at date",
+      "status": "passed",
+      "file_path": "./spec/jobs/identities_backfill_job_spec.rb",
+      "line_number": 39,
+      "run_time": 0.357640588,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/identities_backfill_job_spec.rb[1:1:2]",
+      "description": "does not update rows that already have a date populated",
+      "full_description": "IdentitiesBackfillJob#perform does not update rows that already have a date populated",
+      "status": "passed",
+      "file_path": "./spec/jobs/identities_backfill_job_spec.rb",
+      "line_number": 30,
+      "run_time": 0.349917433,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/identities_backfill_job_spec.rb[1:1:1]",
+      "description": "does not update rows that have been soft-deleted",
+      "full_description": "IdentitiesBackfillJob#perform does not update rows that have been soft-deleted",
+      "status": "passed",
+      "file_path": "./spec/jobs/identities_backfill_job_spec.rb",
+      "line_number": 19,
+      "run_time": 0.446894498,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/identities_backfill_job_spec.rb[1:1:4:1]",
+      "description": "increments the position properly",
+      "full_description": "IdentitiesBackfillJob#perform when the batch size is small increments the position properly",
+      "status": "passed",
+      "file_path": "./spec/jobs/identities_backfill_job_spec.rb",
+      "line_number": 63,
+      "run_time": 0.217456321,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/identities_backfill_job_spec.rb[1:1:5:1]",
+      "description": "updates the position in Redis",
+      "full_description": "IdentitiesBackfillJob#perform when done updating the database updates the position in Redis",
+      "status": "passed",
+      "file_path": "./spec/jobs/identities_backfill_job_spec.rb",
+      "line_number": 76,
+      "run_time": 0.363989527,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/identities_backfill_job_spec.rb[1:2:1:1]",
+      "description": "returns the default of 500,000",
+      "full_description": "IdentitiesBackfillJob#batch_size when there is no cache key in redis returns the default of 500,000",
+      "status": "passed",
+      "file_path": "./spec/jobs/identities_backfill_job_spec.rb",
+      "line_number": 90,
+      "run_time": 0.05590508,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/identities_backfill_job_spec.rb[1:2:2:1]",
+      "description": "returns that value",
+      "full_description": "IdentitiesBackfillJob#batch_size when there is a cache key in redis returns that value",
+      "status": "passed",
+      "file_path": "./spec/jobs/identities_backfill_job_spec.rb",
+      "line_number": 102,
+      "run_time": 0.076192294,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/heartbeat_job_spec.rb[1:1:1]",
+      "description": "returns true",
+      "full_description": "HeartbeatJob#perform returns true",
+      "status": "passed",
+      "file_path": "./spec/jobs/heartbeat_job_spec.rb",
+      "line_number": 5,
+      "run_time": 0.230403116,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/heartbeat_job_spec.rb[1:1:2]",
+      "description": "logs goodjob queue metrics",
+      "full_description": "HeartbeatJob#perform logs goodjob queue metrics",
+      "status": "passed",
+      "file_path": "./spec/jobs/heartbeat_job_spec.rb",
+      "line_number": 11,
+      "run_time": 0.077678536,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/risc_delivery_job_spec.rb[1:2:1]",
+      "description": "is all the network errors and rate limiting errors",
+      "full_description": "RiscDeliveryJob.warning_error_classes is all the network errors and rate limiting errors",
+      "status": "passed",
+      "file_path": "./spec/jobs/risc_delivery_job_spec.rb",
+      "line_number": 226,
+      "run_time": 0.084239796,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/risc_delivery_job_spec.rb[1:1:1]",
+      "description": "POSTs the jwt to the given URL",
+      "full_description": "RiscDeliveryJob#perform POSTs the jwt to the given URL",
+      "status": "passed",
+      "file_path": "./spec/jobs/risc_delivery_job_spec.rb",
+      "line_number": 28,
+      "run_time": 0.101124017,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/risc_delivery_job_spec.rb[1:1:5:1:1]",
+      "description": "prints warning",
+      "full_description": "RiscDeliveryJob#perform slow network errors when performed inline prints warning",
+      "status": "passed",
+      "file_path": "./spec/jobs/risc_delivery_job_spec.rb",
+      "line_number": 152,
+      "run_time": 0.108886283,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/risc_delivery_job_spec.rb[1:1:5:2:1]",
+      "description": "raises and retries via ActiveJob",
+      "full_description": "RiscDeliveryJob#perform slow network errors when performed in a worker raises and retries via ActiveJob",
+      "status": "passed",
+      "file_path": "./spec/jobs/risc_delivery_job_spec.rb",
+      "line_number": 170,
+      "run_time": 0.085973001,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/risc_delivery_job_spec.rb[1:1:4:2:1]",
+      "description": "prints a warning",
+      "full_description": "RiscDeliveryJob#perform non-200 response when performed in a worker prints a warning",
+      "status": "passed",
+      "file_path": "./spec/jobs/risc_delivery_job_spec.rb",
+      "line_number": 133,
+      "run_time": 0.101180729,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/risc_delivery_job_spec.rb[1:1:4:1:1]",
+      "description": "prints a warning",
+      "full_description": "RiscDeliveryJob#perform non-200 response when performed inline prints a warning",
+      "status": "passed",
+      "file_path": "./spec/jobs/risc_delivery_job_spec.rb",
+      "line_number": 115,
+      "run_time": 0.190217011,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/risc_delivery_job_spec.rb[1:1:2:1:1]",
+      "description": "prints warning",
+      "full_description": "RiscDeliveryJob#perform SSL network errors when performed inline prints warning",
+      "status": "passed",
+      "file_path": "./spec/jobs/risc_delivery_job_spec.rb",
+      "line_number": 49,
+      "run_time": 0.13878798,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/risc_delivery_job_spec.rb[1:1:2:2:1]",
+      "description": "raises and retries via ActiveJob",
+      "full_description": "RiscDeliveryJob#perform SSL network errors when performed in a worker raises and retries via ActiveJob",
+      "status": "passed",
+      "file_path": "./spec/jobs/risc_delivery_job_spec.rb",
+      "line_number": 67,
+      "run_time": 0.19372784,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/risc_delivery_job_spec.rb[1:1:6:1:1]",
+      "description": "warns on limit hit",
+      "full_description": "RiscDeliveryJob#perform rate limiting when performed inline warns on limit hit",
+      "status": "passed",
+      "file_path": "./spec/jobs/risc_delivery_job_spec.rb",
+      "line_number": 184,
+      "run_time": 0.116283694,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/risc_delivery_job_spec.rb[1:1:6:3:1]",
+      "description": "allows the request",
+      "full_description": "RiscDeliveryJob#perform rate limiting when the rate limit is overridden allows the request",
+      "status": "passed",
+      "file_path": "./spec/jobs/risc_delivery_job_spec.rb",
+      "line_number": 215,
+      "run_time": 0.113049439,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/risc_delivery_job_spec.rb[1:1:6:2:1]",
+      "description": "raises on rate limit errors (and retries via ActiveJob)",
+      "full_description": "RiscDeliveryJob#perform rate limiting when performed in a worker raises on rate limit errors (and retries via ActiveJob)",
+      "status": "passed",
+      "file_path": "./spec/jobs/risc_delivery_job_spec.rb",
+      "line_number": 202,
+      "run_time": 0.112257988,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/risc_delivery_job_spec.rb[1:1:3:2:1]",
+      "description": "raises and retries via ActiveJob",
+      "full_description": "RiscDeliveryJob#perform Errno::ECONNREFUSED error when performed in a worker raises and retries via ActiveJob",
+      "status": "passed",
+      "file_path": "./spec/jobs/risc_delivery_job_spec.rb",
+      "line_number": 101,
+      "run_time": 0.113826644,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/risc_delivery_job_spec.rb[1:1:3:1:1]",
+      "description": "prints a warning",
+      "full_description": "RiscDeliveryJob#perform Errno::ECONNREFUSED error when performed inline prints a warning",
+      "status": "passed",
+      "file_path": "./spec/jobs/risc_delivery_job_spec.rb",
+      "line_number": 83,
+      "run_time": 0.105971627,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/daily_auths_report_spec.rb[1:2:1]",
+      "description": "is the job name and the date",
+      "full_description": "Reports::DailyAuthsReport#good_job_concurrency_key is the job name and the date",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/daily_auths_report_spec.rb",
+      "line_number": 115,
+      "run_time": 0.115993709,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/daily_auths_report_spec.rb[1:1:1]",
+      "description": "uploads a file to S3 based on the report date",
+      "full_description": "Reports::DailyAuthsReport#perform uploads a file to S3 based on the report date",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/daily_auths_report_spec.rb",
+      "line_number": 30,
+      "run_time": 0.098906386,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/daily_auths_report_spec.rb[1:1:2:1]",
+      "description": "only uploads to one bucket",
+      "full_description": "Reports::DailyAuthsReport#perform when s3 public reports are disabled only uploads to one bucket",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/daily_auths_report_spec.rb",
+      "line_number": 48,
+      "run_time": 0.118032264,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/daily_auths_report_spec.rb[1:1:3:1]",
+      "description": "aggregates by issuer",
+      "full_description": "Reports::DailyAuthsReport#perform with data aggregates by issuer",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/daily_auths_report_spec.rb",
+      "line_number": 78,
+      "run_time": 0.197355166,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:1:1]",
+      "description": "stores results",
+      "full_description": "ResolutionProofingJob.perform_later stores results",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 58,
+      "run_time": 0.141127695,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:3:1:1:1]",
+      "description": "logs the trace_id and timing info for ProofResolution and the Threatmetrix info",
+      "full_description": "ResolutionProofingJob#perform with threatmetrix enabled for the service provider stubbing vendors and threatmetrix with a successful response from the proofer logs the trace_id and timing info for ProofResolution and the Threatmetrix info",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 535,
+      "run_time": 0.235077797,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:3:1:1:2:1]",
+      "description": "does not blow up",
+      "full_description": "ResolutionProofingJob#perform with threatmetrix enabled for the service provider stubbing vendors and threatmetrix with a successful response from the proofer nil response body from ddp does not blow up",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 567,
+      "run_time": 0.37607838,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:3:1:3:1]",
+      "description": "does not call state_id proof if resolution proof is successful",
+      "full_description": "ResolutionProofingJob#perform with threatmetrix enabled for the service provider stubbing vendors and threatmetrix no state_id proof does not call state_id proof if resolution proof is successful",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 598,
+      "run_time": 0.337036849,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:3:1:2:1]",
+      "description": "posts back to the callback url",
+      "full_description": "ResolutionProofingJob#perform with threatmetrix enabled for the service provider stubbing vendors and threatmetrix does call state id with an unsuccessful response from the proofer posts back to the callback url",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 585,
+      "run_time": 0.185663017,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:5:1]",
+      "description": "bails and does not do any proofing",
+      "full_description": "ResolutionProofingJob#perform a stale job bails and does not do any proofing",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 695,
+      "run_time": 0.110897461,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:4:1:2:1]",
+      "description": "posts back to the callback url",
+      "full_description": "ResolutionProofingJob#perform with threatmetrix disabled for the service provider stubbing vendors and threatmetrix does call state id with an unsuccessful response from the proofer posts back to the callback url",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 668,
+      "run_time": 0.153219063,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:4:1:1:1]",
+      "description": "logs the trace_id and timing info for ProofResolution info",
+      "full_description": "ResolutionProofingJob#perform with threatmetrix disabled for the service provider stubbing vendors and threatmetrix with a successful response from the proofer logs the trace_id and timing info for ProofResolution info",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 644,
+      "run_time": 0.164266988,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:4:1:3:1]",
+      "description": "does not call state_id proof if resolution proof is successful",
+      "full_description": "ResolutionProofingJob#perform with threatmetrix disabled for the service provider stubbing vendors and threatmetrix no state_id proof does not call state_id proof if resolution proof is successful",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 681,
+      "run_time": 0.140136495,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:1:1:1]",
+      "description": "returns results and adds threatmetrix proofing components",
+      "full_description": "ResolutionProofingJob#perform with threatmetrix enabled for the service provider webmock lexisnexis, threatmetrix, and AAMVA returns results and adds threatmetrix proofing components",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 151,
+      "run_time": 0.341651465,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:1:1:2:1]",
+      "description": "has a failed response",
+      "full_description": "ResolutionProofingJob#perform with threatmetrix enabled for the service provider webmock lexisnexis, threatmetrix, and AAMVA failed response from lexisnexis has a failed response",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 234,
+      "run_time": 0.182845023,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:1:1:3:1]",
+      "description": "does not attempt to create a ddp proofer",
+      "full_description": "ResolutionProofingJob#perform with threatmetrix enabled for the service provider webmock lexisnexis, threatmetrix, and AAMVA no threatmetrix_session_id does not attempt to create a ddp proofer",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 301,
+      "run_time": 0.18091598,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:2:1:1]",
+      "description": "returns results",
+      "full_description": "ResolutionProofingJob#perform with threatmetrix disabled for the service provider webmock lexisnexis and threatmetrix returns results",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 365,
+      "run_time": 0.196032075,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:2:1:2:1]",
+      "description": "has a failed response",
+      "full_description": "ResolutionProofingJob#perform with threatmetrix disabled for the service provider webmock lexisnexis and threatmetrix failed response from lexisnexis has a failed response",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 436,
+      "run_time": 0.180091004,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/resolution_proofing_job_spec.rb[1:2:2:1:3:1]",
+      "description": "does not attempt to create a ddp proofer",
+      "full_description": "ResolutionProofingJob#perform with threatmetrix disabled for the service provider webmock lexisnexis and threatmetrix no threatmetrix_session_id does not attempt to create a ddp proofer",
+      "status": "passed",
+      "file_path": "./spec/jobs/resolution_proofing_job_spec.rb",
+      "line_number": 480,
+      "run_time": 0.224322931,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/in_person/email_reminder_job_spec.rb[1:1:2:1:1]",
+      "description": "it handles and logs the error",
+      "full_description": "InPerson::EmailReminderJob#perform with one eligible enrollment an error is raised when sending an email it handles and logs the error",
+      "status": "passed",
+      "file_path": "./spec/jobs/in_person/email_reminder_job_spec.rb",
+      "line_number": 115,
+      "run_time": 0.159101176,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/in_person/email_reminder_job_spec.rb[1:1:1:2:1]",
+      "description": "queues emails for enrollments that need the early email reminder sent",
+      "full_description": "InPerson::EmailReminderJob#perform with many enrollments early email reminder queues emails for enrollments that need the early email reminder sent",
+      "status": "passed",
+      "file_path": "./spec/jobs/in_person/email_reminder_job_spec.rb",
+      "line_number": 76,
+      "run_time": 1.268378339,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/in_person/email_reminder_job_spec.rb[1:1:1:2:2]",
+      "description": "does not queue emails for enrollments that had early email reminder sent",
+      "full_description": "InPerson::EmailReminderJob#perform with many enrollments early email reminder does not queue emails for enrollments that had early email reminder sent",
+      "status": "passed",
+      "file_path": "./spec/jobs/in_person/email_reminder_job_spec.rb",
+      "line_number": 93,
+      "run_time": 0.831386911,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/in_person/email_reminder_job_spec.rb[1:1:1:1:2]",
+      "description": "does not queue emails for enrollments that had late email reminder sent",
+      "full_description": "InPerson::EmailReminderJob#perform with many enrollments late email reminder does not queue emails for enrollments that had late email reminder sent",
+      "status": "passed",
+      "file_path": "./spec/jobs/in_person/email_reminder_job_spec.rb",
+      "line_number": 63,
+      "run_time": 0.754762714,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/in_person/email_reminder_job_spec.rb[1:1:1:1:1]",
+      "description": "queues emails for enrollments that need the late email reminder sent",
+      "full_description": "InPerson::EmailReminderJob#perform with many enrollments late email reminder queues emails for enrollments that need the late email reminder sent",
+      "status": "passed",
+      "file_path": "./spec/jobs/in_person/email_reminder_job_spec.rb",
+      "line_number": 46,
+      "run_time": 0.832023593,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:13]",
+      "description": "does not consider old submits as fails",
+      "full_description": "Reports::VerificationFailuresReport does not consider old submits as fails",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 182,
+      "run_time": 0.161932022,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:3]",
+      "description": "sends out an abandon code on a user lands on welcome and leaves",
+      "full_description": "Reports::VerificationFailuresReport sends out an abandon code on a user lands on welcome and leaves",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 30,
+      "run_time": 0.199996041,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:11]",
+      "description": "sends more than one user",
+      "full_description": "Reports::VerificationFailuresReport sends more than one user",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 147,
+      "run_time": 0.168143231,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:10]",
+      "description": "sends out a phone error if the user submits phone info but does not progress forward",
+      "full_description": "Reports::VerificationFailuresReport sends out a phone error if the user submits phone info but does not progress forward",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 131,
+      "run_time": 0.125477167,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:1]",
+      "description": "is does not send out an email with nothing configured",
+      "full_description": "Reports::VerificationFailuresReport is does not send out an email with nothing configured",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 15,
+      "run_time": 0.047270065,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:8]",
+      "description": "sends out a document error if the user submits mobile back image and fails",
+      "full_description": "Reports::VerificationFailuresReport sends out a document error if the user submits mobile back image and fails",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 99,
+      "run_time": 0.133070137,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:4]",
+      "description": "sends out a blank report if no issuer data",
+      "full_description": "Reports::VerificationFailuresReport sends out a blank report if no issuer data",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 41,
+      "run_time": 0.113063967,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:9]",
+      "description": "sends out a verify error if the user submits PII but does not progress forward",
+      "full_description": "Reports::VerificationFailuresReport sends out a verify error if the user submits PII but does not progress forward",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 115,
+      "run_time": 0.131562381,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:6]",
+      "description": "sends out a document error if the user submits desktop back image and fails",
+      "full_description": "Reports::VerificationFailuresReport sends out a document error if the user submits desktop back image and fails",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 67,
+      "run_time": 0.182036809,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:5]",
+      "description": "sends out a document error if the user submits document but does not progress forward",
+      "full_description": "Reports::VerificationFailuresReport sends out a document error if the user submits document but does not progress forward",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 51,
+      "run_time": 0.146693842,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:12]",
+      "description": "allows submit to be recent and not just after welcome",
+      "full_description": "Reports::VerificationFailuresReport allows submit to be recent and not just after welcome",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 166,
+      "run_time": 0.116998599,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:7]",
+      "description": "sends out a document error if the user submits hybrid back image and fails",
+      "full_description": "Reports::VerificationFailuresReport sends out a document error if the user submits hybrid back image and fails",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 83,
+      "run_time": 0.125478285,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:2]",
+      "description": "sends out a blank report if no users went through doc auth",
+      "full_description": "Reports::VerificationFailuresReport sends out a blank report if no users went through doc auth",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 21,
+      "run_time": 0.110407448,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/verification_failures_report_spec.rb[1:14:1]",
+      "description": "is the job name and the date",
+      "full_description": "Reports::VerificationFailuresReport#good_job_concurrency_key is the job name and the date",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/verification_failures_report_spec.rb",
+      "line_number": 201,
+      "run_time": 0.07506951,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/inherited_proofing_job_spec.rb[1:1:1]",
+      "description": "calls api for user data and stores in document capture session",
+      "full_description": "InheritedProofingJob#perform calls api for user data and stores in document capture session",
+      "status": "passed",
+      "file_path": "./spec/jobs/inherited_proofing_job_spec.rb",
+      "line_number": 19,
+      "run_time": 0.084959451,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/gpo_daily_job_spec.rb[1:1:1:1]",
+      "description": "enqueues a test sender",
+      "full_description": "GpoDailyJob#perform on a federal holiday enqueues a test sender",
+      "status": "passed",
+      "file_path": "./spec/jobs/gpo_daily_job_spec.rb",
+      "line_number": 26,
+      "run_time": 0.127156734,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/gpo_daily_job_spec.rb[1:1:1:2]",
+      "description": "does not upload to GPO",
+      "full_description": "GpoDailyJob#perform on a federal holiday does not upload to GPO",
+      "status": "passed",
+      "file_path": "./spec/jobs/gpo_daily_job_spec.rb",
+      "line_number": 30,
+      "run_time": 0.091170101,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/gpo_daily_job_spec.rb[1:1:2:1]",
+      "description": "enqueues a test sender",
+      "full_description": "GpoDailyJob#perform on a weekday, not a federal holiday enqueues a test sender",
+      "status": "passed",
+      "file_path": "./spec/jobs/gpo_daily_job_spec.rb",
+      "line_number": 38,
+      "run_time": 0.114337889,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/gpo_daily_job_spec.rb[1:1:2:2]",
+      "description": "uploads to GPO",
+      "full_description": "GpoDailyJob#perform on a weekday, not a federal holiday uploads to GPO",
+      "status": "passed",
+      "file_path": "./spec/jobs/gpo_daily_job_spec.rb",
+      "line_number": 46,
+      "run_time": 0.184676845,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/gpo_daily_job_spec.rb[1:2:1]",
+      "description": "is the job name and the date",
+      "full_description": "GpoDailyJob#good_job_concurrency_key is the job name and the date",
+      "status": "passed",
+      "file_path": "./spec/jobs/gpo_daily_job_spec.rb",
+      "line_number": 55,
+      "run_time": 0.052048391,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/document_proofing_job_spec.rb[1:2:4:1]",
+      "description": "bails and does not do any proofing",
+      "full_description": "DocumentProofingJob#perform a stale job bails and does not do any proofing",
+      "status": "passed",
+      "file_path": "./spec/jobs/document_proofing_job_spec.rb",
+      "line_number": 253,
+      "run_time": 0.093755661,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/document_proofing_job_spec.rb[1:2:5:1]",
+      "description": "decrypts the image correctly",
+      "full_description": "DocumentProofingJob#perform with data url body decrypts the image correctly",
+      "status": "passed",
+      "file_path": "./spec/jobs/document_proofing_job_spec.rb",
+      "line_number": 263,
+      "run_time": 0.143925855,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/document_proofing_job_spec.rb[1:2:6:1]",
+      "description": "decrypts the image correctly",
+      "full_description": "DocumentProofingJob#perform with jpg file body decrypts the image correctly",
+      "status": "passed",
+      "file_path": "./spec/jobs/document_proofing_job_spec.rb",
+      "line_number": 276,
+      "run_time": 0.134601637,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/document_proofing_job_spec.rb[1:2:1:2]",
+      "description": "logs the trace_id and timing info",
+      "full_description": "DocumentProofingJob#perform with a successful response from the proofer logs the trace_id and timing info",
+      "status": "passed",
+      "file_path": "./spec/jobs/document_proofing_job_spec.rb",
+      "line_number": 155,
+      "run_time": 0.135988983,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/document_proofing_job_spec.rb[1:2:1:1]",
+      "description": "returns a successful response",
+      "full_description": "DocumentProofingJob#perform with a successful response from the proofer returns a successful response",
+      "status": "passed",
+      "file_path": "./spec/jobs/document_proofing_job_spec.rb",
+      "line_number": 108,
+      "run_time": 0.112359957,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/document_proofing_job_spec.rb[1:2:7:1]",
+      "description": "gracefully degrades",
+      "full_description": "DocumentProofingJob#perform with invalid data url body gracefully degrades",
+      "status": "passed",
+      "file_path": "./spec/jobs/document_proofing_job_spec.rb",
+      "line_number": 289,
+      "run_time": 0.118382593,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/document_proofing_job_spec.rb[1:2:2:1]",
+      "description": "still downloads and decrypts the content",
+      "full_description": "DocumentProofingJob#perform with local image URLs instead of S3 URLs still downloads and decrypts the content",
+      "status": "passed",
+      "file_path": "./spec/jobs/document_proofing_job_spec.rb",
+      "line_number": 188,
+      "run_time": 0.133381633,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/document_proofing_job_spec.rb[1:2:3:4:1]",
+      "description": "sets image source to unknown",
+      "full_description": "DocumentProofingJob#perform image source malformed image metadata sets image source to unknown",
+      "status": "passed",
+      "file_path": "./spec/jobs/document_proofing_job_spec.rb",
+      "line_number": 244,
+      "run_time": 0.196832467,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/document_proofing_job_spec.rb[1:2:3:3:1]",
+      "description": "sets image source to acuant sdk",
+      "full_description": "DocumentProofingJob#perform image source acuant images sets image source to acuant sdk",
+      "status": "passed",
+      "file_path": "./spec/jobs/document_proofing_job_spec.rb",
+      "line_number": 234,
+      "run_time": 0.117083248,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/document_proofing_job_spec.rb[1:2:3:1:1]",
+      "description": "sets image source to unknown",
+      "full_description": "DocumentProofingJob#perform image source manual uploads sets image source to unknown",
+      "status": "passed",
+      "file_path": "./spec/jobs/document_proofing_job_spec.rb",
+      "line_number": 213,
+      "run_time": 0.11380178,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/document_proofing_job_spec.rb[1:2:3:2:1]",
+      "description": "sets image source to unknown",
+      "full_description": "DocumentProofingJob#perform image source mixed sources sets image source to unknown",
+      "status": "passed",
+      "file_path": "./spec/jobs/document_proofing_job_spec.rb",
+      "line_number": 225,
+      "run_time": 0.122044561,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/document_proofing_job_spec.rb[1:1:1]",
+      "description": "stores results",
+      "full_description": "DocumentProofingJob.perform_later stores results",
+      "status": "passed",
+      "file_path": "./spec/jobs/document_proofing_job_spec.rb",
+      "line_number": 56,
+      "run_time": 0.152195176,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/agreement_summary_report_spec.rb[1:2:1]",
+      "description": "is the job name and the date",
+      "full_description": "Reports::AgreementSummaryReport#good_job_concurrency_key is the job name and the date",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/agreement_summary_report_spec.rb",
+      "line_number": 85,
+      "run_time": 0.070561333,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/agreement_summary_report_spec.rb[1:1:1]",
+      "description": "is empty with no data",
+      "full_description": "Reports::AgreementSummaryReport#perform is empty with no data",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/agreement_summary_report_spec.rb",
+      "line_number": 13,
+      "run_time": 0.065299699,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/jobs/reports/agreement_summary_report_spec.rb[1:1:2:1]",
+      "description": "it loads IAA data into a CSV",
+      "full_description": "Reports::AgreementSummaryReport#perform with iaa data it loads IAA data into a CSV",
+      "status": "passed",
+      "file_path": "./spec/jobs/reports/agreement_summary_report_spec.rb",
+      "line_number": 56,
+      "run_time": 0.404707272,
+      "pending_message": null
+    }
+  ],
+  "profile": {
+    "examples": [],
+    "slowest": 0.0,
+    "total": 53.351348355,
+    "groups": []
+  },
+  "summary": {
+    "duration": 53.351348355,
+    "example_count": 204,
+    "failure_count": 0,
+    "pending_count": 0,
+    "errors_outside_of_examples_count": 0
+  },
+  "summary_line": "204 examples, 0 failures"
+}

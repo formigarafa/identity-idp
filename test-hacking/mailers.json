@@ -1,0 +1,1480 @@
+{
+  "version": "3.11.0",
+  "seed": 35030,
+  "examples": [
+    {
+      "id": "./spec/mailers/report_mailer_spec.rb[1:1:4]",
+      "description": "renders the body",
+      "full_description": "ReportMailer deleted_user_accounts_report renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/report_mailer_spec.rb",
+      "line_number": 27,
+      "run_time": 0.247403555,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/report_mailer_spec.rb[1:1:3]",
+      "description": "renders the subject",
+      "full_description": "ReportMailer deleted_user_accounts_report renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/report_mailer_spec.rb",
+      "line_number": 23,
+      "run_time": 0.075663169,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/report_mailer_spec.rb[1:1:2]",
+      "description": "sends to the current email",
+      "full_description": "ReportMailer deleted_user_accounts_report sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/report_mailer_spec.rb",
+      "line_number": 19,
+      "run_time": 0.082823954,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/report_mailer_spec.rb[1:1:1:1]",
+      "description": "is from the default email",
+      "full_description": "ReportMailer deleted_user_accounts_report behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.091180438,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:29]",
+      "description": "has a preview method for each mailer method",
+      "full_description": "UserMailerPreview has a preview method for each mailer method",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 13,
+      "run_time": 0.046345074,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:30]",
+      "description": "uses user and email records that cannot be saved",
+      "full_description": "UserMailerPreview uses user and email records that cannot be saved",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 20,
+      "run_time": 0.069282103,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:26:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#new_device_sign_in generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.078116588,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:22:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#in_person_verified generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.104012413,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:3:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#unconfirmed_email_instructions generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.045400249,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:28:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#password_changed generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.062882878,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:13:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#letter_reminder generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.057661193,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:27:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#reset_password_instructions generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.066376387,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:12:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#account_reset_request generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.088900228,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:16:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#add_email_associated_with_another_account generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.059914303,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:15:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#email_deleted generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.042916378,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:17:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#account_reset_cancel generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.087113665,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:1:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#in_person_ready_to_verify generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.072914179,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:9:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#account_reset_complete generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.04492113,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:10:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#please_reset_password generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.057092119,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:25:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#in_person_failed generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.082336455,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:8:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#account_reset_granted generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.054849624,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:11:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#doc_auth_desktop_link_to_sp generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.054167684,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:20:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#email_added generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.063518442,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:19:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#in_person_deadline_passed generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.06008835,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:24:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#in_person_failed_fraud generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.065186555,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:14:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#add_email generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.058036944,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:18:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#in_person_completion_survey generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.047548037,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:23:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#in_person_ready_to_verify_reminder generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.119306187,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:6:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#personal_key_sign_in generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.062730342,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:7:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#personal_key_regenerated generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.052342287,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:2:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#email_confirmation_instructions generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.093930267,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:5:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#phone_added generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.063894193,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:21:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#account_verified generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.080732319,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/previews/user_mailer_preview_spec.rb[1:4:1]",
+      "description": "generates a preview without blowing up",
+      "full_description": "UserMailerPreview#signup_with_your_email generates a preview without blowing up",
+      "status": "passed",
+      "file_path": "./spec/mailers/previews/user_mailer_preview_spec.rb",
+      "line_number": 7,
+      "run_time": 0.060732575,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:21:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#in_person_ready_to_verify_reminder behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.287275371,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:21:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#in_person_ready_to_verify_reminder behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.212023154,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:3:3]",
+      "description": "sends to the old email",
+      "full_description": "UserMailer#email_deleted sends to the old email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 51,
+      "run_time": 0.085197473,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:3:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#email_deleted renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 55,
+      "run_time": 0.078166315,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:3:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#email_deleted renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 59,
+      "run_time": 0.092898837,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:3:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#email_deleted behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.085591663,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:3:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#email_deleted behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.245843838,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:19:5]",
+      "description": "does not send mail to emails in nonessential email banlist",
+      "full_description": "UserMailer#account_verified does not send mail to emails in nonessential email banlist",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 548,
+      "run_time": 0.105015347,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:19:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#account_verified renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 544,
+      "run_time": 0.087454215,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:19:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#account_verified sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 540,
+      "run_time": 0.08871808,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:19:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#account_verified behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.181373865,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:19:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#account_verified behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.122980168,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:17:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#doc_auth_desktop_link_to_sp renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 488,
+      "run_time": 0.098689876,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:17:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#doc_auth_desktop_link_to_sp sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 484,
+      "run_time": 0.066890704,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:17:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#doc_auth_desktop_link_to_sp renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 492,
+      "run_time": 0.072473614,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:17:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#doc_auth_desktop_link_to_sp behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.099009753,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:17:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#doc_auth_desktop_link_to_sp behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.169988184,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:10:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#signup_with_your_email sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 263,
+      "run_time": 0.086318022,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:10:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#signup_with_your_email renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 271,
+      "run_time": 0.082324722,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:10:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#signup_with_your_email renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 267,
+      "run_time": 0.074339519,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:10:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#signup_with_your_email behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.072074116,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:10:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#signup_with_your_email behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.109145817,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:10:6:1]",
+      "description": "links to the correct locale",
+      "full_description": "UserMailer#signup_with_your_email in a non-default locale links to the correct locale",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 284,
+      "run_time": 0.081446385,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:25:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#in_person_completion_survey sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 664,
+      "run_time": 0.059304999,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:25:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#in_person_completion_survey renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 675,
+      "run_time": 0.060068236,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:25:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#in_person_completion_survey renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 668,
+      "run_time": 0.069122863,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:25:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#in_person_completion_survey behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.080916143,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:25:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#in_person_completion_survey behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.086958056,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:24:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#in_person_failed_fraud behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.155020993,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:24:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#in_person_failed_fraud behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.216798967,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:13:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#account_reset_granted sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 382,
+      "run_time": 0.071131525,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:13:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#account_reset_granted renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 386,
+      "run_time": 0.061204709,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:13:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#account_reset_granted renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 390,
+      "run_time": 0.129565173,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:13:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#account_reset_granted behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.140056874,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:13:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#account_reset_granted behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.093791421,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:26:2]",
+      "description": "does not queue email if it potentially contains sensitive keys",
+      "full_description": "UserMailer#deliver_later does not queue email if it potentially contains sensitive keys",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 706,
+      "run_time": 0.103733323,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:26:1]",
+      "description": "does not queue email if it potentially contains sensitive value",
+      "full_description": "UserMailer#deliver_later does not queue email if it potentially contains sensitive value",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 695,
+      "run_time": 0.093013658,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:4:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#add_email_associated_with_another_account renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 80,
+      "run_time": 0.100264119,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:4:3]",
+      "description": "sends to the specified email",
+      "full_description": "UserMailer#add_email_associated_with_another_account sends to the specified email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 76,
+      "run_time": 0.070531441,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:4:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#add_email_associated_with_another_account renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 84,
+      "run_time": 0.06932345,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:4:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#add_email_associated_with_another_account behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.06036269,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:4:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#add_email_associated_with_another_account behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.134972359,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:1:2:1]",
+      "description": "raises an error",
+      "full_description": "UserMailer#validate_user_and_email_address with user and email address mismatch raises an error",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 22,
+      "run_time": 0.132437925,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:1:1:1]",
+      "description": "does not raise an error",
+      "full_description": "UserMailer#validate_user_and_email_address with user and email address match does not raise an error",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 13,
+      "run_time": 0.092953313,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:8:5]",
+      "description": "does not send mail to emails in nonessential email banlist",
+      "full_description": "UserMailer#new_device_sign_in does not send mail to emails in nonessential email banlist",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 215,
+      "run_time": 0.078262698,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:8:4]",
+      "description": "renders the body",
+      "full_description": "UserMailer#new_device_sign_in renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 199,
+      "run_time": 0.100860572,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:8:2]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#new_device_sign_in sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 191,
+      "run_time": 0.087719895,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:8:3]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#new_device_sign_in renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 195,
+      "run_time": 0.090647402,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:8:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#new_device_sign_in behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.137826113,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:11:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#phone_added renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 308,
+      "run_time": 0.088193705,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:11:6]",
+      "description": "does not send mail to emails in nonessential email banlist",
+      "full_description": "UserMailer#phone_added does not send mail to emails in nonessential email banlist",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 314,
+      "run_time": 0.123136614,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:11:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#phone_added sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 300,
+      "run_time": 0.093443885,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:11:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#phone_added renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 304,
+      "run_time": 0.144635452,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:11:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#phone_added behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.239838523,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:11:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#phone_added behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.155007863,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:12:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#account_reset_request renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 348,
+      "run_time": 0.077133488,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:12:6]",
+      "description": "does not render the subject in the body",
+      "full_description": "UserMailer#account_reset_request does not render the subject in the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 356,
+      "run_time": 0.114692688,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:12:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#account_reset_request renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 344,
+      "run_time": 0.083437728,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:12:7]",
+      "description": "renders the header within the body",
+      "full_description": "UserMailer#account_reset_request renders the header within the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 364,
+      "run_time": 0.087560096,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:12:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#account_reset_request sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 340,
+      "run_time": 0.086549897,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:12:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#account_reset_request behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.094378095,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:12:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#account_reset_request behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.095878306,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:18:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#letter_reminder sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 506,
+      "run_time": 0.095175973,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:18:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#letter_reminder renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 510,
+      "run_time": 0.077111977,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:18:6]",
+      "description": "does not send mail to emails in nonessential email banlist",
+      "full_description": "UserMailer#letter_reminder does not send mail to emails in nonessential email banlist",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 519,
+      "run_time": 0.084011272,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:18:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#letter_reminder renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 514,
+      "run_time": 0.084243428,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:18:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#letter_reminder behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.094232544,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:18:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#letter_reminder behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.086905535,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:16:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#please_reset_password renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 458,
+      "run_time": 0.138639915,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:16:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#please_reset_password renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 462,
+      "run_time": 0.081119524,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:16:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#please_reset_password sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 454,
+      "run_time": 0.070219386,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:16:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#please_reset_password behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.121953487,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:16:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#please_reset_password behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.132213591,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:9:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#personal_key_regenerated sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 234,
+      "run_time": 0.106883488,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:9:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#personal_key_regenerated renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 242,
+      "run_time": 0.076467752,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:9:6]",
+      "description": "does not send mail to emails in nonessential email banlist",
+      "full_description": "UserMailer#personal_key_regenerated does not send mail to emails in nonessential email banlist",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 248,
+      "run_time": 0.103245265,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:9:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#personal_key_regenerated renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 238,
+      "run_time": 0.08306058,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:9:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#personal_key_regenerated behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.081077899,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:9:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#personal_key_regenerated behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.204287987,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:22:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#in_person_verified behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.177150087,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:22:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#in_person_verified behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.141226592,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:5:6]",
+      "description": "does not send mail to emails in nonessential email banlist",
+      "full_description": "UserMailer#password_changed does not send mail to emails in nonessential email banlist",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 118,
+      "run_time": 0.160493551,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:5:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#password_changed sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 100,
+      "run_time": 0.175058172,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:5:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#password_changed renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 108,
+      "run_time": 0.155999901,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:5:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#password_changed renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 104,
+      "run_time": 0.057462282,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:5:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#password_changed behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.139716882,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:5:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#password_changed behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.087832201,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:23:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#in_person_failed behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.161216558,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:23:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#in_person_failed behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.144238189,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:7:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#email_confirmation_instructions behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.113759037,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:7:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#email_confirmation_instructions behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.095018409,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:14:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#account_reset_complete renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 411,
+      "run_time": 0.06675549,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:14:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#account_reset_complete renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 415,
+      "run_time": 0.065709812,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:14:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#account_reset_complete sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 407,
+      "run_time": 0.069154711,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:14:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#account_reset_complete behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.083324862,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:14:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#account_reset_complete behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.079946454,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:20:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#in_person_ready_to_verify behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.237031984,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:20:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#in_person_ready_to_verify behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.130411102,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:2:3]",
+      "description": "renders the add_email_confirmation_url",
+      "full_description": "UserMailer#add_email renders the add_email_confirmation_url",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 35,
+      "run_time": 0.069231257,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:2:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#add_email behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.209649636,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:2:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#add_email behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.145081324,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:6:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#personal_key_sign_in sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 134,
+      "run_time": 0.101799531,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:6:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#personal_key_sign_in renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 138,
+      "run_time": 0.088902743,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:6:6]",
+      "description": "does not send mail to emails in nonessential email banlist",
+      "full_description": "UserMailer#personal_key_sign_in does not send mail to emails in nonessential email banlist",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 151,
+      "run_time": 0.16865308,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:6:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#personal_key_sign_in renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 142,
+      "run_time": 0.092199017,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:6:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#personal_key_sign_in behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.115172365,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:6:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#personal_key_sign_in behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.151988722,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:15:3]",
+      "description": "sends to the current email",
+      "full_description": "UserMailer#account_reset_cancel sends to the current email",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 432,
+      "run_time": 0.095133788,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:15:5]",
+      "description": "renders the body",
+      "full_description": "UserMailer#account_reset_cancel renders the body",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 440,
+      "run_time": 0.097150553,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:15:4]",
+      "description": "renders the subject",
+      "full_description": "UserMailer#account_reset_cancel renders the subject",
+      "status": "passed",
+      "file_path": "./spec/mailers/user_mailer_spec.rb",
+      "line_number": 436,
+      "run_time": 0.083455607,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:15:2:1]",
+      "description": "is in the correct locale",
+      "full_description": "UserMailer#account_reset_cancel behaves like an email that respects user email locale preference is in the correct locale",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 15,
+      "run_time": 0.109075416,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/mailers/user_mailer_spec.rb[1:15:1:1]",
+      "description": "is from the default email",
+      "full_description": "UserMailer#account_reset_cancel behaves like a system email is from the default email",
+      "status": "passed",
+      "file_path": "./spec/support/shared_examples_for_mailer.rb",
+      "line_number": 2,
+      "run_time": 0.076959162,
+      "pending_message": null
+    }
+  ],
+  "profile": {
+    "examples": [],
+    "slowest": 0.0,
+    "total": 16.501224888,
+    "groups": []
+  },
+  "summary": {
+    "duration": 16.501224888,
+    "example_count": 146,
+    "failure_count": 0,
+    "pending_count": 0,
+    "errors_outside_of_examples_count": 0
+  },
+  "summary_line": "146 examples, 0 failures"
+}

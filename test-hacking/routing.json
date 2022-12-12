@@ -1,0 +1,40 @@
+{
+  "version": "3.11.0",
+  "seed": 24899,
+  "examples": [
+    {
+      "id": "./spec/routing/gpo_verification_routing_spec.rb[1:1:1]",
+      "description": "does not route to endpoints controlled by feature flag",
+      "full_description": "GPO verification routes when enable_gpo_verification is false does not route to endpoints controlled by feature flag",
+      "status": "passed",
+      "file_path": "./spec/routing/gpo_verification_routing_spec.rb",
+      "line_number": 29,
+      "run_time": 0.230072064,
+      "pending_message": null
+    },
+    {
+      "id": "./spec/routing/gpo_verification_routing_spec.rb[1:2:1]",
+      "description": "routes to endpoints controlled by feature flag",
+      "full_description": "GPO verification routes when enable_gpo_verification is true routes to endpoints controlled by feature flag",
+      "status": "passed",
+      "file_path": "./spec/routing/gpo_verification_routing_spec.rb",
+      "line_number": 54,
+      "run_time": 0.085208089,
+      "pending_message": null
+    }
+  ],
+  "profile": {
+    "examples": [],
+    "slowest": 0.0,
+    "total": 1.591909654,
+    "groups": []
+  },
+  "summary": {
+    "duration": 1.591909654,
+    "example_count": 2,
+    "failure_count": 0,
+    "pending_count": 0,
+    "errors_outside_of_examples_count": 0
+  },
+  "summary_line": "2 examples, 0 failures"
+}
