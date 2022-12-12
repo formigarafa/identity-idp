@@ -1,7 +1,6 @@
 import { render } from 'react-dom';
 import { composeComponents } from '@18f/identity-compose-components';
 import {
-  AppContext,
   DocumentCapture,
   DeviceContext,
   AcuantContextProvider,
@@ -19,7 +18,6 @@ import { trackEvent as baseTrackEvent } from '@18f/identity-analytics';
 import type { FlowPath, DeviceContextValue } from '@18f/identity-document-capture';
 
 /**
- * @see AppContext
  * @see MarketingSiteContextProvider
  * @see FailedCaptureAttemptsContext
  * @see UploadContext
@@ -131,7 +129,6 @@ const trackEvent: typeof baseTrackEvent = (event, payload) => {
   } = appRoot.dataset as DOMStringMap & AppRootData;
 
   const App = composeComponents(
-    [AppContext.Provider, { value: { appName } }],
     [MarketingSiteContextProvider, { helpCenterRedirectURL, securityAndPrivacyHowItWorksURL }],
     [DeviceContext.Provider, { value: device }],
     [AnalyticsContextProvider, { trackEvent }],
