@@ -3,6 +3,8 @@
 require 'json'
 require 'securerandom'
 
+require_relative 'run_data'
+
 # Top-level class for accessing the test data
 class TestData
   def initialize
@@ -23,5 +25,9 @@ class TestData
       file.write(rspec_json)
     end
     test_id
+  end
+
+  def run_data(run_id)
+    RunData.new
   end
 end
