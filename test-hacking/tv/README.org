@@ -1,0 +1,19 @@
+* Test data
+All test data is stored under the ~test-data~ directory. Each rspec
+run is stored in a subdirectory whose name is a GUID, used to identify
+that test run. So the top-level data storage directory structure looks
+like:
+#+BEGIN_EXAMPLE
+  test-data
+    |
+    +- 85cd2c44-51ab-41f9-8168-85ec91c93a46
+    |
+    +- 487997b0-efc2-4177-9d8a-86d20928aa43
+#+END_EXAMPLE
+
+Within each subdirectory, there are two files. Test run data get stored in
+~test-run.json~. This is the exact JSON output produced by RSpec's
+~--format=json~ (or ~-f json~) option. This is read-only data.
+
+Other data for the test run (when and how it was imported, for now,
+other things as needed) are stored in ~metadata.json~.
