@@ -33,6 +33,27 @@ RSpec.describe "RunData" do
     it "has the correct version" do
       expect(run_data.version).to eq('3.12.0')
     end
+
+    it 'has the correct summary line' do
+      expect(run_data.summary_line).to eq('3 examples, 0 failures')
+    end
+
+    it 'has the correct summary' do
+      # ToDo: switch key strings over to keywords
+      expect(run_data.summary).to eq(
+        {
+          'duration' => 0.020395725,
+          'example_count' => 1,
+          'failure_count' => 0,
+          'pending_count' => 0,
+          'errors_outside_of_examples_count' => 0,
+        }
+      )
+    end
+
+    it 'has one examples' do
+      expect(run_data.examples.size).to eq(1)
+    end
   end
 
   context 'with different JSON data' do
