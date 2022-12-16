@@ -1,12 +1,23 @@
 # frozen_string_literal: true
 
+require_relative 'example'
+
 # Data from one RSpec run
 class RunData
   attr_reader :version, :summary_line, :summary, :examples
 
   def self.from_json(run_json)
     run = JSON.parse(run_json)
-    examples = run['examples']
+    examples = run['examples'].map do |raw_example|
+      Example.new(id: raw_example['id'],
+                  description: raw_example['description'],
+                  full_description: raw_example['full_description'],
+                  status: raw_example['status'],
+                  file_path: raw_example['file_path'],
+                  line_number: raw_example['line_number'],
+                  run_time: raw_example['run_time'],
+                  pending_message: raw_example['pending_message'])
+    end
 
     RunData.new(version: run['version'],
                 summary_line: run['summary_line'],
@@ -17,7 +28,9 @@ class RunData
   def initialize(version: nil,
                  summary_line: nil,
                  summary: nil,
-                 examples: [])
+                 examples: [],
+                 status: nil,
+                 file_path: nil)
     @version = version
     @summary_line = summary_line
     @summary = summary

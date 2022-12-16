@@ -54,6 +54,42 @@ RSpec.describe "RunData" do
     it 'has one examples' do
       expect(run_data.examples.size).to eq(1)
     end
+
+    describe 'the first example' do
+      subject(:example) { run_data.examples[0] }
+
+      it 'has the correct id' do
+        expect(example.id).to eq('./spec/some_spec.rb[1:1:1:1]')
+      end
+
+      it 'has the correct description' do
+        expect(example.description).to eq('is tested')
+      end
+
+      it 'has the correct full_description' do
+        expect(example.full_description).to eq('SomeClass#method is tested')
+      end
+
+      it 'has the correct status' do
+        expect(example.status).to eq('passed')
+      end
+
+      it 'has the correct file_path' do
+        expect(example.file_path).to eq('./spec/some_spec.rb')
+      end
+
+      it 'has the correct line_number' do
+        expect(example.line_number).to eq(13)
+      end
+
+      it 'has the correct run_time' do
+        expect(example.run_time).to eq(0.011690498)
+      end
+
+      it 'has the correct pending_message' do
+        expect(example.pending_message).to eq(nil)
+      end
+    end
   end
 
   context 'with different JSON data' do
