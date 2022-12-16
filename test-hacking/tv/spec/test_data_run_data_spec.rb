@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 require 'fakefs/spec_helpers'
 
 require './app/test_data'
