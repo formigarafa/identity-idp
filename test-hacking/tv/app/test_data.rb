@@ -15,10 +15,13 @@ class TestData
     end
   end
 
-  def import(run_json)
+  def import(rspec_json)
     test_id = SecureRandom.uuid
-    FileUtils.mkdir_p
-    ("#{@test_data_directory}/#{test_id}")
+    FileUtils.mkdir_p("#{@test_data_directory}/#{test_id}")
+    File.open("#{@test_data_directory}/#{test_id}/rspec-out.json",
+              'w') do |file|
+      file.write(rspec_json)
+    end
     test_id
   end
 end
