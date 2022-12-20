@@ -13,7 +13,7 @@ class TestData
 
   def run_ids
     Dir.glob("#{@test_data_directory}/*").map do |test_dir|
-      test_dir.split('/')[2]
+      test_dir.split('/')[-1]
     end
   end
 
