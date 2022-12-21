@@ -161,10 +161,10 @@ class IdentityJobLogSubscriber < ActiveSupport::LogSubscriber
     hash = { name: name, duration_ms: (finished-started) * 1_000, timestamp: started, result: data[:result] }
     IdentityJobLogSubscriber.worker_logger.info(hash.to_json)
   end
-  ActiveSupport::Notifications.subscribe("finished_job_task.good_job") do |name, started, finished, unique_id, data|
-    hash = { name: name, duration_ms: (finished-started) * 1_000, timestamp: started, result: data[:result] }
-    IdentityJobLogSubscriber.worker_logger.info(hash.to_json)
-  end
+  # ActiveSupport::Notifications.subscribe("finished_job_task.good_job") do |name, started, finished, unique_id, data|
+  #   hash = { name: name, duration_ms: (finished-started) * 1_000, timestamp: started, result: data[:result] }
+  #   IdentityJobLogSubscriber.worker_logger.info(hash.to_json)
+  # end
   ActiveSupport::Notifications.subscribe("scheduler_create_pool.good_job") do |name, started, finished, unique_id, data|
     hash = { name: name, duration_ms: (finished-started) * 1_000, timestamp: started }
     IdentityJobLogSubscriber.worker_logger.info(hash.to_json)
