@@ -110,7 +110,7 @@ fr:
     headings:
       address: Entrez votre adresse actuelle
       barcode: Vous êtes prêt à vérifier votre identité en personne
-      cta: Vous avez des difficultés à vérifier votre identité en ligne?
+      cta: Essayez de vérifier votre identité en personne
       location: Sélectionnez un lieu pour vérifier votre identité
       po_search:
         location: Trouver un bureau de poste participant
