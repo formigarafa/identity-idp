@@ -1,0 +1,13 @@
+<form>
+  <legend>Spec type</legend>
+
+  <% all_spec_types.each do |spec_type| %>
+    <div>
+      <input type="checkbox" id="<%= spec_type %>" name="<%= spec_type %>" <%= spec_types.include?(spec_type) ? 'checked' : 'unchecked' %> >
+      <label for="<%= spec_type %>"><%= spec_type %></label>
+    </div>
+  <% end %>
+
+  <button type='submit'>Update</button>
+  <img src='<%= "/test-by-time?spec_types=#{spec_types.join(',')}" %>' >
+</form>

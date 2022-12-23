@@ -23,4 +23,8 @@ class Example
     @run_time = run_time
     @pending_message = pending_message
   end
+
+  def spec_type
+    file_path.split('/')[2].to_sym
+  end
 end
