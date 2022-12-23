@@ -26,9 +26,9 @@ es:
       cta:
         button: Verifique su identificación en persona
         new_feature: Nuevo artículo
-        prompt_detail: Si usted está ubicado cerca de Washington, D.C. o Baltimore, MD,
-          puede verificar su identificación en persona en las oficinas de
-          correos seleccionadas.
+        prompt_detail: Si se encuentra cerca de Washington, D.C. o Baltimore, MD, es
+          posible que pueda verificar su ID en persona en una oficina de correos
+          participante cercana.
       location:
         contact_info_heading: Información del contacto
         distance:
