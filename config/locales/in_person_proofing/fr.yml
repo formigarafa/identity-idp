@@ -25,7 +25,7 @@ fr:
         speak_to_associate: Vous pouvez voir n’importe quel associé au guichet de vente
           au détail pour vérifier votre identité.
       cta:
-        button: Vérifiez votre identité en personne
+        button: Essayer en personne
         new_feature: Nouvelle fonctionnalité
         prompt_detail: Si vous vous trouvez près de Washington, D.C. ou de Baltimore,
           MD, vous pourrez peut-être faire vérifier votre pièce d’identité en

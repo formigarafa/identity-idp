@@ -24,7 +24,7 @@ es:
         speak_to_associate: Para verificar su identidad, puede acudir a cualquier
           empleado en ventanilla.
       cta:
-        button: Verifique su identificación en persona
+        button: Inténtelo en persona
         new_feature: Nuevo artículo
         prompt_detail: Si se encuentra cerca de Washington, D.C. o Baltimore, MD, es
           posible que pueda verificar su ID en persona en una oficina de correos
