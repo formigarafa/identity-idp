@@ -24,8 +24,6 @@ module Idv
       helper_method :delete_pii
       helper_method :idv_result_to_form_response
       helper_method :redact
-      helper_method :mark_step_complete
-      helper_method :mark_step_incomplete
     end
 
     def mark_step_complete(step = nil)
@@ -59,6 +57,66 @@ module Idv
         idv_failure(summary_result)
       end
     end
+
+    def throttle
+      @throttle ||= Throttle.new(
+        user: current_user,
+        throttle_type: :idv_resolution,
+      )
+    end
+
+    def idv_failure(result)
+      throttle.increment! if result.extra.dig(:proofing_results, :exception).blank?
+      if throttle.throttled?
+        idv_failure_log_throttled
+        redirect_to throttled_url
+      elsif result.extra.dig(:proofing_results, :exception).present?
+        idv_failure_log_error
+        redirect_to exception_url
+      else
+        idv_failure_log_warning
+        redirect_to warning_url
+      end
+    end
+
+    def idv_failure_log_throttled
+      irs_attempts_api_tracker.idv_verification_rate_limited
+      analytics.throttler_rate_limit_triggered(
+        throttle_type: :idv_resolution,
+        step_name: analytics_step_name,
+      )
+    end
+
+    def analytics_step_name
+      "Idv::Steps::VerifyWaitStepShow"
+    end
+
+    def idv_failure_log_error
+      analytics.idv_doc_auth_exception_visited(
+        step_name: analytics_step_name,
+        remaining_attempts: throttle.remaining_count,
+      )
+    end
+
+    def idv_failure_log_warning
+      analytics.idv_doc_auth_warning_visited(
+        step_name: analytics_step_name,
+        remaining_attempts: throttle.remaining_count,
+      )
+    end
+
+    def throttled_url
+      idv_session_errors_failure_url
+    end
+
+    def exception_url
+      idv_session_errors_exception_url
+    end
+
+    def warning_url
+      idv_session_errors_warning_url
+    end
+
 
     def add_proofing_components
       ProofingComponent.create_or_find_by(user: current_user).update(
@@ -178,7 +236,6 @@ module Idv
         analytics.idv_proofing_resolution_result_missing
       elsif current_async_state.done?
         async_state_done(current_async_state)
-        redirect_to idv_phone_url
       end
     end
 
@@ -219,6 +276,7 @@ module Idv
 
       if form_response.success?
         mark_step_complete(:verify_wait)
+        redirect_to idv_phone_url
       else
         mark_step_incomplete(:verify)
       end
