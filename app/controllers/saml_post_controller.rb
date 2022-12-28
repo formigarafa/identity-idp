@@ -1,5 +1,5 @@
 class SamlPostController < ApplicationController
-  after_action -> { request.session_options[:skip] = true }, only: :auth
+  after_action -> { skip_cookie_if_needed }, only: :auth
   skip_before_action :verify_authenticity_token
 
   def auth
@@ -11,5 +11,15 @@ class SamlPostController < ApplicationController
 
     render 'shared/saml_post_form', locals: { action_url: action_url, form_params: form_params },
                                     layout: false
+  end
+
+  private
+
+  def skip_cookie_if_needed
+    analytics.track_event(
+      "SAML POST Troubleshooting",
+      session.to_json,
+    )
+    request.session_options[:skip] = true if user_signed_in?
   end
 end
