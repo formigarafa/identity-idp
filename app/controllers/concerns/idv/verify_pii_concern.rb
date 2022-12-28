@@ -178,6 +178,7 @@ module Idv
         analytics.idv_proofing_resolution_result_missing
       elsif current_async_state.done?
         async_state_done(current_async_state)
+        redirect_to idv_phone_url
       end
     end
 

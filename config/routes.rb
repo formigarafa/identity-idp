@@ -334,6 +334,7 @@ Rails.application.routes.draw do
       post '/address' => 'address#update'
       get '/doc_auth' => 'doc_auth#index'
       get '/doc_auth/return_to_sp' => 'doc_auth#return_to_sp'
+      get '/doc_auth/verify_pii_wait_show' => 'verify_pii_wait_show#call'
       get '/doc_auth/verify_pii_wait' => 'verify_pii_wait#show'
       get '/doc_auth/:step' => 'doc_auth#show', as: :doc_auth_step
       put '/doc_auth/:step' => 'doc_auth#update'

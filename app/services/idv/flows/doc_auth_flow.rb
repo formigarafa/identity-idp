@@ -29,10 +29,6 @@ module Idv
         { name: :get_a_letter },
       ].freeze
 
-      OPTIONAL_SHOW_STEPS = {
-        verify_wait: Idv::Steps::VerifyWaitStepShow,
-      }.freeze
-
       ACTIONS = {
         cancel_send_link: Idv::Actions::CancelSendLinkAction,
         cancel_link_sent: Idv::Actions::CancelLinkSentAction,
