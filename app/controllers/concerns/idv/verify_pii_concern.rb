@@ -223,7 +223,22 @@ module Idv
         mark_step_incomplete(:verify)
       end
 
+      send_analytics(form_response)
+
       form_response
+    end
+
+    def send_analytics(form_response)
+      analytics_args = form_response.to_h.merge({
+        step: 'verify_wait_show',
+        analytics_id: 'Doc Auth',
+      })
+
+      analytics.public_send(
+        :idv_doc_auth_optional_verify_wait_submitted,
+        **analytics_args,
+      )
+
     end
 
     def async_state
