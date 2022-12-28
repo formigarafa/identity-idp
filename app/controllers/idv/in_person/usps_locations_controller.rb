@@ -4,7 +4,6 @@ module Idv
   module InPerson
     class UspsLocationsController < ApplicationController
       include RenderConditionConcern
-      include UspsInPersonProofing
       include EffectiveUser
 
       check_or_render_not_found -> { InPersonConfig.enabled? }
@@ -35,7 +34,7 @@ module Idv
       end
 
       def proofer
-        @proofer ||= Proofer.new
+        @proofer ||= UspsInPersonProofing::Mock::Proofer.new
       end
 
       # save the Post Office location the user selected to an enrollment

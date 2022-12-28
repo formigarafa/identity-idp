@@ -28,7 +28,32 @@ module UspsInPersonProofing
       end
 
       def request_facilities(_location)
-        JSON.parse(Fixtures.request_facilities_response)
+        parse_facilities(JSON.parse(Fixtures.request_facilities_response))
+      end
+
+      def parse_facilities(facilities)
+        facilities['postOffices'].map do |post_office|
+          hours = {}
+          post_office['hours'].each do |hour_details|
+            hour_details.keys.each do |key|
+              hours[key] = hour_details[key]
+            end
+          end
+
+          PostOffice.new(
+            address: post_office['streetAddress'],
+            city: post_office['city'],
+            distance: post_office['distance'],
+            name: post_office['name'],
+            phone: post_office['phone'],
+            saturday_hours: hours['saturdayHours'],
+            state: post_office['state'],
+            sunday_hours: hours['sundayHours'],
+            weekday_hours: hours['weekdayHours'],
+            zip_code_4: post_office['zip4'],
+            zip_code_5: post_office['zip5'],
+          )
+        end
       end
 
       def request_pilot_facilities
