@@ -15,11 +15,39 @@ module Idv
       helper_method :check_ssn
       helper_method :save_legacy_state
       helper_method :skip_legacy_steps
+      helper_method :summarize_result_and_throttle_failures
+      helper_method :add_proofing_components
+      helper_method :delete_async
 
       # TODO: Could these go elsewhere?
       helper_method :pii
+      helper_method :delete_pii
       helper_method :idv_result_to_form_response
       helper_method :redact
+    end
+
+    def delete_async
+      flow_session.delete(verify_step_document_capture_session_uuid_key)
+    end
+
+    def summarize_result_and_throttle_failures(summary_result)
+      if summary_result.success?
+        add_proofing_components
+        summary_result
+      else
+        idv_failure(summary_result)
+      end
+    end
+
+    def add_proofing_components
+      ProofingComponent.create_or_find_by(user: current_user).update(
+        resolution_check: Idp::Constants::Vendors::LEXIS_NEXIS,
+        source_check: Idp::Constants::Vendors::AAMVA,
+      )
+    end
+
+    def delete_pii
+      flow_session.delete(:pii_from_doc)
     end
 
     def check_ssn
@@ -35,16 +63,16 @@ module Idv
 
     def save_legacy_state
       skip_legacy_steps
-      idv_session['applicant'] = pii
-      idv_session['applicant']['uuid'] = current_user.uuid
+      idv_session.applicant = pii
+      idv_session.applicant['uuid'] = current_user.uuid
     end
 
     def skip_legacy_steps
-      idv_session['profile_confirmation'] = true
-      idv_session['vendor_phone_confirmation'] = false
-      idv_session['user_phone_confirmation'] = false
-      idv_session['address_verification_mechanism'] = 'phone'
-      idv_session['resolution_successful'] = 'phone'
+      idv_session.profile_confirmation = true
+      idv_session.vendor_phone_confirmation = false
+      idv_session.user_phone_confirmation = false
+      idv_session.address_verification_mechanism = 'phone'
+      idv_session.resolution_successful = 'phone'
     end
 
     def idv_success(idv_result)

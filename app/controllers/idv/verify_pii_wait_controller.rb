@@ -1,8 +1,8 @@
 module Idv
   class VerifyPiiWaitController < ApplicationController
+#    include IdvStepConcern
     include StepIndicatorConcern
     include VerifyPiiConcern
-    include IdvSession
 
     def show
       local_params = {
