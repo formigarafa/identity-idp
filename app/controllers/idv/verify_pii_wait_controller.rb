@@ -6,7 +6,7 @@ module Idv
 
     def show
       local_params = {
-        # step_url: method(:idv_doc_auth_verify_pii_wait_url),
+        step_url: method(:idv_doc_auth_verify_pii_wait_url),
         step_template: "idv/doc_auth/verify_wait",
         flow_session: flow_session
       }

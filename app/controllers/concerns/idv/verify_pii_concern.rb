@@ -24,6 +24,27 @@ module Idv
       helper_method :delete_pii
       helper_method :idv_result_to_form_response
       helper_method :redact
+      helper_method :mark_step_complete
+      helper_method :mark_step_incomplete
+    end
+
+    def mark_step_complete(step = nil)
+      steps = {}
+      steps[:verify_wait] = Idv::Steps::VerifyWaitStep
+      steps[:verify] = Idv::Steps::VerifyStep
+
+      klass = step.nil? ? self.class : steps[step]
+      flow_session[klass.to_s] = true
+    end
+
+    def mark_step_incomplete(step = nil)
+      steps = {}
+      steps[:verify_wait] = Idv::Steps::VerifyWaitStep
+      steps[:verify] = Idv::Steps::VerifyStep
+
+      klass = step.nil? ? self.class : steps[step]
+      flow_session.delete(klass.to_s)
+      nil
     end
 
     def delete_async
