@@ -22,7 +22,7 @@ function CaptureAdvice({ onTryAgain, isAssessedAsGlare, isAssessedAsBlurry }) {
   return (
     <Warning
       heading={t('doc_auth.headings.capture_troubleshooting_tips')}
-      actionText={t('idv.failure.button.warning')}
+      actionText={t('idv.failure.button.try_again')}
       actionOnClick={onTryAgain}
       location="doc_auth_capture_advice"
       troubleshootingOptions={

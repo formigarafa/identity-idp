@@ -95,7 +95,7 @@ function ReviewIssuesStep({
     return (
       <Warning
         heading={t('errors.doc_auth.throttled_heading')}
-        actionText={t('idv.failure.button.warning')}
+        actionText={t('idv.failure.button.try_again')}
         actionOnClick={onWarningPageDismissed}
         location="doc_auth_review_issues"
         remainingAttempts={remainingAttempts}
