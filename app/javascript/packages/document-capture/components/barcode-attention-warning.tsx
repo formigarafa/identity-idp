@@ -55,6 +55,8 @@ function BarcodeAttentionWarning({ onDismiss, pii }: BarcodeAttentionWarningProp
         <Button key="add-new" isBig isOutline isWide onClick={handleDismiss}>
           {t('doc_auth.buttons.add_new_photos')}
         </Button>,
+        // todo: add B-test variation here. The in-person proofing CTA button
+        // not totally sure that we need it here
       ]}
       troubleshootingOptions={
         <DocumentCaptureTroubleshootingOptions

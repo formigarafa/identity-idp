@@ -69,6 +69,7 @@ function Warning({
         {actionText}
       </Button>,
     ];
+    // todo: add B-test variation here. The in-person proofing CTA button
   }
 
   return (
