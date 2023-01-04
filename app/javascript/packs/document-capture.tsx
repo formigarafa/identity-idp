@@ -32,6 +32,8 @@ interface AppRootData {
   cancelUrl: string;
   idvInPersonUrl?: string;
   securityAndPrivacyHowItWorksUrl: string;
+  inPersonCtaABTestingEnabled: string;
+  inPersonMoreProminentCta: string;
 }
 
 const appRoot = document.getElementById('document-capture-form')!;
@@ -65,8 +67,14 @@ function getMetaContent(name): string | null {
 const device: DeviceContextValue = { isMobile: isCameraCapableMobile() };
 
 const trackEvent: typeof baseTrackEvent = (event, payload) => {
-  const { flowPath, acuantSdkUpgradeABTestingEnabled, useAlternateSdk, acuantVersion } =
-    appRoot.dataset;
+  const {
+    flowPath,
+    inPersonCtaABTestingEnabled,
+    inPersonMoreProminentCta,
+    acuantSdkUpgradeABTestingEnabled,
+    useAlternateSdk,
+    acuantVersion,
+  } = appRoot.dataset;
   return baseTrackEvent(event, {
     ...payload,
     flow_path: flowPath,
@@ -119,6 +127,8 @@ const trackEvent: typeof baseTrackEvent = (event, payload) => {
     idvInPersonUrl: inPersonURL,
     securityAndPrivacyHowItWorksUrl: securityAndPrivacyHowItWorksURL,
     arcgisSearchEnabled,
+    inPersonCtaABTestingEnabled,
+    inPersonMoreProminentCta,
   } = appRoot.dataset as DOMStringMap & AppRootData;
 
   const App = composeComponents(
@@ -170,7 +180,14 @@ const trackEvent: typeof baseTrackEvent = (event, payload) => {
     ],
     [
       InPersonContext.Provider,
-      { value: { arcgisSearchEnabled: arcgisSearchEnabled === 'true', inPersonURL } },
+      {
+        value: {
+          arcgisSearchEnabled: arcgisSearchEnabled === 'true',
+          inPersonCtaABTestingEnabled: inPersonCtaABTestingEnabled === 'true',
+          inPersonMoreProminentCta: inPersonMoreProminentCta === 'true',
+          inPersonURL,
+        },
+      },
     ],
     [DocumentCapture, { isAsyncForm, onStepChange: keepAlive }],
   );
