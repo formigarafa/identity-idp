@@ -13,6 +13,7 @@ import Warning from './warning';
 import AnalyticsContext from '../context/analytics';
 import BarcodeAttentionWarning from './barcode-attention-warning';
 import FailedCaptureAttemptsContext from '../context/failed-capture-attempts';
+import { InPersonContext } from '../context';
 
 type DocumentSide = 'front' | 'back';
 
@@ -71,6 +72,7 @@ function ReviewIssuesStep({
   const { trackEvent } = useContext(AnalyticsContext);
   const [hasDismissed, setHasDismissed] = useState(remainingAttempts === Infinity);
   const { onPageTransition, changeStepCanComplete } = useContext(FormStepsContext);
+  const { inPersonMoreProminentCta } = useContext(InPersonContext);
   useDidUpdateEffect(onPageTransition, [hasDismissed]);
 
   const { onFailedSubmissionAttempt } = useContext(FailedCaptureAttemptsContext);
@@ -113,13 +115,16 @@ function ReviewIssuesStep({
             .map(({ error }) => <p key={error.message}>{error.message}</p>)}
 
         {remainingAttempts <= DISPLAY_ATTEMPTS && (
-          <p>
-            <strong>
-              {remainingAttempts === 1
-                ? t('idv.failure.attempts.one')
-                : t('idv.failure.attempts.other', { count: remainingAttempts })}
-            </strong>
-          </p>
+          <>
+            <p>
+              <strong>
+                {remainingAttempts === 1
+                  ? t('idv.failure.attempts.one')
+                  : t('idv.failure.attempts.other', { count: remainingAttempts })}
+              </strong>
+            </p>
+            {inPersonMoreProminentCta && <p>This is where the text ought to go</p>}
+          </>
         )}
       </Warning>
     );
