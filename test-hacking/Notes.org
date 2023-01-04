@@ -1,0 +1,32 @@
+* Overall problems with the test suite
+** Tests are too slow
+** Tests are somewhat unreliable
+More so on developers' machines than in CI, we think (subjective)
+* Investigation of test speed (rspec output)
+  One test run, on my (jmax) local dev environment; a very rough survey
+** Shows expected overall pattern
+- Fixture specs are by far the slowest
+- Controller specs are next
+- Everything else is relatively fast
+* Stop making things worse. Are we making things worse? Monitor what we're already doing.
+** Set up a way to use the CI test run data to monitor test suite behavior
+*** The CI test runs already produce JSON output for the spec split/merge steps.
+- How to grab it?
+- How to know there's new data to grab?
+** Be able to answer questions like:
+- What effect did this commit have on our overall test run time?
+- Are we getting faster or slower over time?
+- What code changes drove the test time changes?
+- What tests are flakey (usually pass, but occasionally don't?
+- What's common (e.g. ordering) to flakey failures?
+** Have created primitive JSON data store for RSpec's JSON output.
+- Needs to import data from CI (see above).
+- Needs to live somewhere besides my machine.
+- Needs better data manipulation
+* If it hurts to do that, stop doing that
+** How much test coverage do we lose if we don't run feature specs?
+TBD - jmax
+* What are high-leverage points to increase non-feature coverage?
+* Are there systematic bottlenecks? Profile the test suite for hot spots.
+** Feature specs are likely a lost cause, but it wouldn't hurt to check.
+** Non-feature specs likely have hot spots that can be improved.
