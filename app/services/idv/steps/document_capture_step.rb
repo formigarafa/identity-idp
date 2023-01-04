@@ -29,7 +29,11 @@ module Idv
             image_type: 'back',
             transaction_id: flow_session[:document_capture_session_uuid],
           ),
-        }.merge(native_camera_ab_testing_variables, acuant_sdk_upgrade_a_b_testing_variables)
+        }.merge(
+          native_camera_ab_testing_variables,
+          acuant_sdk_upgrade_a_b_testing_variables,
+          in_person_cta_a_b_testing_variables,
+        )
       end
 
       private
@@ -55,6 +59,17 @@ module Idv
               testing_enabled,
           use_alternate_sdk: use_alternate_sdk,
           acuant_version: acuant_version,
+        }
+      end
+
+      def in_person_cta_a_b_testing_variables
+        bucket = AbTests::IN_PERSON_CTA.bucket(flow_session[:document_capture_session_uuid])
+        testing_enabled = IdentityConfig.store.in_person_cta_a_b_testing_enabled
+        more_prominent_cta = (bucket == :more_prominent_cta)
+        # binding.pry
+        {
+          in_person_cta_a_b_testing_enabled: testing_enabled,
+          in_person_more_prominent_cta: more_prominent_cta,
         }
       end
 

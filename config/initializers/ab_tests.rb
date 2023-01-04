@@ -18,4 +18,13 @@ module AbTests
         0,
     },
   )
+
+  IN_PERSON_CTA = AbTestBucket.new(
+    experiment_name: 'In-Person Proofing CTA',
+    buckets: {
+      more_prominent_cta: IdentityConfig.store.in_person_cta_a_b_testing_enabled ?
+        IdentityConfig.store.idv_acuant_sdk_upgrade_a_b_testing_percent :
+        0,
+    },
+  )
 end
