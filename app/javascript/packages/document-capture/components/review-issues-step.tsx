@@ -109,6 +109,7 @@ function ReviewIssuesStep({
           />
         }
       >
+        {inPersonMoreProminentCta && <h2>{t('doc_auth.errors.alerts.heading')}</h2>}
         {!!unknownFieldErrors &&
           unknownFieldErrors
             .filter((error) => !['front', 'back'].includes(error.field!))
@@ -117,13 +118,10 @@ function ReviewIssuesStep({
         {remainingAttempts <= DISPLAY_ATTEMPTS && (
           <>
             <p>
-              <strong>
-                {remainingAttempts === 1
-                  ? t('idv.failure.attempts.one')
-                  : t('idv.failure.attempts.other', { count: remainingAttempts })}
-              </strong>
+              {remainingAttempts === 1
+                ? t('idv.failure.attempts.one_html')
+                : t('idv.failure.attempts.other_html', { count: remainingAttempts })}
             </p>
-            {inPersonMoreProminentCta && <p>This is where the text ought to go</p>}
           </>
         )}
       </Warning>

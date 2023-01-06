@@ -32,6 +32,7 @@ en:
         expiration_checks: The document has expired, or we couldn’t read the expiration
           date on your ID. If your ID is not expired, try taking new pictures.
         full_name_check: We couldn’t read the full name on your ID. Try taking new pictures.
+        heading: Try taking new pictures
         id_not_recognized: We couldn’t recognize your ID. It may be worn, damaged, or a
           type of ID that we don’t recognize. Try taking new pictures.
         id_not_verified: We couldn’t verify your ID. It might have moved when you took
