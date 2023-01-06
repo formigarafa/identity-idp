@@ -2,7 +2,7 @@ module ArcgisApi
   class Geocoder
     Suggestion = Struct.new(:text, :magic_key, keyword_init: true)
     AddressCandidate = Struct.new(
-      :address, :location, :street_address, :city, :state, :zip_code,
+      :address, :location, :street_address, :city, :state, :zip_code, :zip4,
       keyword_init: true
     )
     Location = Struct.new(:latitude, :longitude, keyword_init: true)
@@ -44,7 +44,7 @@ module ArcgisApi
       url = "#{root_url}/servernh/rest/services/GSA/USA/GeocodeServer/findAddressCandidates"
       params = {
         magicKey: magic_key,
-        outFields: 'StAddr,City,RegionAbbr,Postal',
+        outFields: 'StAddr,City,RegionAbbr,Postal,PostalExt',
         **COMMON_DEFAULT_PARAMETERS,
       }
 
@@ -122,6 +122,7 @@ module ArcgisApi
           city: candidate.dig('attributes', 'City'),
           state: candidate.dig('attributes', 'RegionAbbr'),
           zip_code: candidate.dig('attributes', 'Postal'),
+          zip4: candidate.dig('attributes', 'PostalExt'),
         )
       end
     end
