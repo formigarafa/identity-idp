@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
-import { useI18n } from '@18f/identity-react-i18n';
+import { useContext, useEffect, useState, ReactNode } from 'react';
+import { useI18n, formatHTML } from '@18f/identity-react-i18n';
 import { useDidUpdateEffect } from '@18f/identity-react-hooks';
 import { FormStepsContext, FormStepsButton } from '@18f/identity-form-steps';
 import { PageHeading } from '@18f/identity-components';
@@ -14,6 +14,12 @@ import AnalyticsContext from '../context/analytics';
 import BarcodeAttentionWarning from './barcode-attention-warning';
 import FailedCaptureAttemptsContext from '../context/failed-capture-attempts';
 import { InPersonContext } from '../context';
+
+function formatWithStrong(text: string): ReactNode {
+  return formatHTML(text, {
+    strong: ({ children }) => <strong>{children}</strong>,
+  });
+}
 
 type DocumentSide = 'front' | 'back';
 
@@ -119,8 +125,8 @@ function ReviewIssuesStep({
           <>
             <p>
               {remainingAttempts === 1
-                ? t('idv.failure.attempts.one_html')
-                : t('idv.failure.attempts.other_html', { count: remainingAttempts })}
+                ? formatWithStrong(t('idv.failure.attempts.one_html'))
+                : formatWithStrong(t('idv.failure.attempts.other_html', { count: remainingAttempts }))}
             </p>
           </>
         )}
