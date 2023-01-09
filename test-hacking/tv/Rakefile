@@ -1,2 +1,11 @@
-task :import do |test_run_json|
+task :local_run, [:git_reference] => ['tmp/working_clone'] do |name, args|
+  Dir.chdir 'tmp/working_clone' do
+    system "git checkout #{args.git_reference}"
+    system 'bundle install'
+    system 'rspec --format=json --out=json.out'
+  end
+end
 
+directory 'tmp/working_clone' do
+  system 'git clone git@github.com:18F/identity-idp.git tmp/working_clone'
+end
