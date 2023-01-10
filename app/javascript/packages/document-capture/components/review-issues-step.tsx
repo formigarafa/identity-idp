@@ -60,7 +60,7 @@ interface ReviewIssuesStepProps extends FormStepComponentProps<ReviewIssuesStepV
  */
 const DOCUMENT_SIDES: DocumentSide[] = ['front', 'back'];
 
-const DISPLAY_ATTEMPTS = 3;
+const DISPLAY_ATTEMPTS = 99;
 
 function ReviewIssuesStep({
   value = {},
@@ -88,6 +88,11 @@ function ReviewIssuesStep({
 
     setHasDismissed(true);
   }
+  function onInPersonSelected() {
+    trackEvent('IdV: verify in person troubleshooting option clicked');
+
+    setHasDismissed(true);
+  }
 
   // let FormSteps know, via FormStepsContext, whether this page
   // is ready to submit form values
@@ -105,6 +110,8 @@ function ReviewIssuesStep({
         heading={t('errors.doc_auth.throttled_heading')}
         actionText={t('idv.failure.button.try_again')}
         actionOnClick={onWarningPageDismissed}
+        altActionText={t('in_person_proofing.body.cta.button')}
+        altActionOnClick={onInPersonSelected}
         location="doc_auth_review_issues"
         remainingAttempts={remainingAttempts}
         troubleshootingOptions={
@@ -124,6 +131,7 @@ function ReviewIssuesStep({
         {remainingAttempts <= DISPLAY_ATTEMPTS && (
           <>
             <p>
+              {!inPersonMoreProminentCta && t('doc_auth.errors.general.no_liveness')+' '}
               {remainingAttempts === 1
                 ? formatWithStrong(t('idv.failure.attempts.one_html'))
                 : formatWithStrong(t('idv.failure.attempts.other_html', { count: remainingAttempts }))}
