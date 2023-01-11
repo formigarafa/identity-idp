@@ -23,6 +23,7 @@ export interface PostOffice {
   weekday_hours: string;
   zip_code_4: string;
   zip_code_5: string;
+  is_pilot: boolean;
 }
 
 export interface LocationQuery {
@@ -41,25 +42,20 @@ interface Location {
   address: string;
 }
 
-const formatLocation = (postOffices: PostOffice[]) => {
-  const formattedLocations = [] as FormattedLocation[];
-  postOffices.forEach((po: PostOffice, index) => {
-    const location = {
-      formattedCityStateZip: `${po.city}, ${po.state}, ${po.zip_code_5}-${po.zip_code_4}`,
-      id: index,
-      distance: po.distance,
-      name: po.name,
-      phone: po.phone,
-      saturdayHours: po.saturday_hours,
-      streetAddress: po.address,
-      sundayHours: po.sunday_hours,
-      tty: po.tty,
-      weekdayHours: po.weekday_hours,
-    } as FormattedLocation;
-    formattedLocations.push(location);
-  });
-  return formattedLocations;
-};
+const formatLocations = (postOffices: PostOffice[]): FormattedLocation[] =>
+  postOffices.map((po: PostOffice, index) => ({
+    formattedCityStateZip: `${po.city}, ${po.state}, ${po.zip_code_5}-${po.zip_code_4}`,
+    id: index,
+    distance: po.distance,
+    name: po.name,
+    phone: po.phone,
+    saturdayHours: po.saturday_hours,
+    streetAddress: po.address,
+    sundayHours: po.sunday_hours,
+    tty: po.tty,
+    weekdayHours: po.weekday_hours,
+    isPilot: !!po.is_pilot,
+  }));
 
 export const snakeCase = (value: string) =>
   value
@@ -83,7 +79,7 @@ const requestUspsLocations = async (address: LocationQuery): Promise<FormattedLo
     json: { address: transformKeys(address, snakeCase) },
   });
 
-  return formatLocation(response);
+  return formatLocations(response);
 };
 
 export const ADDRESS_SEARCH_URL = '/api/addresses';
@@ -172,7 +168,7 @@ function AddressSearch({
   const [textInput, setTextInput] = useState('');
   const {
     locationResults,
-    isLoading: loading,
+    isLoading,
     handleAddressSearch: onSearch,
     foundAddress,
     validatedFieldRef,
@@ -184,8 +180,8 @@ function AddressSearch({
   };
 
   useEffect(() => {
-    spinnerButtonRef.current?.toggleSpinner(loading);
-  }, [loading]);
+    spinnerButtonRef.current?.toggleSpinner(isLoading);
+  }, [isLoading]);
 
   useEffect(() => {
     locationResults && onFoundLocations(locationResults);
@@ -216,17 +212,20 @@ function AddressSearch({
           hint={t('in_person_proofing.body.location.po_search.address_search_hint')}
         />
       </ValidatedField>
-      <SpinnerButton
-        isWide
-        isBig
-        ref={spinnerButtonRef}
-        type="submit"
-        className="margin-y-5"
-        onClick={handleSearch}
-        spinOnClick={false}
-      >
-        {t('in_person_proofing.body.location.po_search.search_button')}
-      </SpinnerButton>
+      <div className="margin-y-5">
+        <SpinnerButton
+          isWide
+          isBig
+          ref={spinnerButtonRef}
+          type="submit"
+          onClick={handleSearch}
+          spinOnClick={false}
+          actionMessage={t('in_person_proofing.body.location.po_search.is_searching_message')}
+          longWaitDurationMs={1}
+        >
+          {t('in_person_proofing.body.location.po_search.search_button')}
+        </SpinnerButton>
+      </div>
     </>
   );
 }

@@ -4,9 +4,6 @@ module Reports
   class BaseReport < ApplicationJob
     queue_as :long_running
 
-    # We use good_job's concurrency features to cancel "extra" or duplicative runs of the same job
-    discard_on GoodJob::ActiveJobExtensions::Concurrency::ConcurrencyExceededError
-
     def self.transaction_with_timeout(rails_env = Rails.env)
       # rspec-rails's use_transactional_tests does not seem to act as expected when switching
       # connections mid-test, so we just skip for now :[
@@ -91,10 +88,14 @@ module Reports
       Identity::Hostdata.bucket_name(IdentityConfig.store.s3_report_bucket_prefix)
     end
 
+    def s3_client
+      @s3_client ||= JobHelpers::S3Helper.new.s3_client
+    end
+
     def upload_file_to_s3_bucket(path:, body:, content_type:, bucket: bucket_name)
       url = "s3://#{bucket}/#{path}"
       logger.info("#{class_name}: uploading to #{url}")
-      obj = Aws::S3::Resource.new.bucket(bucket).object(path)
+      obj = Aws::S3::Resource.new(client: s3_client).bucket(bucket).object(path)
       obj.put(body: body, acl: 'private', content_type: content_type)
       logger.debug("#{class_name}: upload completed to #{url}")
       url
