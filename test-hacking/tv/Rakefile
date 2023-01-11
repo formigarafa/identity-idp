@@ -1,8 +1,23 @@
 task :local_run, [:git_reference] => ['tmp/working_clone'] do |name, args|
   Dir.chdir 'tmp/working_clone' do
+    File.open('.nvmrc', 'w') do |f|
+      f.write('16.17.0')
+    end
     system "git checkout #{args.git_reference}"
+    system 'cp config/agencies.localdev.yml config/agencies.yml'
+    system 'cp config/iaa_gtcs.localdev.yml config/iaa_gtcs.yml'
+    system 'cp config/iaa_orders.localdev.yml config/iaa_orders.yml'
+    system 'cp config/integration_statuses.localdev.yml config/integration_statuses.yml'
+    system 'cp config/integrations.localdev.yml config/integrations.yml'
+    system 'cp config/partner_accounts.localdev.yml config/partner_accounts.yml'
+    system 'cp config/partner_account_statuses.localdev.yml config/partner_account_statuses.yml'
+    system 'cp config/service_providers.localdev.yml config/service_providers.yml'
+    system 'cp -r certs.example certs'
+    system 'cp -r keys.example keys'
+    system 'cp -r pwned_passwords/pwned_passwords.txt.sample pwned_passwords/pwned_passwords.txt'
     system 'bundle install'
-    system 'rspec --format=json --out=json.out'
+    system 'yarn install'
+    system 'bundle exec rspec --format=json --out=json.out'
   end
 end
 
