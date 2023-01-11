@@ -60,7 +60,7 @@ interface ReviewIssuesStepProps extends FormStepComponentProps<ReviewIssuesStepV
  */
 const DOCUMENT_SIDES: DocumentSide[] = ['front', 'back'];
 
-const DISPLAY_ATTEMPTS = 99;
+const DISPLAY_ATTEMPTS = 3;
 
 function ReviewIssuesStep({
   value = {},
@@ -138,6 +138,7 @@ function ReviewIssuesStep({
             </p>
           </>
         )}
+        {!inPersonMoreProminentCta && <p>{formatWithStrong(t('in_person_proofing.body.cta.more_prominent_prompt_html'))}</p>}
       </Warning>
     );
   }
