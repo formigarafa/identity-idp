@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
-import { useI18n } from '@18f/identity-react-i18n';
+import { useContext, useEffect, useState, ReactNode } from 'react';
+import { useI18n, formatHTML } from '@18f/identity-react-i18n';
 import { useDidUpdateEffect } from '@18f/identity-react-hooks';
 import { FormStepsContext, FormStepsButton } from '@18f/identity-form-steps';
 import { PageHeading } from '@18f/identity-components';
@@ -14,6 +14,12 @@ import AnalyticsContext from '../context/analytics';
 import BarcodeAttentionWarning from './barcode-attention-warning';
 import FailedCaptureAttemptsContext from '../context/failed-capture-attempts';
 import { InPersonContext } from '../context';
+
+function formatWithStrong(text: string): ReactNode {
+  return formatHTML(text, {
+    strong: ({ children }) => <strong>{children}</strong>,
+  });
+}
 
 type DocumentSide = 'front' | 'back';
 
@@ -54,7 +60,7 @@ interface ReviewIssuesStepProps extends FormStepComponentProps<ReviewIssuesStepV
  */
 const DOCUMENT_SIDES: DocumentSide[] = ['front', 'back'];
 
-const DISPLAY_ATTEMPTS = 3;
+const DISPLAY_ATTEMPTS = 99;
 
 function ReviewIssuesStep({
   value = {},
@@ -82,6 +88,11 @@ function ReviewIssuesStep({
 
     setHasDismissed(true);
   }
+  function onInPersonSelected() {
+    trackEvent('IdV: verify in person troubleshooting option clicked');
+
+    setHasDismissed(true);
+  }
 
   // let FormSteps know, via FormStepsContext, whether this page
   // is ready to submit form values
@@ -99,6 +110,8 @@ function ReviewIssuesStep({
         heading={t('errors.doc_auth.throttled_heading')}
         actionText={t('idv.failure.button.try_again')}
         actionOnClick={onWarningPageDismissed}
+        altActionText={t('in_person_proofing.body.cta.button')}
+        altActionOnClick={onInPersonSelected}
         location="doc_auth_review_issues"
         remainingAttempts={remainingAttempts}
         troubleshootingOptions={
@@ -118,9 +131,10 @@ function ReviewIssuesStep({
         {remainingAttempts <= DISPLAY_ATTEMPTS && (
           <>
             <p>
+              {!inPersonMoreProminentCta && t('doc_auth.errors.general.no_liveness')+' '}
               {remainingAttempts === 1
-                ? t('idv.failure.attempts.one_html')
-                : t('idv.failure.attempts.other_html', { count: remainingAttempts })}
+                ? formatWithStrong(t('idv.failure.attempts.one_html'))
+                : formatWithStrong(t('idv.failure.attempts.other_html', { count: remainingAttempts }))}
             </p>
           </>
         )}

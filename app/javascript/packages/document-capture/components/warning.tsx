@@ -16,9 +16,19 @@ interface WarningProps {
   actionText?: string;
 
   /**
+   * Secondary action button text.
+   */
+  altActionText?: string;
+
+  /**
    * Primary action button text.
    */
   actionOnClick?: () => void;
+
+  /**
+   * Secondary action button text.
+   */
+  altActionOnClick?: () => void;
 
   /**
    * Component children.
@@ -45,6 +55,8 @@ function Warning({
   heading,
   actionText,
   actionOnClick,
+  altActionText,
+  altActionOnClick,
   children,
   troubleshootingOptions,
   location,
@@ -69,7 +81,24 @@ function Warning({
         {actionText}
       </Button>,
     ];
-    // todo: add B-test variation here. The in-person proofing CTA button
+    if (altActionText && altActionOnClick) {
+      actionButtons.push(
+        <Button
+        isBig
+        isOutline
+        isWide
+        href="#location"
+        className="margin-top-1"
+        onClick={() => {
+          trackEvent('IdV: warning action triggered', { location });
+          altActionOnClick();
+        }}
+        >
+        {altActionText}
+        </Button>
+      )
+    }
+    
   }
 
   return (

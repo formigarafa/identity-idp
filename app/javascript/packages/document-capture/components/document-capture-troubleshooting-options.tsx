@@ -39,10 +39,11 @@ function DocumentCaptureTroubleshootingOptions({
   const { inPersonURL } = useContext(InPersonContext);
   const { getHelpCenterURL } = useContext(MarketingSiteContext);
   const { name: spName, getFailureToProofURL } = useContext(ServiceProviderContext);
+  const { inPersonMoreProminentCta } = useContext(InPersonContext);
 
   return (
     <>
-      {showAlternativeProofingOptions && inPersonURL && <InPersonCallToAction />}
+      {showAlternativeProofingOptions && inPersonURL && inPersonMoreProminentCta && <InPersonCallToAction />}
       <TroubleshootingOptions
         heading={heading}
         options={
