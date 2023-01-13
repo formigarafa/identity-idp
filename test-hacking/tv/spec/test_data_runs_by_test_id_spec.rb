@@ -38,11 +38,11 @@ RSpec.describe TestData do
       TestData.new.import(test_json)
     end
 
-    xit 'returns nil for a bogus test id' do
+    it 'returns nil for a bogus test id' do
       expect(TestData.new.test_runs_by_id('bogus-test-id')).to be(nil)
     end
 
-    xit 'retrieves the test run data' do
+    it 'retrieves the test run data' do
       expect(TestData.new.test_runs_by_id('./spec/some_spec.rb[1:1:1:1]')).not_to be(nil)
     end
   end

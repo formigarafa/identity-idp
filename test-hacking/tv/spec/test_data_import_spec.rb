@@ -35,10 +35,10 @@ RSpec.describe TestData do
       },
     )
 
-    GIT_HASH = '678891c3c2f38304efd1ff47deb0d1ba9f4aac88'
+    let(:git_hash) { '678891c3c2f38304efd1ff47deb0d1ba9f4aac88' }
 
     let(:test_id) do
-      TestData.new.import(TEST_JSON, GIT_HASH)
+      TestData.new.import(TEST_JSON, git_hash)
     end
 
     let(:rspec_data_filename) { "test-data/#{test_id}/rspec-out.json" }

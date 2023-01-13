@@ -12,7 +12,7 @@ class TestData
   end
 
   # ToDo: this is misleading. Change to a better name
-  def run_ids
+  def local_run_ids
     Dir.glob("#{@test_data_directory}/*").map do |test_dir|
       test_dir.split('/')[-1]
     end
@@ -43,11 +43,10 @@ class TestData
     import(File.open("#{directory}/rspec.json").read, git_hash)
   end
 
-  def run_data(run_id)
-    RunData.from_json(File.read("#{@test_data_directory}/#{run_id}/rspec-out.json"))
+  def run_data(local_run_id)
+    RunData.from_json(File.read("#{@test_data_directory}/#{local_run_id}/rspec-out.json"))
   end
 
   def test_runs_by_id(test_id)
-
   end
 end

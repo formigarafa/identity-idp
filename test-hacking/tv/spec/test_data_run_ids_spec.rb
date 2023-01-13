@@ -6,12 +6,12 @@ require './app/test_data'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe TestData do
-  describe '#run_ids' do
+  describe '#local_run_ids' do
     include FakeFS::SpecHelpers
 
     context 'with a non-existent data directory' do
       it 'shows no data' do
-        expect(TestData.new.run_ids).to eq([])
+        expect(TestData.new.local_run_ids).to eq([])
       end
     end
 
@@ -19,7 +19,7 @@ RSpec.describe TestData do
       before { Dir.mkdir 'test-data' }
 
       it 'shows no data' do
-        expect(TestData.new.run_ids).to eq([])
+        expect(TestData.new.local_run_ids).to eq([])
       end
     end
 
@@ -37,7 +37,7 @@ RSpec.describe TestData do
       end
 
       it 'shows the test runs' do
-        expect(TestData.new.run_ids).to match_array(test_ids)
+        expect(TestData.new.local_run_ids).to match_array(test_ids)
       end
     end
   end
