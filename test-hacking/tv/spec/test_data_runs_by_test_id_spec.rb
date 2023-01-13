@@ -38,8 +38,8 @@ RSpec.describe TestData do
       TestData.new.import(test_json)
     end
 
-    it 'returns nil for a bogus test id' do
-      expect(TestData.new.test_runs_by_id('bogus-test-id')).to be(nil)
+    it 'returns [] for a bogus test id' do
+      expect(TestData.new.test_runs_by_id('bogus-test-id')).to eq([])
     end
 
     it 'retrieves the test run data' do

@@ -48,5 +48,16 @@ class TestData
   end
 
   def test_runs_by_id(test_id)
+    return_value = []
+
+    local_run_ids.each do |id|
+      run_data(id).examples.each do |example_run|
+        if example_run.id == test_id
+          return_value.push(example_run)
+        end
+      end
+    end
+
+    return_value
   end
 end
