@@ -91,18 +91,22 @@ describe('CountdownElement', () => {
     expect(element.textContent).to.equal('2 seconds');
   });
 
-  it('stops when the countdown is finished', () => {
-    const element = createElement({
-      expiration: new Date(new Date().getTime() + 1000).toISOString(),
-      updateInterval: '1000',
+  context('timer stop', () => {
+    const delay = 5000;
+
+    it('stops when the countdown is finished', async () => {
+      const element = createElement({
+        expiration: new Date(new Date().getTime() + 1000).toISOString(),
+        updateInterval: delay.toString(),
+      });
+
+      sinon.stub(element, 'stop');
+
+      clock.tick(delay);
+
+      expect(element.textContent).to.equal('0 seconds');
+      expect(element.stop).to.have.been.called();
     });
-
-    sinon.spy(element, 'stop');
-
-    clock.tick(1000);
-
-    expect(element.textContent).to.equal('0 seconds');
-    expect(element.stop).to.have.been.called();
   });
 
   it('emits a tick event on each tick', () => {
