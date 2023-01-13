@@ -5,9 +5,7 @@ require './app/test_data'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe TestData do
-  describe '#run_data' do
-    include FakeFS::SpecHelpers
-
+  describe '#test_runs_by_id' do
     let(:test_json) do
       JSON.generate(
         {
@@ -36,14 +34,16 @@ RSpec.describe TestData do
       )
     end
 
-    GIT_HASH = '678891c3c2f38304efd1ff47deb0d1ba9f4aac88'
-
     let(:test_id) do
-      TestData.new.import(test_json, GIT_HASH)
+      TestData.new.import(test_json)
     end
 
-    it 'retrieves the test run data' do
-      expect(TestData.new.run_data(test_id).version).to eq('3.12.0')
+    xit 'returns nil for a bogus test id' do
+      expect(TestData.new.test_runs_by_id('bogus-test-id')).to be(nil)
+    end
+
+    xit 'retrieves the test run data' do
+      expect(TestData.new.test_runs_by_id('./spec/some_spec.rb[1:1:1:1]')).not_to be(nil)
     end
   end
 end

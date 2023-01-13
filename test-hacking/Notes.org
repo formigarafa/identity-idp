@@ -30,3 +30,6 @@ TBD - jmax
 * Are there systematic bottlenecks? Profile the test suite for hot spots.
 ** Feature specs are likely a lost cause, but it wouldn't hurt to check.
 ** Non-feature specs likely have hot spots that can be improved.
+* Which tests use Time.now? Those are good suspects for flaky tests.
+** What time of day did the failure occur? Is there any correlation?
+* Look for failure -> rerun -> succeeds
