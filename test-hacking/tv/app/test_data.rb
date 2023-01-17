@@ -18,23 +18,23 @@ class TestData
   end
 
   def import(rspec_json, git_hash)
-    test_id = SecureRandom.uuid
-    FileUtils.mkdir_p("#{@test_data_directory}/#{test_id}")
+    test_run_id = SecureRandom.uuid
+    FileUtils.mkdir_p("#{@test_data_directory}/#{test_run_id}")
     File.open(
-      "#{@test_data_directory}/#{test_id}/rspec-out.json",
+      "#{@test_data_directory}/#{test_run_id}/rspec-out.json",
       'w',
     ) do |file|
       file.write(rspec_json)
     end
 
     File.open(
-      "#{@test_data_directory}/#{test_id}/metada.json",
+      "#{@test_data_directory}/#{test_run_id}/metada.json",
       'w',
     ) do |file|
       file.puts "{ \"git_hash\": \"#{git_hash}\" }"
     end
 
-    test_id
+    test_run_id
   end
 
   def import_gitlab_run(directory)
@@ -43,21 +43,17 @@ class TestData
   end
 
   def run_data(local_run_id)
-    RunData.from_json(local_run_id,
-                      File.read("#{@test_data_directory}/#{local_run_id}/rspec-out.json"))
-  end
-
-  def example_from_run(examples, test_id)
-    examples.filter do |example_run|
-      example_run.id == test_id
-    end
+    RunData.from_json(
+      local_run_id,
+      File.read("#{@test_data_directory}/#{local_run_id}/rspec-out.json"),
+    )
   end
 
   def test_runs_by_id(test_id)
     return_value = []
 
-    local_run_ids.each do |id|
-      return_value += example_from_run(run_data(id).examples, test_id)
+    local_run_ids.each do |run_id|
+      return_value += run_data(run_id).test_runs_for_id(test_id)
     end
 
     return_value
