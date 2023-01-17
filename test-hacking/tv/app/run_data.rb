@@ -6,10 +6,11 @@ require_relative 'example'
 class RunData
   attr_reader :version, :summary_line, :summary, :examples
 
-  def self.from_json(run_json)
+  def self.from_json(local_run_id, run_json)
     run = JSON.parse(run_json)
     examples = run['examples'].map do |raw_example|
-      Example.new(id: raw_example['id'],
+      Example.new(local_run_id: local_run_id,
+                  id: raw_example['id'],
                   description: raw_example['description'],
                   full_description: raw_example['full_description'],
                   status: raw_example['status'],

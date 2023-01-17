@@ -5,14 +5,19 @@ require './app/test_data'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe TestData do
+  include FakeFS::SpecHelpers
+
   describe '#test_runs_by_id' do
+    let(:fake_git_hash) { 'fake-git-hash' }
+    let(:test_id) { './spec/some_spec.rb[1:1:1:1]' }
+
     let(:test_json) do
       JSON.generate(
         {
           version: '3.12.0',
           examples: [
             {
-              id: './spec/some_spec.rb[1:1:1:1]',
+              id: test_id,
               description: 'is tested',
               full_description: 'SomeClass#method is tested',
               status: 'passed',
@@ -34,16 +39,30 @@ RSpec.describe TestData do
       )
     end
 
-    let(:test_id) do
-      TestData.new.import(test_json)
+    before do
+      @local_run_id = TestData.new.import(test_json, fake_git_hash)
     end
 
     it 'returns [] for a bogus test id' do
-      expect(TestData.new.test_runs_by_id('bogus-test-id')).to eq([])
+      expect(TestData.new.test_runs_by_id('bogus_test_id')).to eq([])
     end
 
     it 'retrieves the test run data' do
-      expect(TestData.new.test_runs_by_id('./spec/some_spec.rb[1:1:1:1]')).not_to be(nil)
+      expect(TestData.new.test_runs_by_id(test_id)).to eq(
+        [
+          Example.new(
+            local_run_id: @local_run_id,
+            id: test_id,
+            description: 'is tested',
+            full_description: 'SomeClass#method is tested',
+            status: 'passed',
+            file_path: './spec/some_spec.rb',
+            line_number: 13,
+            run_time: 0.011690498,
+            pending_message: nil,
+          )
+        ]
+      )
     end
   end
 end

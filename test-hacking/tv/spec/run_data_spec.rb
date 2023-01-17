@@ -1,5 +1,5 @@
 RSpec.describe "RunData" do
-  subject(:run_data) { RunData.from_json(run_json) }
+  subject(:run_data) { RunData.from_json('fake-local-run-id', run_json) }
 
   let(:run_json) do
     JSON.generate(

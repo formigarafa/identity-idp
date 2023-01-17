@@ -11,7 +11,6 @@ class TestData
     @test_data_directory = 'test-data'
   end
 
-  # ToDo: this is misleading. Change to a better name
   def local_run_ids
     Dir.glob("#{@test_data_directory}/*").map do |test_dir|
       test_dir.split('/')[-1]
@@ -44,18 +43,21 @@ class TestData
   end
 
   def run_data(local_run_id)
-    RunData.from_json(File.read("#{@test_data_directory}/#{local_run_id}/rspec-out.json"))
+    RunData.from_json(local_run_id,
+                      File.read("#{@test_data_directory}/#{local_run_id}/rspec-out.json"))
+  end
+
+  def example_from_run(examples, test_id)
+    examples.filter do |example_run|
+      example_run.id == test_id
+    end
   end
 
   def test_runs_by_id(test_id)
     return_value = []
 
     local_run_ids.each do |id|
-      run_data(id).examples.each do |example_run|
-        if example_run.id == test_id
-          return_value.push(example_run)
-        end
-      end
+      return_value += example_from_run(run_data(id).examples, test_id)
     end
 
     return_value
