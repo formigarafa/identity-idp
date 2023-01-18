@@ -186,10 +186,10 @@ function AddressSearch({
   }, [isLoading]);
 
   useDidUpdateEffect(() => {
-    onFoundLocations(locationResults);
+    !isLoading && onFoundLocations(locationResults);
 
-    foundAddress && onFoundAddress(foundAddress);
-  }, [locationResults]);
+    !isLoading && onFoundAddress(foundAddress);
+  }, [isLoading, locationResults, foundAddress]);
 
   const handleSearch = useCallback(
     (event) => {
