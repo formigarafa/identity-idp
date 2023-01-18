@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'json'
-require 'securerandom'
 
 require_relative 'run_data'
 
@@ -18,11 +17,11 @@ class TestData
   end
 
   def import(rspec_json, git_hash)
-    local_test_run_id = SecureRandom.uuid
-    create_run_directory(local_test_run_id)
-    save_rspec_output(local_test_run_id, rspec_json)
-    save_metadata(local_test_run_id, JSON.generate(git_hash: git_hash))
-    local_test_run_id
+    test_run = RunData.new
+    test_run.create_run_directory
+    save_rspec_output(test_run.local_test_run_id, rspec_json)
+    save_metadata(test_run.local_test_run_id, JSON.generate(git_hash: git_hash))
+    test_run.local_test_run_id
   end
 
   def test_run_directory(local_test_run_id)
@@ -38,6 +37,12 @@ class TestData
   end
 
   def save_rspec_output(local_test_run_id, rspec_json)
+    # DEBUG
+    puts "Dir.pwd: #{Dir.pwd}"
+    puts "Dir.entries('.'): #{Dir.entries('.')}"
+    # puts "Dir.entries('test-data'): #{Dir.entries('test-data')}"
+    puts "local_test_run_id: #{local_test_run_id}"
+
     File.open(
       rspec_file(local_test_run_id),
       'w',
@@ -53,10 +58,6 @@ class TestData
     ) do |file|
       file.write(metadata)
     end
-  end
-
-  def create_run_directory(local_test_run_id)
-    FileUtils.mkdir_p(test_run_directory(local_test_run_id))
   end
 
   def import_gitlab_run(directory)
