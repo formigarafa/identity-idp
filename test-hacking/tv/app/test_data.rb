@@ -18,23 +18,45 @@ class TestData
   end
 
   def import(rspec_json, git_hash)
-    test_run_id = SecureRandom.uuid
-    FileUtils.mkdir_p("#{@test_data_directory}/#{test_run_id}")
+    local_test_run_id = SecureRandom.uuid
+    create_run_directory(local_test_run_id)
+    save_rspec_output(local_test_run_id, rspec_json)
+    save_metadata(local_test_run_id, JSON.generate(git_hash: git_hash))
+    local_test_run_id
+  end
+
+  def test_run_directory(local_test_run_id)
+    "#{@test_data_directory}/#{local_test_run_id}"
+  end
+
+  def rspec_file(local_test_run_id)
+    "#{test_run_directory(local_test_run_id)}/rspec.out.json"
+  end
+
+  def metadata_file(local_test_run_id)
+    "#{test_run_directory(local_test_run_id)}/metada.json"
+  end
+
+  def save_rspec_output(local_test_run_id, rspec_json)
     File.open(
-      "#{@test_data_directory}/#{test_run_id}/rspec-out.json",
+      rspec_file(local_test_run_id),
       'w',
     ) do |file|
       file.write(rspec_json)
     end
+  end
 
+  def save_metadata(local_test_run_id, metadata)
     File.open(
-      "#{@test_data_directory}/#{test_run_id}/metada.json",
+      metadata_file(local_test_run_id),
       'w',
     ) do |file|
-      file.puts "{ \"git_hash\": \"#{git_hash}\" }"
+      file.write(metadata)
     end
+  end
 
-    test_run_id
+  def create_run_directory(local_test_run_id)
+    FileUtils.mkdir_p(test_run_directory(local_test_run_id))
   end
 
   def import_gitlab_run(directory)
@@ -45,17 +67,13 @@ class TestData
   def run_data(local_run_id)
     RunData.from_json(
       local_run_id,
-      File.read("#{@test_data_directory}/#{local_run_id}/rspec-out.json"),
+      File.read("#{@test_data_directory}/#{local_run_id}/rspec.out.json"),
     )
   end
 
   def test_runs_by_id(test_id)
-    return_value = []
-
-    local_run_ids.each do |run_id|
-      return_value += run_data(run_id).test_runs_for_id(test_id)
+    local_run_ids.inject([]) do |return_value, run_id|
+      return_value + run_data(run_id).test_runs_for_id(test_id)
     end
-
-    return_value
   end
 end

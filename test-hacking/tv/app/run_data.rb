@@ -22,10 +22,12 @@ class RunData
       )
     end
 
-    RunData.new(version: run['version'],
-                summary_line: run['summary_line'],
-                summary: run['summary'],
-                examples: examples)
+    RunData.new(
+      version: run['version'],
+      summary_line: run['summary_line'],
+      summary: run['summary'],
+      examples: examples,
+    )
   end
 
   def initialize(version: nil,
@@ -38,6 +40,8 @@ class RunData
     @summary_line = summary_line
     @summary = summary
     @examples = examples
+    @status = status
+    @file_path = file_path
   end
 
   def test_runs_for_id(test_id)

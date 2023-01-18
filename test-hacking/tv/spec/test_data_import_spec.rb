@@ -41,7 +41,7 @@ RSpec.describe TestData do
       TestData.new.import(TEST_JSON, git_hash)
     end
 
-    let(:rspec_data_filename) { "test-data/#{test_id}/rspec-out.json" }
+    let(:rspec_data_filename) { "test-data/#{test_id}/rspec.out.json" }
 
     it 'saves the test data' do
       expect(File.read(rspec_data_filename)).to eq(TEST_JSON)
