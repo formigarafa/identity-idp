@@ -13,7 +13,7 @@ gem 'aws-sdk-ses', '~> 1.6'
 gem 'aws-sdk-sns'
 gem 'barby', '~> 0.6.8'
 gem 'base32-crockford'
-gem 'bootsnap', '~> 1.9.0', require: false
+gem 'bootsnap', '~> 1.0', require: false
 gem 'browser'
 gem 'connection_pool'
 gem 'cssbundling-rails'
@@ -82,6 +82,7 @@ group :development do
   gem 'derailed_benchmarks', '~> 1.8'
   gem 'guard-rspec', require: false
   gem 'irb'
+  gem 'letter_opener', '~> 1.8'
   gem 'octokit', '>= 4.25.0'
   gem 'rack-mini-profiler', '>= 1.1.3', require: false
   gem 'rails-erd', '>= 1.6.0'
@@ -93,9 +94,9 @@ group :development, :test do
   gem 'bullet', '~> 7.0'
   gem 'capybara-webmock', git: 'https://github.com/hashrocket/capybara-webmock.git', ref: 'd3f3b7c'
   gem 'erb_lint', '~> 0.3.0', require: false
-  gem 'i18n-tasks', '>= 0.9.31'
+  gem 'i18n-tasks', '~> 1.0'
   gem 'knapsack'
-  gem 'nokogiri', '1.14.0.rc1'
+  gem 'nokogiri', '~> 1.14.0'
   gem 'parallel_tests'
   gem 'pg_query', require: false
   gem 'pry-byebug'
@@ -104,7 +105,7 @@ group :development, :test do
   gem 'psych'
   gem 'puma'
   gem 'rspec-rails', '~> 6.0'
-  gem 'rubocop', '~> 1.42.0', require: false
+  gem 'rubocop', '~> 1.43.0', require: false
   gem 'rubocop-performance', '~> 1.15.0', require: false
   gem 'rubocop-rails', '>= 2.5.2', require: false
 end
