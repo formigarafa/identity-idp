@@ -38,7 +38,7 @@ module UspsInPersonProofing
     # USPS sends an email to the email address with instructions and the enrollment code.
     # The API response also includes the enrollment code which should be
     # stored with the unique ID to be able to request the status of proofing.
-    # @param applicant [Object]
+    # @param applicant [Hash]
     # @return [Hash] API response
     def request_enroll(applicant)
       url = "#{root_url}/ivs-ippaas-api/IPPRest/resources/rest/optInIPPApplicant"
