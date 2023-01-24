@@ -1,8 +1,9 @@
 module TwoFactorAuthentication
   class OtpExpiredController < ApplicationController
+    before_action :validate_otp_expiration
+
     def show
       @otp_delivery_preference = otp_delivery_preference
-      @show_try_again_option = show_try_again_option?
     end
 
     private
@@ -11,8 +12,13 @@ module TwoFactorAuthentication
       current_user.otp_delivery_preference
     end
 
-    def show_try_again_option?
-      !user_fully_authenticated?
+    def validate_otp_expiration
+      redirect_to after_sign_in_path_for(current_user) if user_fully_authenticated? && !otp_expired?
+    end
+
+    def otp_expired?
+      return if current_user.direct_otp_sent_at.blank?
+      (current_user.direct_otp_sent_at + TwoFactorAuthenticatable::DIRECT_OTP_VALID_FOR_SECONDS).past?
     end
   end
 end
